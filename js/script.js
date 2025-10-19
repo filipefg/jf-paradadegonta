@@ -2,14 +2,25 @@
 document.addEventListener('DOMContentLoaded', function() {
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
+    const body = document.querySelector('body');
     
     if (navToggle) {
         navToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
+            const isActive = navMenu.classList.contains('active');
+            
+            if (isActive) {
+                // Fechar menu
+                navMenu.classList.remove('active');
+                body.style.overflow = 'auto';
+            } else {
+                // Abrir menu
+                navMenu.classList.add('active');
+                body.style.overflow = 'hidden';
+            }
             
             // Animação do ícone do menu
             const spans = this.querySelectorAll('span');
-            if (navMenu.classList.contains('active')) {
+            if (!isActive) {
                 spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
                 spans[1].style.opacity = '0';
                 spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
@@ -21,29 +32,31 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Scroll suave melhorado
+    // Fechar menu ao clicar num link
     const navLinks = document.querySelectorAll('.nav-menu a');
     navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            // Só aplicar scroll suave para links âncora na mesma página
-            if (this.getAttribute('href').startsWith('#')) {
-                e.preventDefault();
+        link.addEventListener('click', function() {
+            // Fechar menu mobile
+            if (navMenu && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                body.style.overflow = 'auto';
                 
+                // Reset do ícone do menu
+                if (navToggle) {
+                    const spans = navToggle.querySelectorAll('span');
+                    spans[0].style.transform = 'none';
+                    spans[1].style.opacity = '1';
+                    spans[2].style.transform = 'none';
+                }
+            }
+            
+            // Scroll suave apenas para âncoras na mesma página
+            if (this.getAttribute('href').startsWith('#') && !this.getAttribute('href').includes('.html')) {
+                e.preventDefault();
                 const targetId = this.getAttribute('href');
                 const targetSection = document.querySelector(targetId);
                 
                 if (targetSection) {
-                    // Fechar menu mobile se estiver aberto
-                    if (navMenu && navMenu.classList.contains('active')) {
-                        navMenu.classList.remove('active');
-                        // Reset do ícone do menu
-                        const spans = navToggle.querySelectorAll('span');
-                        spans[0].style.transform = 'none';
-                        spans[1].style.opacity = '1';
-                        spans[2].style.transform = 'none';
-                    }
-                    
-                    // Calcular a posição com offset menor
                     const headerHeight = document.querySelector('.header').offsetHeight;
                     const targetPosition = targetSection.offsetTop - headerHeight - 20;
                     
@@ -56,9 +69,35 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // Fechar menu ao redimensionar a janela
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768 && navMenu && navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+            body.style.overflow = 'auto';
+            
+            if (navToggle) {
+                const spans = navToggle.querySelectorAll('span');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        }
+    });
+    
+    // Botão de limpar formulário
+    const btnLimpar = document.getElementById('btnLimpar');
+    const contactForm = document.getElementById('contactForm');
+    
+    if (btnLimpar && contactForm) {
+        btnLimpar.addEventListener('click', function() {
+            if (confirm('Tem a certeza que pretende limpar o formulário?')) {
+                contactForm.reset();
+            }
+        });
+    }
+    
     // Header scroll effect
     const header = document.querySelector('.header');
-    
     if (header) {
         window.addEventListener('scroll', function() {
             if (window.scrollY > 100) {
@@ -84,7 +123,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
     
-    // Aplicar animação aos elementos
     const animateElements = document.querySelectorAll('.servico-card, .noticia-card, .sobre-content > div, .contactos-content > div, .associacao-card, .documento-card');
     
     animateElements.forEach(el => {
@@ -100,192 +138,14 @@ document.addEventListener('DOMContentLoaded', function() {
     if (yearElement) {
         yearElement.innerHTML = yearElement.innerHTML.replace('2023', currentYear);
     }
-    
-    // Botão de limpar formulário
-    const btnLimpar = document.getElementById('btnLimpar');
-    const contactForm = document.getElementById('contactForm');
-    
-    if (btnLimpar && contactForm) {
-        btnLimpar.addEventListener('click', function() {
-            if (confirm('Tem a certeza que pretende limpar o formulário?')) {
-                contactForm.reset();
-            }
-        });
-    }
-    
-    // Prevenir que formulários saiam do container
-    const inputs = document.querySelectorAll('input, select, textarea');
-    inputs.forEach(input => {
-        input.addEventListener('focus', function() {
-            this.style.boxSizing = 'border-box';
-        });
-    });
 });
 
-// Formulário de contacto
-document.addEventListener('DOMContentLoaded', function() {
-    const contactForm = document.getElementById('contactForm');
-    const formMessage = document.getElementById('formMessage');
-    
-    if (contactForm) {
-        contactForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            // Obter dados do formulário
-            const formData = new FormData(this);
-            const data = {
-                nome: formData.get('nome'),
-                email: formData.get('email'),
-                telefone: formData.get('telefone'),
-                assunto: formData.get('assunto'),
-                mensagem: formData.get('mensagem')
-            };
-            
-            // Validar dados
-            if (!data.nome || !data.telefone || !data.assunto || !data.mensagem) {
-                showMessage('Por favor, preencha todos os campos obrigatórios.', 'error');
-                return;
-            }
-            
-            // Mostrar estado de carregamento
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'A enviar...';
-            submitBtn.disabled = true;
-            
-            try {
-                // Simular envio (substituir por EmailJS ou outra solução)
-                await simulateEmailSend(data);
-                
-                showMessage('Mensagem enviada com sucesso! Entraremos em contacto brevemente.', 'success');
-                contactForm.reset();
-                
-                // Redirecionar para página de agradecimento após 2 segundos
-                setTimeout(() => {
-                    window.location.href = 'obrigado.html';
-                }, 2000);
-                
-            } catch (error) {
-                console.error('Erro ao enviar mensagem:', error);
-                showMessage('Erro ao enviar mensagem. Por favor, tente novamente ou contacte-nos diretamente.', 'error');
-            } finally {
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            }
-        });
-    }
-    
-    function showMessage(message, type) {
-        if (formMessage) {
-            formMessage.textContent = message;
-            formMessage.className = `form-message ${type}`;
-            formMessage.style.display = 'block';
-            
-            // Esconder mensagem após 5 segundos
-            setTimeout(() => {
-                formMessage.style.display = 'none';
-            }, 5000);
-        }
-    }
-    
-    // Função simulada para enviar email
-    async function simulateEmailSend(data) {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                console.log('Email enviado:', data);
-                resolve();
-            }, 2000);
-        });
-    }
-});
+// Prevenir scroll horizontal
+function preventHorizontalScroll() {
+    document.body.style.overflowX = 'hidden';
+    document.documentElement.style.overflowX = 'hidden';
+}
 
-// Paginação para notícias
-document.addEventListener('DOMContentLoaded', function() {
-    const noticiasPerPage = 6;
-    let currentPage = 1;
-    
-    function setupPagination() {
-        const noticiasGrid = document.querySelector('.noticias-grid');
-        const paginacao = document.querySelector('.paginacao');
-        
-        if (!noticiasGrid || !paginacao) return;
-        
-        const allNoticias = Array.from(noticiasGrid.children);
-        const totalPages = Math.ceil(allNoticias.length / noticiasPerPage);
-        
-        // Mostrar primeira página inicialmente
-        showPage(1, allNoticias, noticiasGrid);
-        
-        // Criar botões de paginação
-        updatePaginationButtons(totalPages, paginacao, allNoticias, noticiasGrid);
-    }
-    
-    function showPage(page, noticias, container) {
-        const start = (page - 1) * noticiasPerPage;
-        const end = start + noticiasPerPage;
-        
-        noticias.forEach((noticia, index) => {
-            noticia.style.display = 
-                (index >= start && index < end) ? 'block' : 'none';
-        });
-        
-        currentPage = page;
-    }
-    
-    function updatePaginationButtons(totalPages, paginacao, noticias, container) {
-        paginacao.innerHTML = '';
-        
-        // Botão anterior
-        const prevBtn = document.createElement('a');
-        prevBtn.href = '#';
-        prevBtn.innerHTML = '&laquo;';
-        prevBtn.classList.add('prev');
-        if (currentPage === 1) prevBtn.classList.add('disabled');
-        
-        prevBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            if (currentPage > 1) {
-                showPage(currentPage - 1, noticias, container);
-                updatePaginationButtons(totalPages, paginacao, noticias, container);
-            }
-        });
-        
-        paginacao.appendChild(prevBtn);
-        
-        // Botões de página
-        for (let i = 1; i <= totalPages; i++) {
-            const pageBtn = document.createElement('a');
-            pageBtn.href = '#';
-            pageBtn.textContent = i;
-            if (i === currentPage) pageBtn.classList.add('active');
-            
-            pageBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                showPage(i, noticias, container);
-                updatePaginationButtons(totalPages, paginacao, noticias, container);
-            });
-            
-            paginacao.appendChild(pageBtn);
-        }
-        
-        // Botão seguinte
-        const nextBtn = document.createElement('a');
-        nextBtn.href = '#';
-        nextBtn.innerHTML = '&raquo;';
-        nextBtn.classList.add('next');
-        if (currentPage === totalPages) nextBtn.classList.add('disabled');
-        
-        nextBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            if (currentPage < totalPages) {
-                showPage(currentPage + 1, noticias, container);
-                updatePaginationButtons(totalPages, paginacao, noticias, container);
-            }
-        });
-        
-        paginacao.appendChild(nextBtn);
-    }
-    
-    // Inicializar paginação se existir
-    setupPagination();
-});
+document.addEventListener('DOMContentLoaded', preventHorizontalScroll);
+window.addEventListener('resize', preventHorizontalScroll);
+window.addEventListener('load', preventHorizontalScroll);
