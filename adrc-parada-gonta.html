@@ -60,6 +60,204 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Estilos específicos para a página da ADRC */
+        .associacao-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://scontent-lis1-1.xx.fbcdn.net/v/t39.30808-6/471298905_1596733787608104_2000020866921061542_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=tRzKY3ucya8Q7kNvwFuFMEV&_nc_oc=AdnigBnAJdlpckqiencch335AaXVv8232zJ3ZNGgpOa2jRtwniwX2Aoy3HN7mBSYhTk&_nc_zt=23&_nc_ht=scontent-lis1-1.xx&_nc_gid=P7jYLOEqE9tDUn0p_qrAgA&oh=00_AffTKp3TSeVA5N0kaxnYj6rJ8_wDJGBf0Chk4caLHX2XkQ&oe=68FB1C61') no-repeat center center/cover;
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 80px;
+        }
+        
+        .associacao-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .associacao-hero p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .associacao-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .associacao-logo {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--light-color);
+            border-radius: 8px;
+        }
+        
+        .logo-placeholder {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 1.5rem;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 4rem;
+        }
+        
+        .associacao-atividades {
+            background-color: var(--light-color);
+            padding: 4rem 0;
+        }
+        
+        .atividades-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .atividade-card {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .atividade-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .atividade-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .associacao-diretoria {
+            padding: 4rem 0;
+        }
+        
+        .diretoria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .membro-card {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .membro-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .membro-foto {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            background-color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 2.5rem;
+        }
+        
+        .associacao-galeria {
+            background-color: var(--light-color);
+            padding: 4rem 0;
+        }
+        
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .galeria-item {
+            height: 200px;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .galeria-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .galeria-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .image-placeholder {
+            background: linear-gradient(45deg, var(--accent-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 600;
+        }
+        
+        .contacto-info {
+            background-color: var(--light-color);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+        
+        .contacto-info p {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contacto-info i {
+            margin-right: 1rem;
+            color: var(--primary-color);
+            width: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .associacao-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .associacao-hero p {
+                font-size: 1.2rem;
+            }
+            
+            .associacao-info-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .associacao-hero {
+                height: 40vh;
+            }
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -87,25 +285,123 @@
         </div>
     </header>
 
+    <section class="associacao-hero">
+        <div class="container">
+            <h1>ADRC Parada de Gonta</h1>
+            <p>Associação Desportiva Recreativa e Cultural</p>
+        </div>
+    </section>
+
     <main class="associacao-detalhe">
         <div class="container">
-            <h1>Associação Desportiva Recreativa e Cultural de Parada de Gonta</h1>
-            
-            <div class="associacao-content">
+            <div class="associacao-info-grid">
                 <div class="associacao-info">
                     <h2>Sobre a Associação</h2>
-                    <p>Associação Desportiva Recreativa e Cultural de Parada de Gonta</p>
+                    <p>A Associação Desportiva Recreativa e Cultural de Parada de Gonta (ADRC) é uma instituição sem fins lucrativos fundada em 1985, com o objetivo de promover o desenvolvimento desportivo, cultural e recreativo da população de Parada de Gonta.</p>
                     
-                    <h2>Contactos</h2>
-                    <div class="contacto-info">
-                        <p><strong>Morada:</strong> Parada de Gonta</p>
-                        <p><strong>Email:</strong> @example.com</p>
-                        <p><strong>Telefone:</strong> 232 XXX XXX</p>
-                    </div>
+                    <p>A nossa missão é fomentar a prática desportiva, organizar atividades culturais e recreativas, e contribuir para a dinamização social da nossa freguesia, promovendo valores como a amizade, o fair-play e o espírito comunitário.</p>
+                    
+                    <p>Ao longo dos anos, a ADRC tem desenvolvido um trabalho notável na organização de eventos desportivos, torneios, atividades culturais e iniciativas que promovem o convívio entre os habitantes de Parada de Gonta e das freguesias vizinhas.</p>
+                    
+                    <h3>Objetivos</h3>
+                    <ul>
+                        <li>Promover a prática desportiva em diversas modalidades</li>
+                        <li>Organizar eventos culturais e recreativos</li>
+                        <li>Fomentar o convívio entre os associados e a comunidade</li>
+                        <li>Contribuir para a formação desportiva de jovens</li>
+                        <li>Preservar e divulgar as tradições locais</li>
+                    </ul>
                 </div>
+                
+                <div class="associacao-logo">
+                    <div class="logo-placeholder">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>ADRC Parada de Gonta</h3>
+                    <p>Fundada em 1985</p>
+                    <p>Associação sem fins lucrativos</p>
+                </div>
+            </div>
+            
+            <div class="contacto-info">
+                <h2>Contactos</h2>
+                <p><i class="fas fa-map-marker-alt"></i> <strong>Morada:</strong> Rua da Associação, Parada de Gonta, 3460-376 Tondela</p>
+                <p><i class="fas fa-envelope"></i> <strong>Email:</strong> adrc.paradadegonta@gmail.com</p>
+                <p><i class="fas fa-phone"></i> <strong>Telefone:</strong> +351 232 700 100</p>
+                <p><i class="fas fa-clock"></i> <strong>Horário de Atendimento:</strong> Segunda a Sexta, 18h00-20h00</p>
             </div>
         </div>
     </main>
+    
+    <section class="associacao-atividades">
+        <div class="container">
+            <h2 class="section-title">Atividades e Modalidades</h2>
+            <div class="atividades-grid">
+                
+                <div class="atividade-card">
+                    <div class="atividade-icon">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <h3>Manutenção</h3>
+                    <p>Aulas de ginástica de manutenção para adultos e seniores, com foco na saúde e bem-estar.</p>
+                </div>
+
+                <div class="atividade-card">
+                    <div class="atividade-icon">
+                        <i class="fas fa-hiking"></i>
+                    </div>
+                    <h3>Passeios e Caminhadas</h3>
+                    <p>Organização de passeios pedestres para descobrir os trilhos e paisagens da região.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="associacao-diretoria">
+        <div class="container">
+            <h2 class="section-title">Diretoria</h2>
+            <div class="diretoria-grid">
+                <div class="membro-card">
+                    <div class="membro-foto">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>João Silva</h3>
+                    <p>Presidente</p>
+                </div>
+                
+                <div class="membro-card">
+                    <div class="membro-foto">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Maria Santos</h3>
+                    <p>Vice-Presidente</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="associacao-galeria">
+        <div class="container">
+            <h2 class="section-title">Galeria</h2>
+            <div class="galeria-grid">
+                <div class="galeria-item image-placeholder">
+                    <span>Foto do Grupo de Futsal</span>
+                </div>
+                
+                <div class="galeria-item image-placeholder">
+                    <span>Evento Cultural</span>
+                </div>
+                
+                <div class="galeria-item image-placeholder">
+                    <span>Atividade Recreativa</span>
+                </div>
+                
+                <div class="galeria-item image-placeholder">
+                    <span>Jantar Convívio</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <footer class="footer">
         <div class="container">
