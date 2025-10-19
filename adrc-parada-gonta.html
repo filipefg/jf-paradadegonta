@@ -16,13 +16,13 @@
     <meta property="og:description" content="Promovemos o desporto, cultura e convívio na freguesia de Parada de Gonta, Tondela.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://jfparadadegonta.pt/adrc-parada-gonta.html">
-    <meta property="og:image" content="https://jfparadadegonta.pt/images/associacoes/adrc-logo.jpg">
+    <meta property="og:image" content="https://scontent-lis1-1.xx.fbcdn.net/v/t39.30808-6/473823705_620991810626476_953847173006685918_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=NiUgmB3-jpkQ7kNvwGqgJQm&_nc_oc=AdlU3kJAbMO-8Zn15XNXFX6HKE9a2mSoglPDYDNasyBoeG8im4eW4jrizTRa117-RWI&_nc_zt=23&_nc_ht=scontent-lis1-1.xx&_nc_gid=74HoGwMdMx0A9S7cwvwAuw&oh=00_AfdTxN0SQHcLsysO1RwRf5GoOZjeN9RMEmnET9Hks3Ibnw&oe=68FB35D5">
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="ADRC Parada de Gonta - Associação Desportiva Recreativa e Cultural">
     <meta name="twitter:description" content="Promovemos o desporto, cultura e convívio na freguesia de Parada de Gonta, Tondela.">
-    <meta name="twitter:image" content="https://jfparadadegonta.pt/images/associacoes/adrc-logo.jpg">
+    <meta name="twitter:image" content="https://scontent-lis1-1.xx.fbcdn.net/v/t39.30808-6/473823705_620991810626476_953847173006685918_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=NiUgmB3-jpkQ7kNvwGqgJQm&_nc_oc=AdlU3kJAbMO-8Zn15XNXFX6HKE9a2mSoglPDYDNasyBoeG8im4eW4jrizTRa117-RWI&_nc_zt=23&_nc_ht=scontent-lis1-1.xx&_nc_gid=74HoGwMdMx0A9S7cwvwAuw&oh=00_AfdTxN0SQHcLsysO1RwRf5GoOZjeN9RMEmnET9Hks3Ibnw&oe=68FB35D5">
     
     <!-- Schema.org Structured Data -->
     <script type="application/ld+json">
@@ -33,7 +33,7 @@
         "alternateName": "ADRC Parada de Gonta",
         "description": "Associação dedicada à promoção do desporto, actividades culturais e recreativas na freguesia de Parada de Gonta",
         "url": "https://jfparadadegonta.pt/adrc-parada-gonta.html",
-        "logo": "https://jfparadadegonta.pt/images/associacoes/adrc-logo.jpg",
+        "logo": "https://scontent-lis1-1.xx.fbcdn.net/v/t39.30808-6/473823705_620991810626476_953847173006685918_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=NiUgmB3-jpkQ7kNvwGqgJQm&_nc_oc=AdlU3kJAbMO-8Zn15XNXFX6HKE9a2mSoglPDYDNasyBoeG8im4eW4jrizTRa117-RWI&_nc_zt=23&_nc_ht=scontent-lis1-1.xx&_nc_gid=74HoGwMdMx0A9S7cwvwAuw&oh=00_AfdTxN0SQHcLsysO1RwRf5GoOZjeN9RMEmnET9Hks3Ibnw&oe=68FB35D5",
         "address": {
             "@type": "PostalAddress",
             "streetAddress": "Parada de Gonta",
@@ -42,8 +42,8 @@
             "postalCode": "3460-376",
             "addressCountry": "PT"
         },
-        "email": "adrc.paradadegonta@example.com",
-        "telephone": "+351-232-XXX-XXX",
+        "email": "adrc.paradadegonta@gmail.com",
+        "telephone": "+351-232-700-100",
         "areaServed": "Parada de Gonta"
     }
     </script>
@@ -99,19 +99,26 @@
             padding: 2rem;
             background-color: var(--light-color);
             border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
         
-        .logo-placeholder {
+        .logo-container {
             width: 200px;
             height: 200px;
             margin: 0 auto 1.5rem;
-            background-color: var(--accent-color);
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 4rem;
+            overflow: hidden;
+            border: 5px solid var(--primary-color);
+            box-shadow: var(--shadow);
+        }
+        
+        .logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         
         .associacao-atividades {
@@ -314,8 +321,8 @@
                 </div>
                 
                 <div class="associacao-logo">
-                    <div class="logo-placeholder">
-                        <i class="fas fa-users"></i>
+                    <div class="logo-container">
+                        <img src="https://scontent-lis1-1.xx.fbcdn.net/v/t39.30808-6/473823705_620991810626476_953847173006685918_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=NiUgmB3-jpkQ7kNvwGqgJQm&_nc_oc=AdlU3kJAbMO-8Zn15XNXFX6HKE9a2mSoglPDYDNasyBoeG8im4eW4jrizTRa117-RWI&_nc_zt=23&_nc_ht=scontent-lis1-1.xx&_nc_gid=74HoGwMdMx0A9S7cwvwAuw&oh=00_AfdTxN0SQHcLsysO1RwRf5GoOZjeN9RMEmnET9Hks3Ibnw&oe=68FB35D5" alt="Logo ADRC Parada de Gonta">
                     </div>
                     <h3>ADRC Parada de Gonta</h3>
                     <p>Fundada em 1985</p>
@@ -336,8 +343,7 @@
     <section class="associacao-atividades">
         <div class="container">
             <h2 class="section-title">Atividades e Modalidades</h2>
-            <div class="atividades-grid">
-                
+            <div class="atividades-grid">                
                 <div class="atividade-card">
                     <div class="atividade-icon">
                         <i class="fas fa-dumbbell"></i>
@@ -345,7 +351,7 @@
                     <h3>Manutenção</h3>
                     <p>Aulas de ginástica de manutenção para adultos e seniores, com foco na saúde e bem-estar.</p>
                 </div>
-
+                
                 <div class="atividade-card">
                     <div class="atividade-icon">
                         <i class="fas fa-hiking"></i>
@@ -375,6 +381,14 @@
                     </div>
                     <h3>Maria Santos</h3>
                     <p>Vice-Presidente</p>
+                </div>
+                
+                <div class="membro-card">
+                    <div class="membro-foto">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>António Ferreira</h3>
+                    <p>Secretário</p>
                 </div>
             </div>
         </div>
