@@ -528,6 +528,7 @@ section {
 }
 
 .contactos-form {
+    color: var(--primary-color);
     background: var(--white);
     padding: 2rem;
     border-radius: 8px;
