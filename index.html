@@ -228,7 +228,6 @@
         <div class="container">
             <h2 class="section-title">Contactos</h2>
             
-            <!-- Conteúdo principal: contactos à esquerda e formulário à direita -->
             <div class="contactos-content">
                 <!-- Informações de contacto -->
                 <div class="contactos-info">
@@ -250,49 +249,54 @@
                     </div>
                 </div>
 
-            <!-- Formulário à direita -->
-            <div class="contactos-form-container">
-                <div class="contactos-form">
-                    <h3>📝 Envie-nos uma mensagem</h3>
-                    <form class="contact-form" action="https://formsubmit.co/filipefg@gmail.com" method="POST">
-                        <!-- Configurações do FormSubmit -->
-                        <input type="hidden" name="_subject" value="Novo Contacto - Website Parada de Gonta">
-                        <input type="hidden" name="_template" value="table">
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_next" value="https://jfparadadegonta.pt/obrigado.html">
-                        <input type="text" name="_honey" style="display:none"> <!-- Anti-spam -->
-                        
-                        <div class="form-group">
-                            <label for="nome">Nome *</label>
-                            <input type="text" id="nome" name="nome" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email">
-                        </div>
-                        <div class="form-group">
-                            <label for="telefone">Telefone *</label>
-                            <input type="tel" id="telefone" name="telefone" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="assunto">Assunto *</label>
-                            <select id="assunto" name="assunto" required>
-                                <option value="">Selecione um assunto</option>
-                                <option value="Informação geral">Informação geral</option>
-                                <option value="Apoio social">Apoio social</option>
-                                <option value="Documentação">Documentação</option>
-                                <option value="Espaços públicos">Espaços públicos</option>
-                                <option value="Eventos">Eventos</option>
-                                <option value="Associativismo">Associativismo</option>
-                                <option value="Outro">Outro</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="mensagem">Mensagem *</label>
-                            <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn">Enviar mensagem</button>
-                    </form>
+                <!-- Formulário à direita -->
+                <div class="contactos-form-container">
+                    <div class="contactos-form">
+                        <h3>📝 Envie-nos uma mensagem</h3>
+                        <form id="contactForm" class="contact-form" action="https://formsubmit.co/filipefg@gmail.com" method="POST">
+                            <!-- Configurações do FormSubmit -->
+                            <input type="hidden" name="_subject" value="Novo Contacto - Website Parada de Gonta">
+                            <input type="hidden" name="_template" value="table">
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_next" value="https://jfparadadegonta.pt/obrigado.html">
+                            <input type="text" name="_honey" style="display:none">
+                            
+                            <div class="form-group">
+                                <label for="nome">Nome *</label>
+                                <input type="text" id="nome" name="nome" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="telefone">Telefone *</label>
+                                <input type="tel" id="telefone" name="telefone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="assunto">Assunto *</label>
+                                <select id="assunto" name="assunto" required>
+                                    <option value="">Selecione um assunto</option>
+                                    <option value="Informação geral">Informação geral</option>
+                                    <option value="Apoio social">Apoio social</option>
+                                    <option value="Documentação">Documentação</option>
+                                    <option value="Espaços públicos">Espaços públicos</option>
+                                    <option value="Eventos">Eventos</option>
+                                    <option value="Associativismo">Associativismo</option>
+                                    <option value="Outro">Outro</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="mensagem">Mensagem *</label>
+                                <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
+                            </div>
+                            
+                            <div class="form-buttons">
+                                <button type="submit" class="btn">Enviar mensagem</button>
+                                <button type="button" class="btn-limpar" id="btnLimpar">Limpar formulário</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
 
@@ -301,7 +305,7 @@
                 <iframe 
                     src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d12358.373456881545!2d-8.000940051856677!3d40.58473329191605!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2sin!4v1760785463273!5m2!1sen!2sin" 
                     width="100%" 
-                    height="600" 
+                    height="400" 
                     style="border:0; border-radius: 8px;" 
                     allowfullscreen="" 
                     loading="lazy" 
@@ -335,7 +339,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2023 Junta de Freguesia de Parada de Gonta. Todos os direitos reservados.</p>
+                <p>&copy; 2025 Junta de Freguesia de Parada de Gonta. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>

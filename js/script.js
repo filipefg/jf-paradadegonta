@@ -1,5 +1,3 @@
-// script.js
-
 // Menu mobile toggle
 document.addEventListener('DOMContentLoaded', function() {
     const navToggle = document.querySelector('.nav-toggle');
@@ -102,6 +100,26 @@ document.addEventListener('DOMContentLoaded', function() {
     if (yearElement) {
         yearElement.innerHTML = yearElement.innerHTML.replace('2023', currentYear);
     }
+    
+    // Botão de limpar formulário
+    const btnLimpar = document.getElementById('btnLimpar');
+    const contactForm = document.getElementById('contactForm');
+    
+    if (btnLimpar && contactForm) {
+        btnLimpar.addEventListener('click', function() {
+            if (confirm('Tem a certeza que pretende limpar o formulário?')) {
+                contactForm.reset();
+            }
+        });
+    }
+    
+    // Prevenir que formulários saiam do container
+    const inputs = document.querySelectorAll('input, select, textarea');
+    inputs.forEach(input => {
+        input.addEventListener('focus', function() {
+            this.style.boxSizing = 'border-box';
+        });
+    });
 });
 
 // Formulário de contacto
@@ -141,6 +159,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 showMessage('Mensagem enviada com sucesso! Entraremos em contacto brevemente.', 'success');
                 contactForm.reset();
+                
+                // Redirecionar para página de agradecimento após 2 segundos
+                setTimeout(() => {
+                    window.location.href = 'obrigado.html';
+                }, 2000);
+                
             } catch (error) {
                 console.error('Erro ao enviar mensagem:', error);
                 showMessage('Erro ao enviar mensagem. Por favor, tente novamente ou contacte-nos diretamente.', 'error');
@@ -172,14 +196,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 resolve();
             }, 2000);
         });
-    }
-    
-    // Alternativa: abrir cliente de email padrão
-    function sendWithMailClient(data) {
-        const subject = `Contacto Website: ${data.assunto}`;
-        const body = `Nome: ${data.nome}%0D%0AEmail: ${data.email}%0D%0ATelefone: ${data.telefone || 'Não fornecido'}%0D%0A%0D%0AMensagem:%0D%0A${data.mensagem}`;
-        
-        window.location.href = `mailto:jf-paradadegonta@example.pt?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     }
 });
 
