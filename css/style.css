@@ -186,13 +186,7 @@ section {
 /* Hero Section */
 .hero {
     height: 100vh;
-    background-image: 
-        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url('../imagens/castelo.JPG');
-    background-repeat: no-repeat, no-repeat;
-    background-position: center center, center center;
-    background-size: cover, cover;
-    background-attachment: fixed, fixed;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../castelo.JPG') no-repeat center center/cover;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -277,7 +271,7 @@ section {
     color: var(--white);
     font-weight: 600;
     background: linear-gradient(45deg, var(--accent-color), var(--secondary-color));
-    background-image: url("../imagens/placa.JPG");
+    background-image: url("../placa.JPG");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
