@@ -530,6 +530,7 @@ section {
     background-color: var(--dark-color);
     color: var(--white);
     padding: 3rem 0 1rem;
+    text-align: center;
 }
 
 .footer-content {
@@ -575,6 +576,7 @@ section {
 .social-icons {
     display: flex;
     gap: 1rem;
+    justify-content: center;
 }
 
 .social-icons a {
