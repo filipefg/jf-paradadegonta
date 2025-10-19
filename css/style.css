@@ -502,8 +502,10 @@ section {
 /* Contactos Section */
 .contactos-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
+    grid-template-columns: 1fr 1.2fr; /* Formulário ligeiramente maior */
+    gap: 2rem;
+    align-items: start;
+    margin-bottom: 3rem;
 }
 
 .contacto-item {
@@ -513,6 +515,11 @@ section {
 .contacto-item h3 {
     color: var(--primary-color);
     margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    /* Se quiser adicionar os ícones que sugeri: */
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .contacto-item p {
@@ -606,20 +613,24 @@ section {
     font-size: 0.9rem;
 }
 
-/* Container do formulário centrado */
-.contactos-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    margin-bottom: 3rem;
-}
-
 .contactos-info {
-    background-color: var(--white);
+    background: var(--white);
     padding: 2rem;
     border-radius: 8px;
     box-shadow: var(--shadow);
     height: fit-content;
+    position: sticky;
+    top: 100px;
+}
+
+.contactos-info .contacto-item {
+    transition: var(--transition);
+    padding: 1rem;
+    border-radius: 4px;
+}
+
+.contactos-info .contacto-item:hover {
+    background-color: var(--light-color);
 }
 
 .contacto-item {
@@ -628,35 +639,17 @@ section {
     border-bottom: 1px solid #f0f0f0;
 }
 
-.contacto-item:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
-
-.contacto-item h3 {
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
-    font-size: 1.2rem;
-}
-
 .contacto-item p {
     color: var(--text-color);
     line-height: 1.5;
 }
 
-.contactos-form-container {
-    display: flex;
-    justify-content: flex-end;
-}
-
 .contactos-form {
-    background-color: var(--white);
+    background: var(--white);
     padding: 2rem;
     border-radius: 8px;
     box-shadow: var(--shadow);
     width: 100%;
-    max-width: 100%;
 }
 
 .contactos-form h3 {
@@ -674,10 +667,11 @@ section {
 .contact-form {
     display: flex;
     flex-direction: column;
+    gap: 1.5rem;
 }
 
 .form-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 0;
 }
 
 .form-group label {
@@ -994,10 +988,6 @@ section {
         font-size: 1.8rem;
     }
     
-    .contactos-form-container {
-        justify-content: center;
-    }
-    
     .contactos-form {
         width: 100%;
         max-width: 500px;
@@ -1059,10 +1049,19 @@ section {
     html {
         scroll-padding-top: 100px;
     }
+
+    .contactos-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
     
-    .contactos-info,
+    .contactos-info {
+        position: static;
+        order: 2;
+    }
+    
     .contactos-form {
-        padding: 1rem;
+        order: 1;
     }
     
     .contactos-form h3 {

@@ -206,14 +206,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const start = (page - 1) * noticiasPerPage;
         const end = start + noticiasPerPage;
         
-        // Esconder todas as notícias
-        noticias.forEach(noticia => {
-            noticia.style.display = 'none';
-        });
-        
-        // Mostrar notícias da página atual
-        noticias.slice(start, end).forEach(noticia => {
-            noticia.style.display = 'block';
+        noticias.forEach((noticia, index) => {
+            noticia.style.display = 
+                (index >= start && index < end) ? 'block' : 'none';
         });
         
         currentPage = page;
