@@ -577,3 +577,169 @@ if (!String.prototype.includes) {
         }
     };
 }
+
+// script.js - Adicione estas funções
+
+// Função para carregar dados do Google Sheets via CSV
+async function carregarAssociacoes() {
+    try {
+        // URL do Google Sheets como CSV (substitua com o seu URL)
+        const sheetUrl = 'https://docs.google.com/spreadsheets/d/1RMzMCkSEuyMF7xkptmFBy3dkQD8dTQ6PLfxnJcC-pCU/gviz/tq?tqx=out:csv&sheet=Sheet1';
+        
+        const response = await fetch(sheetUrl);
+        const csvData = await response.text();
+        
+        // Converter CSV para JSON
+        const associacoes = csvParaJSON(csvData);
+        
+        // Renderizar as associações
+        renderizarAssociacoes(associacoes);
+        
+        // Configurar event listeners para os modais
+        configurarModais(associacoes);
+        
+    } catch (error) {
+        console.error('Erro ao carregar associações:', error);
+        // Fallback para dados estáticos em caso de erro
+        carregarAssociacoesFallback();
+    }
+}
+
+// Função para converter CSV para JSON
+function csvParaJSON(csv) {
+    const linhas = csv.split('\n');
+    const headers = linhas[0].split(',').map(header => header.trim().replace(/"/g, ''));
+    
+    return linhas.slice(1).map(linha => {
+        const valores = linha.split(',').map(valor => valor.trim().replace(/"/g, ''));
+        const obj = {};
+        headers.forEach((header, index) => {
+            obj[header] = valores[index] || '';
+        });
+        return obj;
+    }).filter(assoc => assoc.Nome); // Filtrar linhas vazias
+}
+
+// Função para renderizar as associações na página
+function renderizarAssociacoes(associacoes) {
+    const container = document.getElementById('associacoes-container');
+    
+    if (!container) return;
+    
+    container.innerHTML = associacoes.map(associacao => `
+        <div class="associacao-card" data-associacao="${associacao.Nome}">
+            <div class="associacao-logo">
+                <img src="${associacao.Logo}" alt="Logo ${associacao.Nome}" loading="lazy">
+            </div>
+            <h3>${associacao.Nome}</h3>
+            <p>${associacao.Descricao}</p>
+            <button class="btn-associacao">Saber Mais</button>
+        </div>
+    `).join('');
+}
+
+// Função para configurar os modais
+function configurarModais(associacoes) {
+    const modal = document.getElementById('associacao-modal');
+    const modalBody = document.getElementById('modal-body');
+    const closeBtn = document.querySelector('.modal-close');
+    
+    // Event listeners para abrir modal
+    document.querySelectorAll('.associacao-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+            if (e.target.classList.contains('btn-associacao') || e.target.closest('.associacao-card')) {
+                const nomeAssociacao = card.getAttribute('data-associacao');
+                const associacao = associacoes.find(a => a.Nome === nomeAssociacao);
+                
+                if (associacao) {
+                    abrirModal(associacao);
+                }
+            }
+        });
+    });
+    
+    // Fechar modal
+    closeBtn.addEventListener('click', fecharModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            fecharModal();
+        }
+    });
+    
+    // Fechar com ESC
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            fecharModal();
+        }
+    });
+}
+
+// Função para abrir o modal
+function abrirModal(associacao) {
+    const modal = document.getElementById('associacao-modal');
+    const modalBody = document.getElementById('modal-body');
+    
+    modalBody.innerHTML = `
+        <div class="modal-logo">
+            <img src="${associacao.Logo}" alt="Logo ${associacao.Nome}">
+        </div>
+        <h2 class="modal-title">${associacao.Nome}</h2>
+        <p class="modal-description">${associacao.Descricao}</p>
+        
+        ${associacao.Fundacao ? `<p class="modal-fundacao">Fundada em ${associacao.Fundacao}</p>` : ''}
+        
+        <div class="modal-contact-info">
+            <h4>Contactos</h4>
+            ${associacao.Email ? `<p><i class="fas fa-envelope"></i> ${associacao.Email}</p>` : ''}
+            ${associacao.Telefone ? `<p><i class="fas fa-phone"></i> ${associacao.Telefone}</p>` : ''}
+            ${associacao.Morada ? `<p><i class="fas fa-map-marker-alt"></i> ${associacao.Morada}</p>` : ''}
+        </div>
+    `;
+    
+    modal.style.display = 'block';
+    modal.setAttribute('aria-hidden', 'false');
+    
+    // Focar no botão de fechar para acessibilidade
+    document.querySelector('.modal-close').focus();
+}
+
+// Função para fechar o modal
+function fecharModal() {
+    const modal = document.getElementById('associacao-modal');
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
+}
+
+// Fallback em caso de erro no carregamento
+function carregarAssociacoesFallback() {
+    const associacoesFallback = [
+        {
+            Nome: "ADRC Parada de Gonta",
+            Logo: "https://via.placeholder.com/100x100/2c5530/ffffff?text=ADRC",
+            Descricao: "Associação Desportiva Recreativa e Cultural que promove o desporto, a cultura e o convívio comunitário.",
+            Email: "adrc.paradadegonta@gmail.com",
+            Telefone: "+351 232 700 100",
+            Morada: "Rua da Associação, Parada de Gonta",
+            Fundacao: "1986"
+        },
+        {
+            Nome: "ASSODREC Parada de Gonta",
+            Logo: "https://via.placeholder.com/100x100/4a7c59/ffffff?text=ASSODREC",
+            Descricao: "Associação Social Desportiva Cultural e Recreativa focada em respostas sociais e apoio a idosos.",
+            Email: "assodrec.paradadegonta@gmail.com",
+            Telefone: "+351 232 700 300",
+            Morada: "Rua da Associação, Parada de Gonta",
+            Fundacao: "1997"
+        }
+    ];
+    
+    renderizarAssociacoes(associacoesFallback);
+    configurarModais(associacoesFallback);
+}
+
+// Inicializar quando o DOM estiver carregado
+document.addEventListener('DOMContentLoaded', function() {
+    carregarAssociacoes();
+    
+    // Resto do seu código existente...
+});
