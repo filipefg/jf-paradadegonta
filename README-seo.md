@@ -1,3 +1,5 @@
+README-seo-md
+
 # Site da Junta de Freguesia de Parada de Gonta - Otimização SEO
 
 ## 📋 Estrutura do Projeto
