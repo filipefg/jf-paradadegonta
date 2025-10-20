@@ -331,7 +331,7 @@ section {
     font-weight: 600;
     background: linear-gradient(45deg, var(--accent-color), var(--secondary-color));
     background-image: url("https://imgs.search.brave.com/mmB82gafvC4FwNegqV9i3ml4fdrlhUm9dGPf7j90y2c/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy84/Lzg1L1RORC1wYXJh/ZGFnb250YS5wbmc");
-    background-size: cover;
+    background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
     font-size: 1.2rem;
