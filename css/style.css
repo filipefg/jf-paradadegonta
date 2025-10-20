@@ -226,7 +226,7 @@ section {
 .hero {
     height: 100vh;
     min-height: 600px;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/imagens/castelo.JPG') no-repeat center center/cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://github.com/filipefg/jf-paradadegonta/blob/4dbf602ff279efc9dc759979ed200ea903be605e/imagens/castelo.JPG') no-repeat center center/cover;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -330,7 +330,7 @@ section {
     color: var(--white);
     font-weight: 600;
     background: linear-gradient(45deg, var(--accent-color), var(--secondary-color));
-    background-image: url("/imagens/placa.JPG");
+    background-image: url("https://github.com/filipefg/jf-paradadegonta/blob/4dbf602ff279efc9dc759979ed200ea903be605e/imagens/placa.JPG");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
