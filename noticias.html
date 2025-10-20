@@ -6,22 +6,266 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notícias - Junta de Freguesia de Parada de Gonta</title>
+    
+    <!-- Meta Tags SEO -->
+    <meta name="description" content="Notícias e comunicados da Junta de Freguesia de Parada de Gonta, Tondela. Fique a par dos últimos acontecimentos e eventos da freguesia.">
+    <meta name="keywords" content="notícias Parada de Gonta, eventos Tondela, comunicados freguesia, actualidades Viseu, junta freguesia notícias">
+    <meta name="author" content="Junta de Freguesia de Parada de Gonta">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Notícias - Junta de Freguesia de Parada de Gonta">
+    <meta property="og:description" content="Notícias e comunicados da Junta de Freguesia de Parada de Gonta, Tondela">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jfparadadegonta.pt/noticias.html">
+    <meta property="og:image" content="https://jfparadadegonta.pt/images/og-noticias.jpg">
+    <meta property="og:locale" content="pt_PT">
+    <meta property="og:site_name" content="Junta de Freguesia de Parada de Gonta">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Notícias - Parada de Gonta">
+    <meta name="twitter:description" content="Notícias da Junta de Freguesia de Parada de Gonta">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Notícias - Junta de Freguesia de Parada de Gonta",
+        "description": "Notícias, eventos e comunicados da Junta de Freguesia de Parada de Gonta, Tondela",
+        "url": "https://jfparadadegonta.pt/noticias.html",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Junta de Freguesia de Parada de Gonta",
+            "url": "https://jfparadadegonta.pt"
+        },
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Início",
+                    "item": "https://jfparadadegonta.pt/"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Notícias"
+                }
+            ]
+        }
+    }
+    </script>
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://jfparadadegonta.pt/noticias.html">
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        .noticias-filters {
+            background: var(--light-color);
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+        
+        .filters-container {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            background: var(--white);
+            border: 2px solid var(--primary-color);
+            border-radius: 25px;
+            color: var(--primary-color);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+        
+        .search-box {
+            max-width: 400px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 0.8rem 1rem 0.8rem 3rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 1rem;
+        }
+        
+        .search-box i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+        }
+        
+        .noticia-category {
+            margin-bottom: 3rem;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        .noticias-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .stat-card h3 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-card p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .breadcrumb {
+            background: var(--light-color);
+            padding: 1rem 0;
+            margin-top: 80px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .breadcrumb .container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .breadcrumb a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .breadcrumb span {
+            color: var(--text-light);
+        }
+        
+        .noticia-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .noticia-tag {
+            background: var(--accent-color);
+            color: var(--white);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .noticia-date {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-light);
+        }
+        
+        .newsletter-section {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 4rem 0;
+            margin-top: 4rem;
+        }
+        
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-form .form-group {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 4px;
+        }
+        
+        .highlight-noticia {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+        
+        .highlight-noticia .noticia-header {
+            background: transparent;
+        }
+        
+        .highlight-noticia .noticia-header h2 {
+            color: var(--white);
+        }
+    </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- Skip link para acessibilidade -->
+    <a href="#main-content" class="skip-link">Saltar para o conteúdo principal</a>
+    
     <header class="header">
         <div class="container">
             <div class="logo">
                 <h1>Parada de Gonta</h1>
                 <p>Junta de Freguesia</p>
             </div>
-            <nav class="nav">
-                <button class="nav-toggle" aria-label="Abrir menu">
+            <nav class="nav" aria-label="Navegação principal">
+                <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -30,7 +274,7 @@
                     <li><a href="index.html#inicio">Início</a></li>
                     <li><a href="index.html#sobre">Sobre</a></li>
                     <li><a href="index.html#servicos">Serviços</a></li>
-                    <li><a href="index.html#noticias">Notícias</a></li>
+                    <li><a href="index.html#noticias" class="active">Notícias</a></li>
                     <li><a href="index.html#associativismo">Associativismo</a></li>
                     <li><a href="index.html#documentos">Documentos</a></li>
                     <li><a href="index.html#contactos">Contactos</a></li>
@@ -39,127 +283,266 @@
         </div>
     </header>
 
-    <!-- Notícias Main Content -->
-    <main class="noticias-page">
+    <!-- Breadcrumb
+    <nav class="breadcrumb" aria-label="Navegação estrutural">
         <div class="container">
-            <h1 class="page-title">Todas as Notícias</h1>
+            <a href="index.html">Início</a>
+            <span>></span>
+            <span>Notícias</span>
+        </div>
+    </nav> -->
+
+    <main id="main-content" class="noticias-page">
+        <div class="container">
+            <h1 class="page-title">Notícias da Freguesia</h1>
+            <p class="section-subtitle">Fique a par das últimas novidades e comunicados da Junta de Freguesia de Parada de Gonta, Tondela</p>
             
-            <div class="noticias-lista">
-                <!-- Notícia 1 -->
-                <article class="noticia-completa">
+            <!-- Estatísticas -->
+            <div class="noticias-stats">
+                <div class="stat-card">
+                    <h3>24</h3>
+                    <p>Notícias Publicadas</p>
+                </div>
+                <div class="stat-card">
+                    <h3>2025</h3>
+                    <p>Ano Corrente</p>
+                </div>
+                <div class="stat-card">
+                    <h3>5</h3>
+                    <p>Categorias</p>
+                </div>
+                <div class="stat-card">
+                    <h3>1.2K</h3>
+                    <p>Leituras Mensais</p>
+                </div>
+            </div>
+
+            <!-- Filtros e Pesquisa -->
+            <section class="noticias-filters">
+                <div class="container">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="newsSearch" placeholder="Pesquisar notícias... (ex: festas, obras, actividades)" aria-label="Pesquisar notícias">
+                    </div>
+                    
+                    <div class="filters-container">
+                        <button class="filter-btn active" data-filter="all">Todas as Notícias</button>
+                        <button class="filter-btn" data-filter="eventos">Eventos</button>
+                        <button class="filter-btn" data-filter="obras">Obras e Projectos</button>
+                        <button class="filter-btn" data-filter="social">Apoio Social</button>
+                        <button class="filter-btn" data-filter="associacoes">Associações</button>
+                        <button class="filter-btn" data-filter="avisos">Avisos</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Destaque Principal -->
+            <section class="noticia-category" data-category="eventos">
+                <article class="noticia-completa highlight-noticia">
                     <div class="noticia-header">
-                        <div class="data">15 Novembro 2023</div>
-                        <h2>Festas da Freguesia 2023</h2>
+                        <div class="noticia-meta">
+                            <span class="noticia-tag">Destaque</span>
+                            <span class="noticia-date">15 Janeiro 2024</span>
+                        </div>
+                        <h2>Plano de Actividades 2024 da Junta de Freguesia</h2>
                     </div>
                     <div class="noticia-body">
-                        <div class="noticia-imagem">
-                            <!-- Imagem da notícia -->
+                        <div class="noticia-imagem image-placeholder">
+                            <span>Plano de Actividades 2024 - Parada de Gonta</span>
                         </div>
-                        <p>As Festas em Honra de Nossa Senhora da Conceição decorrerão de 8 a 10 de dezembro, com um programa repleto de atividades para toda a comunidade.</p>
-                        <p>O programa inclui missa solene, procissão, arraial popular com música ao vivo, e diversas atividades desportivas e culturais. A organização conta com a participação de todas as associações locais.</p>
-                        <p>Este ano, teremos a presença especial do Rancho Folclórico de Parada de Gonta, que apresentará o seu mais recente espetáculo no domingo à tarde.</p>
-                        <a href="noticias/festas-freguesia-2023.html" class="btn">Ler notícia completa</a>
+                        <p>A Junta de Freguesia de Parada de Gonta apresenta o seu <strong>Plano de Actividades para 2024</strong>, com um conjunto de iniciativas e projetos que visam melhorar a qualidade de vida dos habitantes da nossa freguesia no concelho de Tondela.</p>
+                        
+                        <p>O plano inclui <strong>investimentos em infraestruturas</strong>, programas de <strong>apoio social</strong>, atividades culturais e desportivas, e a continuação dos trabalhos de manutenção dos espaços públicos de Parada de Gonta.</p>
+                        
+                        <h3>Principais Eixos de Actuação</h3>
+                        <ul>
+                            <li><strong>Melhoramento de infraestruturas</strong> - Continuação das obras de requalificação do largo principal</li>
+                            <li><strong>Apoio social</strong> - Reforço dos programas de apoio a famílias carenciadas</li>
+                            <li><strong>Cultura e desporto</strong> - Apoio às associações locais e organização de eventos</li>
+                            <li><strong>Ambiente</strong> - Campanhas de limpeza e embelezamento da freguesia</li>
+                        </ul>
+                        
+                        <p>O Presidente da Junta, Manuel Silva, destacou que <em>"este plano reflete o nosso compromisso com o desenvolvimento sustentável de Parada de Gonta e o bem-estar da nossa comunidade"</em>.</p>
+                        
+                        <a href="noticias/plano-actividades-2024.html" class="btn" style="background: var(--white); color: var(--primary-color);">Ler notícia completa</a>
+                    </div>
+                </article>
+            </section>
+
+            <!-- Lista de Notícias -->
+            <div class="noticias-lista">
+                <!-- Notícia 1 -->
+                <article class="noticia-completa" data-category="eventos">
+                    <div class="noticia-header">
+                        <div class="noticia-meta">
+                            <span class="noticia-tag">Eventos</span>
+                            <span class="noticia-date">12 Janeiro 2024</span>
+                        </div>
+                        <h2>Festas da Freguesia 2024 com Programa Alargado</h2>
+                    </div>
+                    <div class="noticia-body">
+                        <div class="noticia-imagem image-placeholder">
+                            <span>Festas da Freguesia 2024 - Parada de Gonta</span>
+                        </div>
+                        <p>As <strong>Festas em Honra de Nossa Senhora da Conceição</strong> decorrerão de 7 a 9 de dezembro de 2024, com um programa repleto de atividades para toda a comunidade de Parada de Gonta, Tondela.</p>
+                        
+                        <p>O programa inclui missa solene, procissão, arraial popular com música ao vivo, e diversas atividades desportivas e culturais. A organização conta com a participação de todas as associações locais de Parada de Gonta.</p>
+                        
+                        <p>Este ano, teremos a presença especial do <strong>Rancho Folclórico de Parada de Gonta</strong>, que apresentará o seu mais recente espetáculo no domingo à tarde.</p>
+                        
+                        <a href="noticias/festas-freguesia-2024.html" class="btn">Ler mais sobre as festas</a>
                     </div>
                 </article>
 
                 <!-- Notícia 2 -->
-                <article class="noticia-completa">
+                <article class="noticia-completa" data-category="obras">
                     <div class="noticia-header">
-                        <div class="data">10 Novembro 2023</div>
+                        <div class="noticia-meta">
+                            <span class="noticia-tag">Obras</span>
+                            <span class="noticia-date">8 Janeiro 2024</span>
+                        </div>
                         <h2>Obras de Melhoramento no Largo Principal</h2>
                     </div>
                     <div class="noticia-body">
-                        <div class="noticia-imagem">
-                            <!-- Imagem da notícia -->
+                        <div class="noticia-imagem image-placeholder">
+                            <span>Obras no Largo Principal - Parada de Gonta</span>
                         </div>
-                        <p>Foram iniciadas esta semana as obras de requalificação do Largo Principal da freguesia, com previsão de conclusão para finais de janeiro de 2024.</p>
-                        <p>O projeto inclui a renovação do pavimento, instalação de novo mobiliário urbano, melhoria da iluminação pública e criação de espaços verdes.</p>
-                        <p>Durante as obras, o trânsito estará condicionado no local. Solicitamos a compreensão de todos os habitantes durante este período de melhoramentos.</p>
-                        <a href="noticias/obras-melhoramento.html" class="btn">Ler notícia completa</a>
+                        <p>Foram iniciadas esta semana as <strong>obras de requalificação do Largo Principal</strong> da freguesia de Parada de Gonta, com previsão de conclusão para finais de março de 2024.</p>
+                        
+                        <p>O projeto inclui a renovação do pavimento, instalação de novo mobiliário urbano, melhoria da iluminação pública e criação de espaços verdes que valorizam o centro da nossa freguesia em Tondela.</p>
+                        
+                        <p>Durante as obras, o trânsito estará condicionado no local. Solicitamos a compreensão de todos os habitantes de Parada de Gonta durante este período de melhoramentos.</p>
+                        
+                        <a href="noticias/obras-largo-principal.html" class="btn">Ler mais sobre as obras</a>
                     </div>
                 </article>
 
                 <!-- Notícia 3 -->
-                <article class="noticia-completa">
+                <article class="noticia-completa" data-category="social">
                     <div class="noticia-header">
-                        <div class="data">05 Novembro 2023</div>
+                        <div class="noticia-meta">
+                            <span class="noticia-tag">Apoio Social</span>
+                            <span class="noticia-date">5 Janeiro 2024</span>
+                        </div>
                         <h2>Programa "Sénior Ativo" com Inscrições Abertas</h2>
                     </div>
                     <div class="noticia-body">
-                        <div class="noticia-imagem">
-                            <!-- Imagem da notícia -->
+                        <div class="noticia-imagem image-placeholder">
+                            <span>Programa Sénior Ativo - Parada de Gonta</span>
                         </div>
-                        <p>Estão abertas as inscrições para as atividades do programa "Sénior Ativo" 2023/2024. O programa inclui caminhadas, workshops de informática, sessões de ginástica e visitas culturais.</p>
-                        <p>As inscrições podem ser feitas na Junta de Freguesia durante o horário de atendimento. As atividades são gratuitas para todos os residentes com idade igual ou superior a 60 anos.</p>
-                        <p>O programa tem como objetivo promover o envelhecimento ativo e saudável, fomentando a socialização e a prática de exercício físico entre a população sénior.</p>
-                        <a href="noticias/atividade-senior.html" class="btn">Ler notícia completa</a>
+                        <p>Estão abertas as inscrições para as atividades do programa <strong>"Sénior Ativo" 2024</strong> na freguesia de Parada de Gonta. O programa inclui caminhadas, workshops de informática, sessões de ginástica e visitas culturais.</p>
+                        
+                        <p>As inscrições podem ser feitas na Junta de Freguesia durante o horário de atendimento. As atividades são gratuitas para todos os residentes com idade igual ou superior a 60 anos em Parada de Gonta.</p>
+                        
+                        <p>O programa tem como objetivo promover o <strong>envelhecimento ativo e saudável</strong>, fomentando a socialização e a prática de exercício físico entre a população sénior da nossa freguesia.</p>
+                        
+                        <a href="noticias/programa-senior-ativo.html" class="btn">Ler mais sobre o programa</a>
                     </div>
                 </article>
 
                 <!-- Notícia 4 -->
-                <article class="noticia-completa">
+                <article class="noticia-completa" data-category="social">
                     <div class="noticia-header">
-                        <div class="data">01 Novembro 2023</div>
-                        <h2>Campanha de Recolha de Alimentos</h2>
+                        <div class="noticia-meta">
+                            <span class="noticia-tag">Apoio Social</span>
+                            <span class="noticia-date">3 Janeiro 2024</span>
+                        </div>
+                        <h2>Campanha de Recolha de Alimentos Atinge Meta</h2>
                     </div>
                     <div class="noticia-body">
-                        <div class="noticia-imagem">
-                            <!-- Imagem da notícia -->
+                        <div class="noticia-imagem image-placeholder">
+                            <span>Campanha de Recolha de Alimentos - Parada de Gonta</span>
                         </div>
-                        <p>A Junta de Freguesia, em colaboração com a ASSODREC, está a promover uma campanha de recolha de alimentos para famílias carenciadas da freguesia.</p>
-                        <p>Os pontos de recolha estão localizados na Junta de Freguesia, na Igreja Paroquial e no Supermercado Local. São particularmente necessários alimentos não perecíveis como arroz, massa, enlatados e produtos de higiene.</p>
-                        <p>A campanha decorrerá até 15 de dezembro. Agradecemos a solidariedade de todos os que possam contribuir.</p>
-                        <a href="noticias/campanha-recolha.html" class="btn">Ler notícia completa</a>
+                        <p>A <strong>campanha de recolha de alimentos</strong> organizada pela Junta de Freguesia em colaboração com a ASSODREC superou todas as expectativas, tendo recolhido mais de 500kg de alimentos para famílias carenciadas de Parada de Gonta.</p>
+                        
+                        <p>Os pontos de recolha localizados na Junta de Freguesia, na Igreja Paroquial e no Supermercado Local registaram uma <strong>grande adesão da comunidade</strong> de Tondela.</p>
+                        
+                        <p>O Presidente da Junta agradeceu a <em>"solidariedade demonstrada por todos os que contribuíram para esta causa nobre em benefício das famílias mais necessitadas da nossa freguesia"</em>.</p>
+                        
+                        <a href="noticias/campanha-alimentos.html" class="btn">Ler mais sobre a campanha</a>
                     </div>
                 </article>
 
                 <!-- Notícia 5 -->
-                <article class="noticia-completa">
+                <article class="noticia-completa" data-category="associacoes">
                     <div class="noticia-header">
-                        <div class="data">25 Outubro 2023</div>
+                        <div class="noticia-meta">
+                            <span class="noticia-tag">Associações</span>
+                            <span class="noticia-date">28 Dezembro 2023</span>
+                        </div>
                         <h2>Sucesso do Torneio de Futsal da ADRC</h2>
                     </div>
                     <div class="noticia-body">
-                        <div class="noticia-imagem">
-                            <!-- Imagem da notícia -->
+                        <div class="noticia-imagem image-placeholder">
+                            <span>Torneio de Futsal ADRC - Parada de Gonta</span>
                         </div>
-                        <p>O Torneio de Futsal organizado pela ADRC Parada de Gonta contou com a participação de 8 equipas e decorreu durante o último fim-de-semana no Pavilhão Gimnodesportivo.</p>
-                        <p>A equipa vencedora foi "Os Amigos do Bairro", que conquistou o troféu após uma final emocionante. O evento contou com a participação de mais de 100 pessoas entre atletas e espectadores.</p>
-                        <p>O sucesso do evento demonstra a vitalidade do associativismo desportivo na nossa freguesia e a importância destas iniciativas para a coesão social.</p>
-                        <a href="noticias/torneio-futsal.html" class="btn">Ler notícia completa</a>
+                        <p>O <strong>Torneio de Futsal organizado pela ADRC Parada de Gonta</strong> contou com a participação de 8 equipas e decorreu durante o último fim-de-semana no Pavilhão Gimnodesportivo da freguesia.</p>
+                        
+                        <p>A equipa vencedora foi <strong>"Os Amigos do Bairro"</strong>, que conquistou o troféu após uma final emocionante. O evento contou com a participação de mais de 100 pessoas entre atletas e espectadores de Parada de Gonta e freguesias vizinhas.</p>
+                        
+                        <p>O sucesso do evento demonstra a <strong>vitalidade do associativismo desportivo</strong> na nossa freguesia e a importância destas iniciativas para a coesão social em Tondela.</p>
+                        
+                        <a href="noticias/torneio-futsal-adrc.html" class="btn">Ler mais sobre o torneio</a>
                     </div>
                 </article>
 
                 <!-- Notícia 6 -->
-                <article class="noticia-completa">
+                <article class="noticia-completa" data-category="avisos">
                     <div class="noticia-header">
-                        <div class="data">18 Outubro 2023</div>
-                        <h2>Limpeza do Rio Pavia</h2>
+                        <div class="noticia-meta">
+                            <span class="noticia-tag">Avisos</span>
+                            <span class="noticia-date">20 Dezembro 2023</span>
+                        </div>
+                        <h2>Interrupção de Água Programada para Manutenção</h2>
                     </div>
                     <div class="noticia-body">
-                        <div class="noticia-imagem">
-                            <!-- Imagem da notícia -->
+                        <div class="noticia-imagem image-placeholder">
+                            <span>Manutenção Rede de Água - Parada de Gonta</span>
                         </div>
-                        <p>O Clube de Caça e Pesca do Rio Pavia organizou no passado sábado uma ação de limpeza das margens do rio, que contou com a participação de 25 voluntários.</p>
-                        <p>Foram recolhidos cerca de 150kg de resíduos, contribuindo para a preservação do ecossistema fluvial. A ação incluiu também a plantação de espécies autóctones nas margens.</p>
-                        <p>Esta iniciativa enquadra-se no projeto de conservação ambiental que o clube tem vindo a desenvolver ao longo dos últimos anos.</p>
-                        <a href="noticias/limpeza-rio-pavia.html" class="btn">Ler notícia completa</a>
+                        <p>Informamos que estará prevista uma <strong>interrupção no fornecimento de água</strong> no próximo dia 25 de janeiro, entre as 9h00 e as 17h00, para trabalhos de manutenção na rede de abastecimento de Parada de Gonta.</p>
+                        
+                        <p>A interrupção afetará as zonas do Largo Principal, Rua da Igreja e arredores. Recomendamos que os habitantes destas áreas façam as devidas reservas de água para o período em causa.</p>
+                        
+                        <p>Os trabalhos são necessários para <strong>melhorar a qualidade do serviço</strong> e prevenir futuras avarias na rede de abastecimento da nossa freguesia em Tondela.</p>
+                        
+                        <a href="noticias/interrupcao-agua.html" class="btn">Ler mais sobre a interrupção</a>
                     </div>
                 </article>
             </div>
 
-            <!-- Paginação -->
-            <div class="paginacao">
-                <!-- A paginação será gerada pelo JavaScript -->
+            <!-- Mensagem sem resultados -->
+            <div class="no-results" id="noResults" style="display: none;">
+                <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 1rem; color: var(--text-light);"></i>
+                <h3>Nenhuma notícia encontrada</h3>
+                <p>Tente utilizar outros termos de pesquisa ou verifique outra categoria de notícias.</p>
             </div>
 
-            <div class="voltar-noticias">
-                <a href="index.html#noticias" class="btn btn-secondary">Voltar à página inicial</a>
+            <!-- Paginação -->
+            <div class="paginacao">
+                <a href="#" class="pagination-prev" aria-label="Página anterior">&laquo; Anterior</a>
+                <a href="#" class="pagination-page active" data-page="1">1</a>
+                <a href="#" class="pagination-page" data-page="2">2</a>
+                <a href="#" class="pagination-page" data-page="3">3</a>
+                <a href="#" class="pagination-next" aria-label="Página seguinte">Seguinte &raquo;</a>
             </div>
+
+            <!-- Newsletter -->
+            <section class="newsletter-section">
+                <div class="container">
+                    <h2 style="color: white; text-align: center; margin-bottom: 1rem;">Receba as Nossas Notícias</h2>
+                    <p style="text-align: center; margin-bottom: 2rem; opacity: 0.9;">Subscreva a nossa newsletter e receba as últimas notícias da Junta de Freguesia de Parada de Gonta no seu email</p>
+                    
+                    <form class="newsletter-form">
+                        <div class="form-group">
+                            <input type="email" placeholder="Seu email..." aria-label="Email para newsletter" required>
+                            <button type="submit" class="btn" style="background: var(--white); color: var(--primary-color);">Subscrever</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
         </div>
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -170,24 +553,147 @@
                 <div class="footer-links">
                     <h4>Links Úteis</h4>
                     <ul>
-                        <li><a href="https://www.cm-tondela.pt/" target="_blank">Câmara Municipal de Tondela</a></li>
-                        <li><a href="https://www.gov.pt/" target="_blank">Portal do Cidadão</a></li>
-                        <li><a href="https://www.portugal.gov.pt/" target="_blank">Portal do Governo</a></li>
+                        <li><a href="https://www.cm-tondela.pt/" target="_blank" rel="noopener noreferrer">Câmara Municipal de Tondela</a></li>
+                        <li><a href="https://www.portugal.gov.pt/" target="_blank" rel="noopener noreferrer">Portal do Governo de Portugal</a></li>
+                        <li><a href="https://www.seg-social.pt/" target="_blank" rel="noopener noreferrer">Segurança Social</a></li>
+                        <li><a href="documentos.html">Documentos da Freguesia</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Associações Locais</h4>
+                    <ul>
+                        <li><a href="associacoes/adrc-parada-gonta.html">ADRC Parada de Gonta</a></li>
+                        <li><a href="associacoes/assodrec.html">ASSODREC Parada de Gonta</a></li>
+                        <li><a href="associacoes/clube-caca-pesca.html">Clube de Caça e Pesca</a></li>
+                        <li><a href="associacoes/amigos-parada-gonta.html">Associação Os Amigos</a></li>
+                        <li><a href="associacoes/rancho-folclorico.html">Rancho Folclórico</a></li>
                     </ul>
                 </div>
                 <div class="footer-social">
-                    <h4>Siga-nos</h4>
+                    <h4>Siga a Junta de Freguesia</h4>
                     <div class="social-icons">
-                        <a href="https://www.facebook.com/profile.php?id=100075897857695"  target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=100075897857695" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no Facebook">
+                            <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                        </a>
                     </div>
+                    <p class="social-text">Acompanhe as novidades de Parada de Gonta nas redes sociais</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Junta de Freguesia de Parada de Gonta. Todos os direitos reservados.</p>
+                <p>&copy; 2025 Junta de Freguesia de Parada de Gonta, Tondela. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
     <script src="js/script.js"></script>
+    <script>
+        // Filtros e pesquisa de notícias
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const searchInput = document.getElementById('newsSearch');
+            const noticias = document.querySelectorAll('.noticia-completa');
+            const noResults = document.getElementById('noResults');
+            
+            // Filtros por categoria
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const filter = this.dataset.filter;
+                    
+                    // Atualizar botões ativos
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Aplicar filtro
+                    filterNews(filter, searchInput.value.toLowerCase());
+                });
+            });
+            
+            // Pesquisa em tempo real
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+                filterNews(activeFilter, searchTerm);
+            });
+            
+            function filterNews(category, searchTerm) {
+                let visibleCount = 0;
+                
+                noticias.forEach(noticia => {
+                    const noticiaCategory = noticia.dataset.category;
+                    const shouldShow = category === 'all' || category === noticiaCategory;
+                    const text = noticia.textContent.toLowerCase();
+                    const matchesSearch = searchTerm === '' || text.includes(searchTerm);
+                    
+                    if (shouldShow && matchesSearch) {
+                        noticia.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        noticia.style.display = 'none';
+                    }
+                });
+                
+                // Mostrar mensagem se não houver resultados
+                noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+            }
+            
+            // Inicializar filtros
+            filterNews('all', '');
+            
+            // Paginação simples
+            const paginationPages = document.querySelectorAll('.pagination-page');
+            const itemsPerPage = 3;
+            let currentPage = 1;
+            
+            function showPage(page) {
+                const startIndex = (page - 1) * itemsPerPage;
+                const endIndex = startIndex + itemsPerPage;
+                
+                noticias.forEach((noticia, index) => {
+                    if (index >= startIndex && index < endIndex && noticia.style.display !== 'none') {
+                        noticia.style.display = 'block';
+                    } else if (noticia.style.display !== 'none') {
+                        noticia.style.display = 'none';
+                    }
+                });
+                
+                // Atualizar paginação ativa
+                paginationPages.forEach(p => p.classList.remove('active'));
+                document.querySelector(`.pagination-page[data-page="${page}"]`).classList.add('active');
+            }
+            
+            paginationPages.forEach(page => {
+                page.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    currentPage = parseInt(this.dataset.page);
+                    showPage(currentPage);
+                });
+            });
+            
+            // Inicializar paginação
+            showPage(1);
+            
+            // Animar elementos ao scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            noticias.forEach(noticia => {
+                noticia.style.opacity = '0';
+                noticia.style.transform = 'translateY(20px)';
+                noticia.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(noticia);
+            });
+        });
+    </script>
 </body>
 </html>

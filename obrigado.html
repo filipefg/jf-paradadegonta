@@ -1,22 +1,53 @@
-  <!-- obrigado.html -->
+<!-- obrigado.html -->
 
 <!DOCTYPE html>
 <html lang="pt-PT">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Obrigado - Junta de Freguesia de Parada de Gonta</title>
+    <title>Mensagem Enviada - Junta de Freguesia de Parada de Gonta</title>
     
     <!-- Meta Tags SEO -->
-    <meta name="description" content="Agradecimento pelo contacto - Junta de Freguesia de Parada de Gonta">
-    <meta name="keywords" content="Parada de Gonta, contacto, agradecimento, Junta de Freguesia">
+    <meta name="description" content="Confirmação de envio de mensagem para a Junta de Freguesia de Parada de Gonta, Tondela. Obrigado pelo seu contacto.">
+    <meta name="keywords" content="contacto Parada de Gonta, mensagem enviada, Junta Freguesia Tondela, confirmação contacto">
     <meta name="author" content="Junta de Freguesia de Parada de Gonta">
+    <meta name="robots" content="noindex, follow">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="Obrigado - Junta de Freguesia de Parada de Gonta">
-    <meta property="og:description" content="Agradecemos o seu contacto. Entraremos em contacto brevemente.">
+    <meta property="og:title" content="Mensagem Enviada - Junta de Freguesia de Parada de Gonta">
+    <meta property="og:description" content="A sua mensagem foi enviada com sucesso para a Junta de Freguesia de Parada de Gonta.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://jfparadadegonta.pt/obrigado.html">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://jfparadadegonta.pt/obrigado.html">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Confirmação de Contacto - Junta de Freguesia de Parada de Gonta",
+        "description": "Página de confirmação de envio de mensagem para a Junta de Freguesia",
+        "url": "https://jfparadadegonta.pt/obrigado.html",
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Início",
+                    "item": "https://jfparadadegonta.pt/"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Confirmação de Contacto"
+                }
+            ]
+        }
+    }
+    </script>
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/style.css">
@@ -26,21 +57,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Skip link para acessibilidade -->
+    <a href="#main-content" class="skip-link">Saltar para o conteúdo principal</a>
+    
     <header class="header">
         <div class="container">
             <div class="logo">
-                <h1>Parada de Gonta</h1>
-                <p>Junta de Freguesia</p>
+                <h1>Junta de Freguesia de Parada de Gonta</h1>
+                <p>Freguesia do Concelho de Tondela, Viseu</p>
             </div>
-            <nav class="nav">
-                <button class="nav-toggle" aria-label="Abrir menu">
+            <nav class="nav" aria-label="Navegação principal">
+                <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
                     <span></span>
                     <span></span>
                     <span></span>
                 </button>
                 <ul class="nav-menu">
                     <li><a href="index.html#inicio">Início</a></li>
-                    <li><a href="index.html#sobre">Sobre</a></li>
+                    <li><a href="index.html#sobre">Sobre a Freguesia</a></li>
                     <li><a href="index.html#servicos">Serviços</a></li>
                     <li><a href="index.html#noticias">Notícias</a></li>
                     <li><a href="index.html#associativismo">Associativismo</a></li>
@@ -51,22 +85,55 @@
         </div>
     </header>
 
-    <main style="margin-top: 100px; padding: 2rem 0;">
+    <main id="main-content" style="margin-top: 100px; padding: 4rem 0;">
         <div class="container">
             <div class="obrigado-container">
-                <div class="obrigado-icon">
+                <div class="obrigado-icon" aria-hidden="true">
                     <i class="fas fa-check-circle"></i>
                 </div>
                 
                 <div class="obrigado-message">
                     <h1>Mensagem Enviada com Sucesso!</h1>
-                    <p>Obrigado pelo seu contacto. A sua mensagem foi recebida e será analisada pela nossa equipa.</p>
-                    <p>Entraremos em contacto consigo brevemente através dos meios que nos facultou.</p>
+                    <p><strong>Obrigado pelo seu contacto com a Junta de Freguesia de Parada de Gonta.</strong></p>
+                    <p>A sua mensagem foi recebida e será analisada pela nossa equipa no concelho de Tondela.</p>
+                    <p>Entraremos em contacto consigo brevemente através dos meios que nos facultou, geralmente no prazo de 2-3 dias úteis.</p>
+                    
+                    <div class="contact-info-recap" style="background: var(--light-color); padding: 1.5rem; border-radius: 8px; margin: 2rem 0;">
+                        <h2 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.3rem;">Informações de Contacto da Junta</h2>
+                        <p><strong>Telefone:</strong> +351 232 952 190</p>
+                        <p><strong>Horário de Atendimento:</strong> Segunda e Quinta, 18h00-19h00</p>
+                        <p><strong>Morada:</strong> R. Dr. Tomaz Ribeiro de Melo, n.º 52, Parada de Gonta, Tondela</p>
+                    </div>
                 </div>
                 
                 <div class="obrigado-buttons">
-                    <a href="index.html" class="btn">Voltar à Página Inicial</a>
-                    <a href="index.html#contactos" class="btn btn-secondary">Enviar Nova Mensagem</a>
+                    <a href="index.html" class="btn">
+                        <i class="fas fa-home" aria-hidden="true"></i>
+                        Voltar à Página Inicial
+                    </a>
+                    <a href="index.html#contactos" class="btn btn-secondary">
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
+                        Enviar Nova Mensagem
+                    </a>
+                    <a href="index.html#servicos" class="btn btn-secondary">
+                        <i class="fas fa-info-circle" aria-hidden="true"></i>
+                        Conhecer os Nossos Serviços
+                    </a>
+                </div>
+                
+                <div class="quick-links" style="margin-top: 3rem; text-align: center;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Enquanto Aguarda</h3>
+                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                        <a href="noticias.html" style="color: var(--primary-color); text-decoration: none;">
+                            <i class="fas fa-newspaper" aria-hidden="true"></i> Ver Notícias
+                        </a>
+                        <a href="documentos.html" style="color: var(--primary-color); text-decoration: none;">
+                            <i class="fas fa-file-alt" aria-hidden="true"></i> Consultar Documentos
+                        </a>
+                        <a href="index.html#associativismo" style="color: var(--primary-color); text-decoration: none;">
+                            <i class="fas fa-users" aria-hidden="true"></i> Conhecer Associações
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -76,26 +143,31 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <h3>Parada de Gonta</h3>
-                    <p>Junta de Freguesia</p>
+                    <h3>Junta de Freguesia de Parada de Gonta</h3>
+                    <p>Freguesia do Concelho de Tondela<br>Distrito de Viseu, Portugal</p>
                 </div>
                 <div class="footer-links">
                     <h4>Links Úteis</h4>
                     <ul>
-                        <li><a href="https://www.cm-tondela.pt/" target="_blank" rel="noopener">Câmara Municipal de Tondela</a></li>
-                        <li><a href="https://www.gov.pt/" target="_blank" rel="noopener">Portal do Cidadão</a></li>
-                        <li><a href="https://www.portugal.gov.pt/" target="_blank" rel="noopener">Portal do Governo</a></li>
+                        <li><a href="https://www.cm-tondela.pt/" target="_blank" rel="noopener noreferrer">Câmara Municipal de Tondela</a></li>
+                        <li><a href="https://www.portugal.gov.pt/" target="_blank" rel="noopener noreferrer">Portal do Governo de Portugal</a></li>
+                        <li><a href="https://www.seg-social.pt/" target="_blank" rel="noopener noreferrer">Segurança Social</a></li>
+                        <li><a href="documentos.html">Documentos da Freguesia</a></li>
                     </ul>
                 </div>
                 <div class="footer-social">
-                    <h4>Siga-nos</h4>
+                    <h4>Siga a Junta de Freguesia</h4>
                     <div class="social-icons">
-                        <a href="https://www.facebook.com/profile.php?id=100075897857695" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=100075897857695" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no Facebook">
+                            <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                        </a>
                     </div>
+                    <p class="social-text">Acompanhe as novidades da freguesia de Parada de Gonta nas redes sociais</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2023 Junta de Freguesia de Parada de Gonta. Todos os direitos reservados.</p>
+                <p>&copy; 2024 Junta de Freguesia de Parada de Gonta, Tondela. Todos os direitos reservados.</p>
+                <p class="footer-credits">Freguesia de Parada de Gonta - Concelho de Tondela - Distrito de Viseu - Portugal</p>
             </div>
         </div>
     </footer>
