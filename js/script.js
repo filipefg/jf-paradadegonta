@@ -674,41 +674,142 @@ function configurarModais(associacoes) {
     });
 }
 
-// Função para abrir o modal
+// ADICIONAR/SUBSTITUIR NO SCRIPT EXISTENTE
+
+// Função para abrir o modal otimizada para mobile
 function abrirModal(associacao) {
     const modal = document.getElementById('associacao-modal');
     const modalBody = document.getElementById('modal-body');
     
+    // Prevenir scroll do body
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+    
     modalBody.innerHTML = `
-        <div class="modal-logo">
-            <img src="${associacao.Logo}" alt="Logo ${associacao.Nome}">
+        <div class="modal-header">
+            <div class="modal-logo">
+                <img src="${associacao.Logo}" alt="Logo ${associacao.Nome}" loading="lazy">
+            </div>
+            <h2 class="modal-title">${associacao.Nome}</h2>
         </div>
-        <h2 class="modal-title">${associacao.Nome}</h2>
-        <p class="modal-description">${associacao.Descricao}</p>
-        
-        ${associacao.Fundacao ? `<p class="modal-fundacao">Fundada em ${associacao.Fundacao}</p>` : ''}
-        
-        <div class="modal-contact-info">
-            <h4>Contactos</h4>
-            ${associacao.Email ? `<p><i class="fas fa-envelope"></i> ${associacao.Email}</p>` : ''}
-            ${associacao.Telefone ? `<p><i class="fas fa-phone"></i> ${associacao.Telefone}</p>` : ''}
-            ${associacao.Morada ? `<p><i class="fas fa-map-marker-alt"></i> ${associacao.Morada}</p>` : ''}
+        <div class="modal-content-inner">
+            <p class="modal-description">${associacao.Descricao}</p>
+            
+            ${associacao.Fundacao ? `
+                <p class="modal-fundacao">
+                    <i class="fas fa-calendar-alt"></i> Fundada em ${associacao.Fundacao}
+                </p>
+            ` : ''}
+            
+            <div class="modal-contact-info">
+                <h4><i class="fas fa-address-card"></i> Informações de Contacto</h4>
+                ${associacao.Email ? `
+                    <p>
+                        <i class="fas fa-envelope"></i> 
+                        <a href="mailto:${associacao.Email}" style="color: inherit; text-decoration: none;">
+                            ${associacao.Email}
+                        </a>
+                    </p>
+                ` : ''}
+                ${associacao.Telefone ? `
+                    <p>
+                        <i class="fas fa-phone"></i> 
+                        <a href="tel:${associacao.Telefone.replace(/\s/g, '')}" style="color: inherit; text-decoration: none;">
+                            ${associacao.Telefone}
+                        </a>
+                    </p>
+                ` : ''}
+                ${associacao.Morada ? `
+                    <p>
+                        <i class="fas fa-map-marker-alt"></i> 
+                        <span>${associacao.Morada}</span>
+                    </p>
+                ` : ''}
+            </div>
         </div>
     `;
     
     modal.style.display = 'block';
     modal.setAttribute('aria-hidden', 'false');
     
+    // Adicionar classe para animação
+    setTimeout(() => {
+        modal.classList.add('active');
+    }, 10);
+    
     // Focar no botão de fechar para acessibilidade
-    document.querySelector('.modal-close').focus();
+    setTimeout(() => {
+        document.querySelector('.modal-close').focus();
+    }, 100);
 }
 
-// Função para fechar o modal
+// Função para fechar o modal otimizada
 function fecharModal() {
     const modal = document.getElementById('associacao-modal');
-    modal.style.display = 'none';
-    modal.setAttribute('aria-hidden', 'true');
+    
+    // Animação de saída
+    modal.classList.remove('active');
+    
+    setTimeout(() => {
+        modal.style.display = 'none';
+        
+        // Restaurar scroll do body
+        document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
+        
+        modal.setAttribute('aria-hidden', 'true');
+    }, 300);
 }
+
+// Fechar modal ao tocar no overlay (apenas em mobile)
+function configurarOverlayClick() {
+    const modal = document.getElementById('associacao-modal');
+    
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            // Em mobile, fechar ao tocar fora do conteúdo
+            if (window.innerWidth <= 768) {
+                fecharModal();
+            }
+        }
+    });
+}
+
+// Swipe para fechar (para mobile)
+function configurarSwipe() {
+    const modalContent = document.querySelector('.modal-content');
+    let startY = 0;
+    let currentY = 0;
+    
+    modalContent.addEventListener('touchstart', (e) => {
+        startY = e.touches[0].clientY;
+    });
+    
+    modalContent.addEventListener('touchmove', (e) => {
+        currentY = e.touches[0].clientY;
+        const diff = currentY - startY;
+        
+        // Swipe para baixo para fechar
+        if (diff > 50 && window.innerWidth <= 768) {
+            fecharModal();
+        }
+    });
+}
+
+// Inicializar funcionalidades mobile
+function inicializarModalMobile() {
+    configurarOverlayClick();
+    
+    if ('ontouchstart' in window) {
+        configurarSwipe();
+    }
+}
+
+// Chamar no DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function() {
+    inicializarModalMobile();
+    // ... resto do código existente
+});
 
 // Fallback em caso de erro no carregamento
 function carregarAssociacoesFallback() {
@@ -740,6 +841,4 @@ function carregarAssociacoesFallback() {
 // Inicializar quando o DOM estiver carregado
 document.addEventListener('DOMContentLoaded', function() {
     carregarAssociacoes();
-    
-    // Resto do seu código existente...
 });
