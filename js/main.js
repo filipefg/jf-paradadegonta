@@ -1,4 +1,4 @@
-// script.js
+// script.js - Versão Otimizada e Corrigida
 
 // Menu mobile toggle e funcionalidades principais
 document.addEventListener('DOMContentLoaded', function() {
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
             this.setAttribute('aria-expanded', isMenuOpen);
             
             // Controlar overflow do body
-            body.style.overflow = isMenuOpen ? 'hidden' : 'auto';
+            body.style.overflow = isMenuOpen ? 'hidden' : '';
             
             // Animação do ícone do menu (hamburger para X)
             const spans = this.querySelectorAll('span');
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Fechar menu mobile se estiver aberto
             if (navMenu && navMenu.classList.contains('active')) {
                 navMenu.classList.remove('active');
-                body.style.overflow = 'auto';
+                body.style.overflow = '';
                 isMenuOpen = false;
                 
                 // Reset do ícone do menu
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
         resizeTimer = setTimeout(function() {
             if (window.innerWidth > 768 && navMenu && navMenu.classList.contains('active')) {
                 navMenu.classList.remove('active');
-                body.style.overflow = 'auto';
+                body.style.overflow = '';
                 isMenuOpen = false;
                 
                 if (navToggle) {
@@ -179,11 +179,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Simular envio (substituir pela lógica real do FormSubmit)
                 setTimeout(() => {
-                    contactForm.submit();
                     showFormMessage('Mensagem enviada com sucesso! Entraremos em contacto brevemente.', 'success');
                     contactForm.reset();
                     submitBtn.textContent = originalText;
                     submitBtn.disabled = false;
+                    
+                    // Envio real do formulário (descomentar quando pronto)
+                    contactForm.submit();
                 }, 2000);
             }
         });
@@ -207,8 +209,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Elementos para animar
     const animateElements = document.querySelectorAll(
-        '.servico-card, .noticia-card, .sobre-content > div, .contactos-content > div, ' +
-        '.associacao-card, .documento-card, .atividade-card, .membro-card'
+        '.card, .noticia-card, .sobre-content > div, .contactos-content > div'
     );
     
     animateElements.forEach(el => {
@@ -244,346 +245,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Adicionar funcionalidade de pesquisa (se necessário)
-    initializeSearch();
-    
-    // Melhorar acessibilidade do menu
-    improveMenuAccessibility();
-    
-    // Inicializar funcionalidades específicas da página
-    initializePageSpecificFeatures();
+    // Inicializar funcionalidades específicas
+    initializeMenuAccessibility();
+    initializeModalMobile();
+    carregarAssociacoes();
 });
 
-// Funções auxiliares
-function showFormMessage(message, type) {
-    // Remover mensagens anteriores
-    const existingMessage = document.querySelector('.form-message');
-    if (existingMessage) {
-        existingMessage.remove();
-    }
-    
-    // Criar nova mensagem
-    const messageDiv = document.createElement('div');
-    messageDiv.className = `form-message ${type}`;
-    messageDiv.textContent = message;
-    messageDiv.setAttribute('role', 'alert');
-    messageDiv.setAttribute('aria-live', 'polite');
-    
-    // Inserir após o formulário
-    const form = document.getElementById('contactForm');
-    if (form) {
-        form.appendChild(messageDiv);
-        
-        // Remover automaticamente após 5 segundos
-        setTimeout(() => {
-            if (messageDiv.parentNode) {
-                messageDiv.remove();
-            }
-        }, 5000);
-    }
-}
-
-function showFieldError(field, message) {
-    field.classList.add('error');
-    
-    // Remover mensagens de erro anteriores
-    const existingError = field.parentNode.querySelector('.error-message');
-    if (existingError) {
-        existingError.remove();
-    }
-    
-    // Adicionar nova mensagem de erro
-    const errorDiv = document.createElement('div');
-    errorDiv.className = 'error-message';
-    errorDiv.textContent = message;
-    errorDiv.setAttribute('role', 'alert');
-    errorDiv.setAttribute('aria-live', 'polite');
-    
-    field.parentNode.appendChild(errorDiv);
-}
-
-function clearFormErrors() {
-    // Remover classes de erro
-    document.querySelectorAll('.error').forEach(el => {
-        el.classList.remove('error');
-    });
-    
-    // Remover mensagens de erro
-    document.querySelectorAll('.error-message').forEach(el => {
-        el.remove();
-    });
-}
-
-function initializeSearch() {
-    // Implementar funcionalidade de pesquisa se necessário
-    const searchInput = document.querySelector('.search-input');
-    if (searchInput) {
-        searchInput.addEventListener('input', function(e) {
-            // Implementar pesquisa em tempo real
-            console.log('Pesquisar:', e.target.value);
-        });
-    }
-}
-
-function improveMenuAccessibility() {
-    // Melhorar acessibilidade do menu
-    const menuItems = document.querySelectorAll('.nav-menu a');
-    menuItems.forEach((item, index) => {
-        item.setAttribute('tabindex', '0');
-        
-        // Navegação por teclado no menu
-        item.addEventListener('keydown', function(e) {
-            switch(e.key) {
-                case 'ArrowDown':
-                case 'ArrowRight':
-                    e.preventDefault();
-                    const nextItem = menuItems[index + 1] || menuItems[0];
-                    nextItem.focus();
-                    break;
-                case 'ArrowUp':
-                case 'ArrowLeft':
-                    e.preventDefault();
-                    const prevItem = menuItems[index - 1] || menuItems[menuItems.length - 1];
-                    prevItem.focus();
-                    break;
-                case 'Home':
-                    e.preventDefault();
-                    menuItems[0].focus();
-                    break;
-                case 'End':
-                    e.preventDefault();
-                    menuItems[menuItems.length - 1].focus();
-                    break;
-            }
-        });
-    });
-}
-
-function initializePageSpecificFeatures() {
-    // Inicializar funcionalidades específicas baseadas na página atual
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    
-    switch(currentPage) {
-        case 'noticias.html':
-            initializeNewsPagination();
-            break;
-        case 'documentos.html':
-            initializeDocumentFilters();
-            break;
-        case 'associacoes/adrc-parada-gonta.html':
-        case 'associacoes/amigos-parada-gonta.html':
-        case 'associacoes/assodrec.html':
-        case 'associacoes/clube-caca-pesca.html':
-        case 'associacoes/rancho-folclorico.html':
-            initializeAssociationGallery();
-            break;
-    }
-}
-
-function initializeNewsPagination() {
-    // Implementar paginação para a página de notícias
-    const newsItems = document.querySelectorAll('.noticia-completa');
-    const itemsPerPage = 3;
-    let currentPage = 1;
-    
-    if (newsItems.length > itemsPerPage) {
-        createPaginationControls(newsItems.length, itemsPerPage);
-        showPage(1, newsItems, itemsPerPage);
-    }
-}
-
-function createPaginationControls(totalItems, itemsPerPage) {
-    const totalPages = Math.ceil(totalItems / itemsPerPage);
-    const paginationContainer = document.querySelector('.paginacao');
-    
-    if (paginationContainer) {
-        let paginationHTML = '';
-        
-        // Botão anterior
-        paginationHTML += '<a href="#" class="pagination-prev" aria-label="Página anterior">&laquo;</a>';
-        
-        // Números das páginas
-        for (let i = 1; i <= totalPages; i++) {
-            paginationHTML += `<a href="#" class="pagination-page ${i === 1 ? 'active' : ''}" data-page="${i}">${i}</a>`;
-        }
-        
-        // Botão seguinte
-        paginationHTML += '<a href="#" class="pagination-next" aria-label="Página seguinte">&raquo;</a>';
-        
-        paginationContainer.innerHTML = paginationHTML;
-        
-        // Event listeners para paginação
-        paginationContainer.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            if (e.target.classList.contains('pagination-page')) {
-                const page = parseInt(e.target.dataset.page);
-                showPage(page, document.querySelectorAll('.noticia-completa'), itemsPerPage);
-                updatePaginationUI(page, totalPages);
-            } else if (e.target.classList.contains('pagination-prev')) {
-                const currentPage = parseInt(document.querySelector('.pagination-page.active').dataset.page);
-                if (currentPage > 1) {
-                    showPage(currentPage - 1, document.querySelectorAll('.noticia-completa'), itemsPerPage);
-                    updatePaginationUI(currentPage - 1, totalPages);
-                }
-            } else if (e.target.classList.contains('pagination-next')) {
-                const currentPage = parseInt(document.querySelector('.pagination-page.active').dataset.page);
-                if (currentPage < totalPages) {
-                    showPage(currentPage + 1, document.querySelectorAll('.noticia-completa'), itemsPerPage);
-                    updatePaginationUI(currentPage + 1, totalPages);
-                }
-            }
-        });
-    }
-}
-
-function showPage(pageNumber, items, itemsPerPage) {
-    const startIndex = (pageNumber - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    
-    items.forEach((item, index) => {
-        if (index >= startIndex && index < endIndex) {
-            item.style.display = 'block';
-        } else {
-            item.style.display = 'none';
-        }
-    });
-}
-
-function updatePaginationUI(currentPage, totalPages) {
-    const pages = document.querySelectorAll('.pagination-page');
-    const prevBtn = document.querySelector('.pagination-prev');
-    const nextBtn = document.querySelector('.pagination-next');
-    
-    pages.forEach(page => {
-        page.classList.remove('active');
-        if (parseInt(page.dataset.page) === currentPage) {
-            page.classList.add('active');
-        }
-    });
-    
-    // Atualizar estado dos botões anterior/seguinte
-    prevBtn.classList.toggle('disabled', currentPage === 1);
-    nextBtn.classList.toggle('disabled', currentPage === totalPages);
-}
-
-function initializeDocumentFilters() {
-    // Implementar filtros para a página de documentos
-    const filterButtons = document.querySelectorAll('.document-filter');
-    
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const filter = this.dataset.filter;
-            
-            // Atualizar UI
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-            
-            // Filtrar documentos
-            filterDocuments(filter);
-        });
-    });
-}
-
-function filterDocuments(filter) {
-    const documents = document.querySelectorAll('.documento-item');
-    
-    documents.forEach(doc => {
-        if (filter === 'all' || doc.dataset.category === filter) {
-            doc.style.display = 'flex';
-        } else {
-            doc.style.display = 'none';
-        }
-    });
-}
-
-function initializeAssociationGallery() {
-    // Implementar galeria para páginas de associações
-    const galleryItems = document.querySelectorAll('.galeria-item');
-    
-    galleryItems.forEach(item => {
-        item.addEventListener('click', function() {
-            // Implementar lightbox ou modal para a galeria
-            openImageModal(this.querySelector('img').src);
-        });
-        
-        // Suporte a teclado
-        item.setAttribute('tabindex', '0');
-        item.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                openImageModal(this.querySelector('img').src);
-            }
-        });
-    });
-}
-
-function openImageModal(imageSrc) {
-    // Implementar modal para visualização de imagens
-    console.log('Abrir imagem:', imageSrc);
-    // Aqui poderia ser implementado um lightbox
-}
-
-// Prevenir scroll horizontal
-function preventHorizontalScroll() {
-    document.body.style.overflowX = 'hidden';
-    document.documentElement.style.overflowX = 'hidden';
-}
-
-// Service Worker para cache (opcional)
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js')
-            .then(function(registration) {
-                console.log('ServiceWorker registado com sucesso: ', registration.scope);
-            })
-            .catch(function(error) {
-                console.log('Falha no registo do ServiceWorker: ', error);
-            });
-    });
-}
-
-// Web Vitals (opcional - para monitorização de performance)
-function reportWebVitals() {
-    if (typeof window.gtag === 'function') {
-        // Integração com Google Analytics
-        // Aqui poderia ser implementado o tracking de métricas de performance
-    }
-}
-
-// Event listeners para carregamento
-document.addEventListener('DOMContentLoaded', preventHorizontalScroll);
-window.addEventListener('resize', preventHorizontalScroll);
-window.addEventListener('load', preventHorizontalScroll);
-window.addEventListener('load', reportWebVitals);
-
-// Exportar funções para uso global (se necessário)
-window.JuntaFreguesia = {
-    showFormMessage,
-    initializeSearch,
-    filterDocuments
-};
-
-// Polyfills para browsers antigos (se necessário)
-if (!String.prototype.includes) {
-    String.prototype.includes = function(search, start) {
-        if (typeof start !== 'number') {
-            start = 0;
-        }
-        if (start + search.length > this.length) {
-            return false;
-        } else {
-            return this.indexOf(search, start) !== -1;
-        }
-    };
-}
-
-// script.js - Adicione estas funções
-
-// Função para carregar dados do Google Sheets via CSV
+// Funções para carregar associações
 async function carregarAssociacoes() {
     try {
-        // URL do Google Sheets como CSV (substitua com o seu URL)
+        // URL do Google Sheets como CSV
         const sheetUrl = 'https://docs.google.com/spreadsheets/d/1RMzMCkSEuyMF7xkptmFBy3dkQD8dTQ6PLfxnJcC-pCU/gviz/tq?tqx=out:csv&sheet=Sheet1';
         
         const response = await fetch(sheetUrl);
@@ -605,7 +276,6 @@ async function carregarAssociacoes() {
     }
 }
 
-// Função para converter CSV para JSON
 function csvParaJSON(csv) {
     const linhas = csv.split('\n');
     const headers = linhas[0].split(',').map(header => header.trim().replace(/"/g, ''));
@@ -620,25 +290,23 @@ function csvParaJSON(csv) {
     }).filter(assoc => assoc.Nome); // Filtrar linhas vazias
 }
 
-// Função para renderizar as associações na página
 function renderizarAssociacoes(associacoes) {
     const container = document.getElementById('associacoes-container');
     
     if (!container) return;
     
     container.innerHTML = associacoes.map(associacao => `
-        <div class="associacao-card" data-associacao="${associacao.Nome}">
-            <div class="associacao-logo">
+        <div class="associacao-card card" data-associacao="${associacao.Nome}">
+            <div class="associacao-logo card-image">
                 <img src="${associacao.Logo}" alt="Logo ${associacao.Nome}" loading="lazy">
             </div>
             <h3>${associacao.Nome}</h3>
             <p>${associacao.Descricao}</p>
-            <button class="btn-associacao">Saber Mais</button>
+            <button class="btn-associacao btn btn-small">Mais</button>
         </div>
     `).join('');
 }
 
-// Função para configurar os modais
 function configurarModais(associacoes) {
     const modal = document.getElementById('associacao-modal');
     const modalBody = document.getElementById('modal-body');
@@ -660,11 +328,6 @@ function configurarModais(associacoes) {
     
     // Fechar modal
     closeBtn.addEventListener('click', fecharModal);
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            fecharModal();
-        }
-    });
     
     // Fechar com ESC
     document.addEventListener('keydown', (e) => {
@@ -674,9 +337,6 @@ function configurarModais(associacoes) {
     });
 }
 
-// ADICIONAR/SUBSTITUIR NO SCRIPT EXISTENTE
-
-// Função para abrir o modal otimizada para mobile
 function abrirModal(associacao) {
     const modal = document.getElementById('associacao-modal');
     const modalBody = document.getElementById('modal-body');
@@ -743,7 +403,6 @@ function abrirModal(associacao) {
     }, 100);
 }
 
-// Função para fechar o modal otimizada
 function fecharModal() {
     const modal = document.getElementById('associacao-modal');
     
@@ -761,62 +420,11 @@ function fecharModal() {
     }, 300);
 }
 
-// Fechar modal ao tocar no overlay (apenas em mobile)
-function configurarOverlayClick() {
-    const modal = document.getElementById('associacao-modal');
-    
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            // Em mobile, fechar ao tocar fora do conteúdo
-            if (window.innerWidth <= 768) {
-                fecharModal();
-            }
-        }
-    });
-}
-
-// Swipe para fechar (para mobile)
-function configurarSwipe() {
-    const modalContent = document.querySelector('.modal-content');
-    let startY = 0;
-    let currentY = 0;
-    
-    modalContent.addEventListener('touchstart', (e) => {
-        startY = e.touches[0].clientY;
-    });
-    
-    modalContent.addEventListener('touchmove', (e) => {
-        currentY = e.touches[0].clientY;
-        const diff = currentY - startY;
-        
-        // Swipe para baixo para fechar
-        if (diff > 50 && window.innerWidth <= 768) {
-            fecharModal();
-        }
-    });
-}
-
-// Inicializar funcionalidades mobile
-function inicializarModalMobile() {
-    configurarOverlayClick();
-    
-    if ('ontouchstart' in window) {
-        configurarSwipe();
-    }
-}
-
-// Chamar no DOMContentLoaded
-document.addEventListener('DOMContentLoaded', function() {
-    inicializarModalMobile();
-    // ... resto do código existente
-});
-
-// Fallback em caso de erro no carregamento
 function carregarAssociacoesFallback() {
     const associacoesFallback = [
         {
             Nome: "ADRC Parada de Gonta",
-            Logo: "https://via.placeholder.com/100x100/2c5530/ffffff?text=ADRC",
+            Logo: "https://via.placeholder.com/150x150/2c5530/ffffff?text=ADRC",
             Descricao: "Associação Desportiva Recreativa e Cultural que promove o desporto, a cultura e o convívio comunitário.",
             Email: "adrc.paradadegonta@gmail.com",
             Telefone: "+351 232 700 100",
@@ -825,7 +433,7 @@ function carregarAssociacoesFallback() {
         },
         {
             Nome: "ASSODREC Parada de Gonta",
-            Logo: "https://via.placeholder.com/100x100/4a7c59/ffffff?text=ASSODREC",
+            Logo: "https://via.placeholder.com/150x150/4a7c59/ffffff?text=ASSODREC",
             Descricao: "Associação Social Desportiva Cultural e Recreativa focada em respostas sociais e apoio a idosos.",
             Email: "assodrec.paradadegonta@gmail.com",
             Telefone: "+351 232 700 300",
@@ -838,7 +446,170 @@ function carregarAssociacoesFallback() {
     configurarModais(associacoesFallback);
 }
 
-// Inicializar quando o DOM estiver carregado
-document.addEventListener('DOMContentLoaded', function() {
-    carregarAssociacoes();
-});
+// Funções auxiliares
+function showFormMessage(message, type) {
+    // Remover mensagens anteriores
+    const existingMessage = document.querySelector('.form-message');
+    if (existingMessage) {
+        existingMessage.remove();
+    }
+    
+    // Criar nova mensagem
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `form-message ${type}`;
+    messageDiv.textContent = message;
+    messageDiv.setAttribute('role', 'alert');
+    messageDiv.setAttribute('aria-live', 'polite');
+    
+    // Estilos para a mensagem
+    messageDiv.style.padding = '1rem';
+    messageDiv.style.margin = '1rem 0';
+    messageDiv.style.borderRadius = '4px';
+    messageDiv.style.fontWeight = '600';
+    
+    if (type === 'success') {
+        messageDiv.style.backgroundColor = '#d4edda';
+        messageDiv.style.color = '#155724';
+        messageDiv.style.border = '1px solid #c3e6cb';
+    } else {
+        messageDiv.style.backgroundColor = '#f8d7da';
+        messageDiv.style.color = '#721c24';
+        messageDiv.style.border = '1px solid #f5c6cb';
+    }
+    
+    // Inserir após o formulário
+    const form = document.getElementById('contactForm');
+    if (form) {
+        form.appendChild(messageDiv);
+        
+        // Remover automaticamente após 5 segundos
+        setTimeout(() => {
+            if (messageDiv.parentNode) {
+                messageDiv.remove();
+            }
+        }, 5000);
+    }
+}
+
+function showFieldError(field, message) {
+    field.classList.add('error');
+    
+    // Remover mensagens de erro anteriores
+    const existingError = field.parentNode.querySelector('.error-message');
+    if (existingError) {
+        existingError.remove();
+    }
+    
+    // Adicionar nova mensagem de erro
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'error-message';
+    errorDiv.textContent = message;
+    errorDiv.setAttribute('role', 'alert');
+    errorDiv.setAttribute('aria-live', 'polite');
+    
+    // Estilos para mensagem de erro
+    errorDiv.style.color = '#dc3545';
+    errorDiv.style.fontSize = '0.875rem';
+    errorDiv.style.marginTop = '0.25rem';
+    
+    field.parentNode.appendChild(errorDiv);
+    
+    // Estilo para campo com erro
+    field.style.borderColor = '#dc3545';
+}
+
+function clearFormErrors() {
+    // Remover classes de erro
+    document.querySelectorAll('.error').forEach(el => {
+        el.classList.remove('error');
+        el.style.borderColor = '';
+    });
+    
+    // Remover mensagens de erro
+    document.querySelectorAll('.error-message').forEach(el => {
+        el.remove();
+    });
+}
+
+function initializeMenuAccessibility() {
+    // Melhorar acessibilidade do menu
+    const menuItems = document.querySelectorAll('.nav-menu a');
+    menuItems.forEach((item, index) => {
+        item.setAttribute('tabindex', '0');
+        
+        // Navegação por teclado no menu
+        item.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case 'ArrowDown':
+                case 'ArrowRight':
+                    e.preventDefault();
+                    const nextItem = menuItems[index + 1] || menuItems[0];
+                    nextItem.focus();
+                    break;
+                case 'ArrowUp':
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    const prevItem = menuItems[index - 1] || menuItems[menuItems.length - 1];
+                    prevItem.focus();
+                    break;
+                case 'Home':
+                    e.preventDefault();
+                    menuItems[0].focus();
+                    break;
+                case 'End':
+                    e.preventDefault();
+                    menuItems[menuItems.length - 1].focus();
+                    break;
+            }
+        });
+    });
+}
+
+function initializeModalMobile() {
+    const modal = document.getElementById('associacao-modal');
+    
+    // Fechar modal ao tocar no overlay (apenas em mobile)
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal && window.innerWidth <= 768) {
+            fecharModal();
+        }
+    });
+    
+    // Swipe para fechar (para mobile)
+    if ('ontouchstart' in window) {
+        const modalContent = document.querySelector('.modal-content');
+        let startY = 0;
+        
+        modalContent.addEventListener('touchstart', (e) => {
+            startY = e.touches[0].clientY;
+        });
+        
+        modalContent.addEventListener('touchmove', (e) => {
+            const currentY = e.touches[0].clientY;
+            const diff = currentY - startY;
+            
+            // Swipe para baixo para fechar
+            if (diff > 50 && window.innerWidth <= 768) {
+                fecharModal();
+            }
+        });
+    }
+}
+
+// Prevenir scroll horizontal
+function preventHorizontalScroll() {
+    document.body.style.overflowX = 'hidden';
+    document.documentElement.style.overflowX = 'hidden';
+}
+
+// Event listeners para carregamento
+document.addEventListener('DOMContentLoaded', preventHorizontalScroll);
+window.addEventListener('resize', preventHorizontalScroll);
+window.addEventListener('load', preventHorizontalScroll);
+
+// Exportar funções para uso global (se necessário)
+window.JuntaFreguesia = {
+    showFormMessage,
+    carregarAssociacoes,
+    fecharModal
+};

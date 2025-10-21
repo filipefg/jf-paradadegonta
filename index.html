@@ -74,6 +74,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Skip link para acessibilidade -->
+    <a href="#main-content" class="skip-link">Saltar para o conteúdo principal</a>
+
     <!-- Header -->
     <header class="header">
         <div class="container">
@@ -100,266 +103,279 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="inicio" class="hero">
-        <div class="hero-content">
-            <h1>Parada de Gonta</h1>
-            <p>Terra de tradições nas margens do Pavia</p>
-            <div class="hero-buttons">
-                <a href="#sobre" class="btn">Sobre</a>
-                <a href="#contactos" class="btn">Contactos</a>
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section id="inicio" class="hero">
+            <div class="hero-content">
+                <h1>Parada de Gonta</h1>
+                <p>Terra de tradições nas margens do Pavia</p>
+                <div class="hero-buttons">
+                    <a href="#sobre" class="btn">Sobre</a>
+                    <a href="#contactos" class="btn">Contactos</a>
+                </div>
             </div>
-        </div>
-        <div class="hero-overlay"></div>
-    </section>
+            <div class="hero-overlay"></div>
+        </section>
 
-    <!-- Sobre Section -->
-    <section id="sobre" class="sobre">
-        <div class="container">
-            <h2 class="section-title">Sobre</h2>
-            <div class="sobre-content">
-                <div class="sobre-text">
-                    <p> </p>
-                    <p>A Freguesia de Parada de Gonta, pertencente ao concelho de Tondela, é uma localidade marcada pela sua história, tradição e identidade cultural. Integrada na região do Dão, distingue-se pela beleza das suas paisagens, pelo património edificado e pela coesão da sua comunidade.</p>
-                    <p>Com origens antigas, Parada de Gonta tem sabido valorizar o seu legado histórico, promovendo simultaneamente o desenvolvimento e o bem-estar da população. É uma freguesia que alia a serenidade do meio rural a uma dinâmica social e associativa ativa, refletindo o compromisso das suas gentes com o progresso e a preservação das suas raízes.</p>
-                    <div class="stats">
-                        <div class="stat">
-                            <h3>619</h3>
-                            <p style="text-align: center;">Habitantes</p>
+        <!-- Sobre Section -->
+        <section id="sobre" class="sobre">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Sobre</h2>
+                </div>
+                <div class="sobre-content">
+                    <div class="sobre-text">
+                        <p>A Freguesia de Parada de Gonta, pertencente ao concelho de Tondela, é uma localidade marcada pela sua história, tradição e identidade cultural. Integrada na região do Dão, distingue-se pela beleza das suas paisagens, pelo património edificado e pela coesão da sua comunidade.</p>
+                        <p>Com origens antigas, Parada de Gonta tem sabido valorizar o seu legado histórico, promovendo simultaneamente o desenvolvimento e o bem-estar da população. É uma freguesia que alia a serenidade do meio rural a uma dinâmica social e associativa ativa, refletindo o compromisso das suas gentes com o progresso e a preservação das suas raízes.</p>
+                        <div class="stats">
+                            <div class="stat">
+                                <h3>619</h3>
+                                <p>Habitantes</p>
+                            </div>
+                            <div class="stat">
+                                <h3>7,12</h3>
+                                <p>km² de área</p>
+                            </div>
+                            <div class="stat">
+                                <h3>87</h3>
+                                <p>hab/km²</p>
+                            </div>
                         </div>
-                        <div class="stat">
-                            <h3>7,12</h3>
-                            <p style="text-align: center;">km² de área</p>
-                        </div>
-                        <div class="stat">
-                            <h3>87</h3>
-                            <p style="text-align: center;">hab/km²</p>
+                    </div>
+                    <div class="sobre-image">
+                        <div class="image-placeholder" aria-label="Vista da freguesia de Parada de Gonta">
                         </div>
                     </div>
                 </div>
-                <div class="sobre-image">
-                    <div class="image-placeholder" aria-label="Vista da freguesia de Parada de Gonta">
+            </div>
+        </section>
+
+        <!-- Serviços Section -->
+        <section id="servicos" class="servicos">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Serviços</h2>
+                    <p class="section-subtitle">Principais serviços administrativos aos habitantes de Parada de Gonta</p>
+                </div>
+                
+                <div class="servicos-grid grid grid-auto">
+                    <div class="servico-card card">
+                        <div class="servico-icon card-icon" aria-hidden="true">📋</div>
+                        <h3>Atendimento ao Público</h3>
+                        <p>Serviços de apoio administrativo, informações à população e esclarecimentos sobre procedimentos na freguesia.</p>
+                    </div>
+                    <div class="servico-card card">
+                        <div class="servico-icon card-icon" aria-hidden="true">📄</div>
+                        <h3>Emissão de Documentos</h3>
+                        <p>Certidões, licenças, declarações e outros documentos oficiais da Junta de Freguesia.</p>
+                    </div>
+                    <div class="servico-card card">
+                        <div class="servico-icon card-icon" aria-hidden="true">🏛️</div>
+                        <h3>Apoio Social</h3>
+                        <p>Informação sobre programas de apoio social e comunitário para os residentes na freguesia.</p>
+                    </div>
+                    <div class="servico-card card">
+                        <div class="servico-icon card-icon" aria-hidden="true">🌳</div>
+                        <h3>Espaços Públicos</h3>
+                        <p>Manutenção e gestão de espaços verdes, equipamentos públicos e infraestruturas da freguesia.</p>
+                    </div>
+                    <div class="servico-card card">
+                        <div class="servico-icon card-icon" aria-hidden="true">📊</div>
+                        <h3>Informações Municipais</h3>
+                        <p>Encaminhamento e informações sobre serviços da Câmara Municipal de Tondela para os habitantes.</p>
+                    </div>
+                    <div class="servico-card card">
+                        <div class="servico-icon card-icon" aria-hidden="true">👥</div>
+                        <h3>Apoio ao Associativismo</h3>
+                        <p>Suporte às associações locais no desenvolvimento de atividades.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Serviços Section -->
-    <section id="servicos" class="servicos">
-        <div class="container">
-            <h2 class="section-title">Serviços</h2>
-            <p class="section-subtitle">Principais serviços administrativos aos habitantes de Parada de Gonta</p>
-            
-            <div class="servicos-grid">
-                <div class="servico-card">
-                    <div class="servico-icon" aria-hidden="true">📋</div>
-                    <h3>Atendimento ao Público</h3>
-                    <p>Serviços de apoio administrativo, informações à população e esclarecimentos sobre procedimentos na freguesia.</p>
+        <!-- Notícias Section -->
+        <section id="noticias" class="noticias">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Notícias</h2>
+                    <p class="section-subtitle">Últimas novidades e comunicados</p>
                 </div>
-                <div class="servico-card">
-                    <div class="servico-icon" aria-hidden="true">📄</div>
-                    <h3>Emissão de Documentos</h3>
-                    <p>Certidões, licenças, declarações e outros documentos oficiais da Junta de Freguesia.</p>
+                <div class="noticias-grid grid grid-auto">
+                    <article class="noticia-card">
+                        <div class="noticia-date">15 Nov 2023</div>
+                        <h3>Festas da Freguesia 2023 em Parada de Gonta</h3>
+                        <p>Programa completo das festas em honra de Nossa Senhora da Conceição na freguesia de Parada de Gonta, Tondela.</p>
+                        <a href="noticias/festas-freguesia-2023.html" class="noticia-link">Ler mais sobre as festas</a>
+                    </article>
+                    <article class="noticia-card">
+                        <div class="noticia-date">10 Nov 2023</div>
+                        <h3>Obras de Melhoramento em Parada de Gonta</h3>
+                        <p>Iniciadas obras de requalificação do largo principal da freguesia de Parada de Gonta, concelho de Tondela.</p>
+                        <a href="noticias/obras-melhoramento.html" class="noticia-link">Ler mais sobre as obras</a>
+                    </article>
+                    <article class="noticia-card">
+                        <div class="noticia-date">05 Nov 2023</div>
+                        <h3>Atividade Sénior em Parada de Gonta</h3>
+                        <p>Inscrições abertas para as atividades do programa "Sénior Ativo" na freguesia de Parada de Gonta.</p>
+                        <a href="noticias/atividade-senior.html" class="noticia-link">Ler mais sobre actividades seniores</a>
+                    </article>
                 </div>
-                <div class="servico-card">
-                    <div class="servico-icon" aria-hidden="true">🏛️</div>
-                    <h3>Apoio Social</h3>
-                    <p>Informação sobre programas de apoio social e comunitário para os residentes na freguesia.</p>
+            </div>
+        </section>
+
+        <!-- Secção de Associativismo -->
+        <section id="associativismo" class="associativismo">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Associativismo</h2>
+                    <p class="section-subtitle">As associações que dinamizam a vida cultural, desportiva e social da freguesia</p>
                 </div>
-                <div class="servico-card">
-                    <div class="servico-icon" aria-hidden="true">🌳</div>
-                    <h3>Espaços Públicos</h3>
-                    <p>Manutenção e gestão de espaços verdes, equipamentos públicos e infraestruturas da freguesia.</p>
+                
+                <div class="associacoes-grid grid grid-auto" id="associacoes-container">
+                    <!-- As associações serão carregadas dinamicamente aqui -->
                 </div>
-                <div class="servico-card">
-                    <div class="servico-icon" aria-hidden="true">📊</div>
-                    <h3>Informações Municipais</h3>
-                    <p>Encaminhamento e informações sobre serviços da Câmara Municipal de Tondela para os habitantes.</p>
-                </div>
-                <div class="servico-card">
-                    <div class="servico-icon" aria-hidden="true">👥</div>
-                    <h3>Apoio ao Associativismo</h3>
-                    <p>Suporte às associações locais no desenvolvimento de atividades.</p>
+            </div>
+        </section>
+
+        <!-- Modal para Associações -->
+        <div id="associacao-modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
+            <div class="modal-content">
+                <button class="modal-close" aria-label="Fechar modal">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="modal-body" id="modal-body">
+                    <!-- Conteúdo carregado dinamicamente -->
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Notícias Section -->
-    <section id="noticias" class="noticias">
-        <div class="container">
-            <h2 class="section-title">Notícias</h2>
-            <p class="section-subtitle">Últimas novidades e comunicados</p>
-            <div class="noticias-grid">
-                <article class="noticia-card">
-                    <div class="noticia-date">15 Nov 2023</div>
-                    <h3>Festas da Freguesia 2023 em Parada de Gonta</h3>
-                    <p>Programa completo das festas em honra de Nossa Senhora da Conceição na freguesia de Parada de Gonta, Tondela.</p>
-                    <a href="noticias/festas-freguesia-2023.html" class="noticia-link">Ler mais sobre as festas</a>
-                </article>
-                <article class="noticia-card">
-                    <div class="noticia-date">10 Nov 2023</div>
-                    <h3>Obras de Melhoramento em Parada de Gonta</h3>
-                    <p>Iniciadas obras de requalificação do largo principal da freguesia de Parada de Gonta, concelho de Tondela.</p>
-                    <a href="noticias/obras-melhoramento.html" class="noticia-link">Ler mais sobre as obras</a>
-                </article>
-                <article class="noticia-card">
-                    <div class="noticia-date">05 Nov 2023</div>
-                    <h3>Atividade Sénior em Parada de Gonta</h3>
-                    <p>Inscrições abertas para as atividades do programa "Sénior Ativo" na freguesia de Parada de Gonta.</p>
-                    <a href="noticias/atividade-senior.html" class="noticia-link">Ler mais sobre actividades seniores</a>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Secção de Associativismo -->
-    <section id="associativismo" class="associativismo">
-        <div class="container">
-            <h2 class="section-title">Associativismo</h2>
-            <p class="section-subtitle">As associações que dinamizam a vida cultural, desportiva e social da freguesia</p>
-            
-            <div class="associacoes-grid" id="associacoes-container">
-                <!-- As associações serão carregadas dinamicamente aqui -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Modal para Associações -->
-    <div id="associacao-modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
-        <div class="modal-content">
-            <button class="modal-close" aria-label="Fechar modal" onclick="fecharModal()">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="modal-body" id="modal-body">
-                <!-- Conteúdo carregado dinamicamente -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Secção de Documentos -->
-    <section id="documentos" class="documentos-preview">
-        <div class="container">
-            <h2 class="section-title">Documentos</h2>
-            <p class="section-subtitle">Acesso aos documentos públicos e oficiais da Junta de Freguesia</p>           
-            <div class="documentos-grid">
-                <div class="documento-card">
-                    <div class="documento-icon" aria-hidden="true">📑</div>
-                    <h3>Actas das Sessões</h3>
-                    <p>Actas das reuniões ordinárias e extraordinárias da Junta de Freguesia de Parada de Gonta</p>
-                    <a href="documentos.html#actas" class="btn-documento">Consultar Actas</a>
-                </div>
-                <div class="documento-card">
-                    <div class="documento-icon" aria-hidden="true">💰</div>
-                    <h3>Documentos Financeiros</h3>
-                    <p>Orçamentos, mapas de execução e relatórios de contas da Junta de Freguesia de Parada de Gonta</p>
-                    <a href="documentos.html#financeiros" class="btn-documento">Consultar Finanças</a>
-                </div>
-                <div class="documento-card">
-                    <div class="documento-icon" aria-hidden="true">📋</div>
-                    <h3>Regulamentos</h3>
-                    <p>Regulamentos internos e normas da freguesia de Parada de Gonta, Tondela</p>
-                    <a href="documentos.html#regulamentos" class="btn-documento">Consultar Regulamentos</a>
-                </div>
-                <div class="documento-card">
-                    <div class="documento-icon" aria-hidden="true">🏗️</div>
-                    <h3>Obras e Projectos</h3>
-                    <p>Documentação relacionada com obras e projectos em curso na freguesia de Parada de Gonta</p>
-                    <a href="documentos.html#obras" class="btn-documento">Consultar Projectos</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contactos Section -->
-    <section id="contactos" class="contactos">
-        <div class="container">
-            <h2 class="section-title">Contactos</h2>
-            <p class="section-subtitle">Entre em contacto com a Junta de Freguesia</p>
-            
-            <div class="contactos-content">
-                <!-- Informações de contacto -->
-                <div class="contactos-info">
-                    <div class="contacto-item">
-                        <h3><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Morada da Junta</h3>
-                        <p>R. Dr. Tomaz Ribeiro de Melo, n.º 52<br>3460-376 Parada de Gonta<br>Tondela, Viseu</p>
+        <!-- Secção de Documentos -->
+        <section id="documentos" class="documentos-preview">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Documentos</h2>
+                    <p class="section-subtitle">Acesso aos documentos públicos e oficiais da Junta de Freguesia</p>
+                </div>           
+                <div class="documentos-grid grid grid-3">
+                    <div class="documento-card card">
+                        <div class="documento-icon card-icon" aria-hidden="true">📑</div>
+                        <h3>Actas das Sessões</h3>
+                        <p>Actas das reuniões ordinárias e extraordinárias da Junta de Freguesia de Parada de Gonta</p>
+                        <a href="documentos.html#actas" class="btn-documentos btn btn-small">Consultar</a>
                     </div>
-                    <div class="contacto-item">
-                        <h3><i class="fas fa-phone" aria-hidden="true"></i> Telefone</h3>
-                        <p>+351 232 952 190</p>
+                    <div class="documento-card card">
+                        <div class="documento-icon card-icon" aria-hidden="true">💰</div>
+                        <h3>Documentos Financeiros</h3>
+                        <p>Orçamentos, mapas de execução e relatórios de contas da Junta de Freguesia de Parada de Gonta</p>
+                        <a href="documentos.html#financeiros" class="btn-documentos btn btn-small">Consultar</a>
                     </div>
-                    <div class="contacto-item">
-                        <h3><i class="fas fa-envelope" aria-hidden="true"></i> Email</h3>
-                        <p>jf-paradadegonta@example.pt</p>
+                    <div class="documento-card card">
+                        <div class="documento-icon card-icon" aria-hidden="true">📋</div>
+                        <h3>Regulamentos</h3>
+                        <p>Regulamentos internos e normas da freguesia de Parada de Gonta, Tondela</p>
+                        <a href="documentos.html#regulamentos" class="btn-documentos btn btn-small">Consultar</a>
                     </div>
-                    <div class="contacto-item">
-                        <h3><i class="fas fa-clock" aria-hidden="true"></i> Horário de Atendimento</h3>
-                        <p>Segunda-feira: 18h00 - 19h00<br>Quinta-feira: 18h00 - 19h00</p>
-                    </div>
-                </div>
-
-                <!-- Formulário de contacto -->
-                <div class="contactos-form-container">
-                    <div class="contactos-form">
-                        <h3>Envie-nos uma mensagem</h3>
-                        <form id="contactForm" action="https://formsubmit.co/filipefg@gmail.com" method="POST">
-                            <!-- Configurações do FormSubmit -->
-                            <input type="hidden" name="_subject" value="Novo Contacto - Website Parada de Gonta">
-                            <input type="hidden" name="_template" value="table">
-                            <input type="hidden" name="_captcha" value="false">
-                            <input type="hidden" name="_next" value="https://filipefg.github.io/jf-paradadegonta/obrigado.html">
-                            <input type="text" name="_honey" style="display:none">
-                            
-                            <div class="form-group">
-                                <label for="nome">Nome *</label>
-                                <input type="text" id="nome" name="nome" required aria-required="true">
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" name="email" aria-describedby="emailHelp">
-                                <small id="emailHelp">O seu email será usado apenas para responder ao seu contacto.</small>
-                            </div>
-                            <div class="form-group">
-                                <label for="telefone">Telefone</label>
-                                <input type="tel" id="telefone" name="telefone"aria-describedby="phoneHelp">
-                                <small id="phoneHelp">O seu telefone será usado apenas para responder ao seu contacto.</small>
-                            </div>
-                            <div class="form-group">
-                                <label for="mensagem">Mensagem *</label>
-                                <textarea id="mensagem" name="mensagem" rows="5" required aria-required="true" placeholder="Descreva o seu pedido ou questão..."></textarea>
-                            </div>
-                            
-                            <div class="form-buttons">
-                                <button type="submit" class="btn">Enviar mensagem</button>
-                                <button type="button" class="btn-limpar" id="btnLimpar">Limpar formulário</button>
-                            </div>
-                        </form>
+                    <div class="documento-card card">
+                        <div class="documento-icon card-icon" aria-hidden="true">🏗️</div>
+                        <h3>Obras e Projectos</h3>
+                        <p>Documentação relacionada com obras e projectos em curso na freguesia de Parada de Gonta</p>
+                        <a href="documentos.html#obras" class="btn-documentos btn btn-small">Consultar</a>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Mapa de localização -->
-            <div class="contactos-map">
-                <h3>Localização de Parada de Gonta</h3>
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d10414.920015492738!2d-7.998707743461845!3d40.58446412333594!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2spt!4v1760977269306!5m2!1sen!2spt" 
-                    width="100%" 
-                    height="600" 
-                    style="border:0; border-radius: 8px;" 
-                    allowfullscreen="" 
-                    loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade"
-                    title="Mapa de localização de Parada de Gonta">
-                </iframe>
+        <!-- Contactos Section -->
+        <section id="contactos" class="contactos">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Contactos</h2>
+                    <p class="section-subtitle">Entre em contacto com a Junta de Freguesia</p>
+                </div>
+                
+                <div class="contactos-content grid grid-2">
+                    <!-- Informações de contacto -->
+                    <div class="contactos-info card">
+                        <div class="contacto-item">
+                            <h3><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Morada da Junta</h3>
+                            <p>R. Dr. Tomaz Ribeiro de Melo, n.º 52<br>3460-376 Parada de Gonta<br>Tondela, Viseu</p>
+                        </div>
+                        <div class="contacto-item">
+                            <h3><i class="fas fa-phone" aria-hidden="true"></i> Telefone</h3>
+                            <p>+351 232 952 190</p>
+                        </div>
+                        <div class="contacto-item">
+                            <h3><i class="fas fa-envelope" aria-hidden="true"></i> Email</h3>
+                            <p>jf-paradadegonta@example.pt</p>
+                        </div>
+                        <div class="contacto-item">
+                            <h3><i class="fas fa-clock" aria-hidden="true"></i> Horário de Atendimento</h3>
+                            <p>Segunda-feira: 18h00 - 19h00<br>Quinta-feira: 18h00 - 19h00</p>
+                        </div>
+                    </div>
+
+                    <!-- Formulário de contacto -->
+                    <div class="contactos-form-container">
+                        <div class="contactos-form card">
+                            <h3>Envie-nos uma mensagem</h3>
+                            <form id="contactForm" action="https://formsubmit.co/filipefg@gmail.com" method="POST">
+                                <!-- Configurações do FormSubmit -->
+                                <input type="hidden" name="_subject" value="Novo Contacto - Website Parada de Gonta">
+                                <input type="hidden" name="_template" value="table">
+                                <input type="hidden" name="_captcha" value="false">
+                                <input type="hidden" name="_next" value="https://filipefg.github.io/jf-paradadegonta/obrigado.html">
+                                <input type="text" name="_honey" style="display:none">
+                                
+                                <div class="form-group">
+                                    <label for="nome">Nome *</label>
+                                    <input type="text" id="nome" name="nome" required aria-required="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" aria-describedby="emailHelp">
+                                    <small id="emailHelp">O seu email será usado apenas para responder ao seu contacto.</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="telefone">Telefone</label>
+                                    <input type="tel" id="telefone" name="telefone" aria-describedby="phoneHelp">
+                                    <small id="phoneHelp">O seu telefone será usado apenas para responder ao seu contacto.</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="mensagem">Mensagem *</label>
+                                    <textarea id="mensagem" name="mensagem" rows="5" required aria-required="true" placeholder="Descreva o seu pedido ou questão..."></textarea>
+                                </div>
+                                
+                                <div class="form-buttons">
+                                    <button type="submit" class="btn">Enviar mensagem</button>
+                                    <button type="button" class="btn btn-secondary" id="btnLimpar">Limpar formulário</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mapa de localização -->
+                <div class="contactos-map">
+                    <h3>Localização</h3>
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d10414.920015492738!2d-7.998707743461845!3d40.58446412333594!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2spt!4v1760977269306!5m2!1sen!2spt" 
+                        width="100%" 
+                        height="600" 
+                        style="border:0; border-radius: 8px;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Mapa de localização de Parada de Gonta">
+                    </iframe>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
+            <div class="footer-content grid grid-3">
                 <div class="footer-logo">
                     <h3>Parada de Gonta</h3>
                     <p>Junta de Freguesia</p>
