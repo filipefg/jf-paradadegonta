@@ -1,5 +1,3 @@
-// js/modules/news.js
-
 import { SELECTORS, CONFIG } from '../utils/constants.js';
 import { showNotification } from '../utils/helpers.js';
 
@@ -99,7 +97,7 @@ function renderizarNoticias(noticias) {
 
     if (noticias.length === 0) {
         container.innerHTML = `
-            <div class="no-news-message" style="text-align: center; padding: 2rem;">
+            <div class="no-news-message" style="text-align: center; padding: 2rem; grid-column: 1 / -1;">
                 <p style="color: var(--text-light); font-size: 1.1rem;">
                     Não existem notícias disponíveis no momento.
                 </p>
@@ -110,38 +108,32 @@ function renderizarNoticias(noticias) {
 
     container.innerHTML = noticias.map(noticia => {
         const dataFormatada = formatarData(noticia.Data);
-        const imagem = noticia.Imagem || 'https://via.placeholder.com/400x200/2c5530/ffffff?text=Notícia';
-        const resumo = noticia.Resumo || noticia.Conteudo?.substring(0, 150) + '...' || 'Descrição não disponível.';
+        const imagem = noticia.Imagem || 'https://via.placeholder.com/600x200/2c5530/ffffff?text=Notícia';
+        const resumo = noticia.Resumo || noticia.Conteudo?.substring(0, 120) + '...' || 'Descrição não disponível.';
         
         return `
-        <article class="noticia-card" data-noticia="${noticia.ID || noticia.Titulo}">
-            ${noticia.Imagem ? `
+        <div class="noticia-card card" data-noticia="${noticia.Titulo}">
             <div class="noticia-image">
                 <img src="${imagem}" 
                      alt="${noticia.Titulo}" 
                      loading="lazy"
-                     onerror="this.src='https://via.placeholder.com/400x200/2c5530/ffffff?text=Notícia'">
+                     onerror="this.src='https://via.placeholder.com/600x200/2c5530/ffffff?text=Notícia'">
             </div>
-            ` : ''}
             <div class="noticia-content">
                 <div class="noticia-date">${dataFormatada}</div>
                 <h3>${noticia.Titulo}</h3>
                 <p>${resumo}</p>
-                ${noticia.Link ? `
-                    <a href="${noticia.Link}" class="noticia-link" target="_blank">
-                        Ler notícia completa <i class="fas fa-external-link-alt"></i>
-                    </a>
-                ` : `
-                    <button class="noticia-link btn-link" data-noticia-id="${noticia.ID || noticia.Titulo}">
-                        Ler mais <i class="fas fa-arrow-right"></i>
-                    </button>
-                `}
+                <button class="btn-noticia btn btn-small" 
+                        data-noticia-titulo="${noticia.Titulo}"
+                        aria-label="Ler notícia completa sobre ${noticia.Titulo}">
+                    Ler Notícia
+                </button>
             </div>
-        </article>
+        </div>
         `;
     }).join('');
 
-    // Configurar event listeners para os botões "Ler mais"
+    // Configurar event listeners para os botões
     setupNewsButtons(noticias);
     
     // Adicionar animações
@@ -153,108 +145,182 @@ function renderizarNoticiasFallback() {
     if (!container) return;
 
     container.innerHTML = `
-        <article class="noticia-card">
+        <div class="noticia-card card">
+            <div class="noticia-image">
+                <img src="https://via.placeholder.com/600x200/2c5530/ffffff?text=Festas" 
+                     alt="Festas da Freguesia 2023" 
+                     loading="lazy">
+            </div>
             <div class="noticia-content">
                 <div class="noticia-date">15 Nov 2023</div>
                 <h3>Festas da Freguesia 2023 em Parada de Gonta</h3>
                 <p>Programa completo das festas em honra de Nossa Senhora da Conceição na freguesia de Parada de Gonta, Tondela.</p>
-                <a href="noticias/festas-freguesia-2023.html" class="noticia-link">Ler mais sobre as festas</a>
+                <button class="btn-noticia btn btn-small" data-noticia-titulo="Festas da Freguesia 2023">
+                    Ler Notícia
+                </button>
             </div>
-        </article>
-        <article class="noticia-card">
+        </div>
+        <div class="noticia-card card">
+            <div class="noticia-image">
+                <img src="https://via.placeholder.com/600x200/2c5530/ffffff?text=Obras" 
+                     alt="Obras de Melhoramento" 
+                     loading="lazy">
+            </div>
             <div class="noticia-content">
                 <div class="noticia-date">10 Nov 2023</div>
                 <h3>Obras de Melhoramento em Parada de Gonta</h3>
                 <p>Iniciadas obras de requalificação do largo principal da freguesia de Parada de Gonta, concelho de Tondela.</p>
-                <a href="noticias/obras-melhoramento.html" class="noticia-link">Ler mais sobre as obras</a>
+                <button class="btn-noticia btn btn-small" data-noticia-titulo="Obras de Melhoramento">
+                    Ler Notícia
+                </button>
             </div>
-        </article>
-        <article class="noticia-card">
+        </div>
+        <div class="noticia-card card">
+            <div class="noticia-image">
+                <img src="https://via.placeholder.com/600x200/2c5530/ffffff?text=Sénior" 
+                     alt="Atividade Sénior" 
+                     loading="lazy">
+            </div>
             <div class="noticia-content">
                 <div class="noticia-date">05 Nov 2023</div>
                 <h3>Atividade Sénior em Parada de Gonta</h3>
                 <p>Inscrições abertas para as atividades do programa "Sénior Ativo" na freguesia de Parada de Gonta.</p>
-                <a href="noticias/atividade-senior.html" class="noticia-link">Ler mais sobre actividades seniores</a>
+                <button class="btn-noticia btn btn-small" data-noticia-titulo="Atividade Sénior">
+                    Ler Notícia
+                </button>
             </div>
-        </article>
+        </div>
+    `;
+
+    // Configurar botões para o fallback
+    const noticiasFallback = [
+        {
+            Titulo: "Festas da Freguesia 2023 em Parada de Gonta",
+            Data: "2023-11-15",
+            Conteudo: "Programa completo das festas em honra de Nossa Senhora da Conceição na freguesia de Parada de Gonta, Tondela. As festas incluem procissão, arraial popular e atividades culturais."
+        },
+        {
+            Titulo: "Obras de Melhoramento em Parada de Gonta", 
+            Data: "2023-11-10",
+            Conteudo: "Iniciadas obras de requalificação do largo principal da freguesia de Parada de Gonta, concelho de Tondela. Estas obras visam melhorar a acessibilidade e embelezar o espaço público."
+        },
+        {
+            Titulo: "Atividade Sénior em Parada de Gonta",
+            Data: "2023-11-05", 
+            Conteudo: "Inscrições abertas para as atividades do programa 'Sénior Ativo' na freguesia de Parada de Gonta. O programa inclui atividades físicas, workshops e passeios culturais."
+        }
+    ];
+    
+    setupNewsButtons(noticiasFallback);
+}
+
+// Modal completamente corrigido
+function generateModalContent(noticia) {
+    const dataFormatada = formatarData(noticia.Data);
+    const imagem = noticia.Imagem || 'https://via.placeholder.com/800x400/2c5530/ffffff?text=Notícia';
+    
+    return `
+        <div class="modal-header">
+            <div class="modal-image-container">
+                <img src="${imagem}" 
+                     alt="${noticia.Titulo}" 
+                     loading="lazy"
+                     onerror="this.src='https://via.placeholder.com/800x400/2c5530/ffffff?text=Notícia'">
+            </div>
+            <h2 class="modal-title">${noticia.Titulo}</h2>
+            <p class="modal-date">${dataFormatada}</p>
+        </div>
+        <div class="modal-content-inner">
+            <div class="noticia-modal-content">
+                <p>${noticia.Conteudo || 'Conteúdo completo da notícia não disponível.'}</p>
+            </div>
+        </div>
     `;
 }
 
+
 function setupNewsButtons(noticias) {
-    const buttons = document.querySelectorAll('.btn-link[data-noticia-id]');
+    const buttons = document.querySelectorAll('.btn-noticia');
     
     buttons.forEach(button => {
         button.addEventListener('click', (e) => {
-            const noticiaId = e.target.getAttribute('data-noticia-id');
-            const noticia = noticias.find(n => (n.ID || n.Titulo) === noticiaId);
+            e.stopPropagation();
             
+            const tituloNoticia = e.target.getAttribute('data-noticia-titulo');
+            console.log('Botão de notícia clicado:', tituloNoticia);
+            
+            const noticia = noticias.find(n => n.Titulo === tituloNoticia);
             if (noticia) {
+                console.log('Notícia encontrada, abrindo modal:', noticia);
                 abrirModalNoticia(noticia);
+            } else {
+                console.error('Notícia não encontrada:', tituloNoticia);
             }
         });
+    });
+
+    // Também adicionar listener global como fallback
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('btn-noticia') || 
+            e.target.closest('.btn-noticia')) {
+            
+            const button = e.target.classList.contains('btn-noticia') 
+                ? e.target 
+                : e.target.closest('.btn-noticia');
+            
+            const tituloNoticia = button.getAttribute('data-noticia-titulo');
+            console.log('Clique direto no botão detectado:', tituloNoticia);
+            
+            const noticia = noticias.find(n => n.Titulo === tituloNoticia);
+            if (noticia) {
+                e.preventDefault();
+                e.stopPropagation();
+                abrirModalNoticia(noticia);
+            }
+        }
     });
 }
 
 function abrirModalNoticia(noticia) {
-    // Criar modal dinâmico para a notícia completa
-    const modalHTML = `
-        <div id="noticia-modal" class="modal active" aria-hidden="false">
-            <div class="modal-content" style="max-width: 800px;">
-                <button class="modal-close" aria-label="Fechar modal">×</button>
-                <div class="modal-header">
-                    <h2 class="modal-title">${noticia.Titulo}</h2>
-                    <p class="modal-date">${formatarData(noticia.Data)}</p>
-                </div>
-                <div class="modal-content-inner">
-                    ${noticia.Imagem ? `
-                    <div class="noticia-modal-image">
-                        <img src="${noticia.Imagem}" 
-                             alt="${noticia.Titulo}" 
-                             style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 1.5rem;">
-                    </div>
-                    ` : ''}
-                    <div class="noticia-modal-content">
-                        ${noticia.Conteudo ? `
-                            <p>${noticia.Conteudo}</p>
-                        ` : `
-                            <p>Conteúdo completo da notícia não disponível.</p>
-                        `}
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
+    console.log('Abrindo modal para notícia:', noticia.Titulo);
+
+    // Usar o mesmo modal das associações, mas com conteúdo de notícia
+    const modal = document.querySelector(SELECTORS.ASSOCIACAO_MODAL);
+    const modalBody = document.querySelector(SELECTORS.MODAL_BODY);
     
-    // Adicionar modal ao body
-    document.body.insertAdjacentHTML('beforeend', modalHTML);
+    if (!modal || !modalBody) {
+        console.error('Modal ou modal body não encontrado');
+        return;
+    }
+
+    // Limpar estilos antigos que possam estar a interferir
+    modalBody.innerHTML = generateModalContent(noticia);
     
-    // Configurar eventos do modal
-    const modal = document.getElementById('noticia-modal');
-    const closeBtn = modal.querySelector('.modal-close');
+    // Forçar largura máxima maior para o modal de notícias
+    const modalContent = modal.querySelector('.modal-content');
+    if (modalContent) {
+        modalContent.style.maxWidth = '800px';
+    }
     
-    closeBtn.addEventListener('click', () => fecharModalNoticia());
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            fecharModalNoticia();
+    modal.style.display = 'block';
+    modal.setAttribute('aria-hidden', 'false');
+    
+    // Animação de entrada
+    setTimeout(() => {
+        modal.classList.add('active');
+    }, 10);
+    
+    // Focar no botão de fechar para acessibilidade
+    setTimeout(() => {
+        const closeBtn = modal.querySelector('.modal-close');
+        if (closeBtn) {
+            closeBtn.focus();
         }
-    });
-    
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal) {
-            fecharModalNoticia();
-        }
-    });
-    
+    }, 100);
+
     // Prevenir scroll do body
     document.body.style.overflow = 'hidden';
-}
-
-function fecharModalNoticia() {
-    const modal = document.getElementById('noticia-modal');
-    if (modal) {
-        modal.remove();
-        document.body.style.overflow = '';
-    }
+    document.documentElement.style.overflow = 'hidden';
 }
 
 function setupNewsAnimations() {

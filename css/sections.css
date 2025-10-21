@@ -188,27 +188,29 @@
     }
 }
 
-/* Notícias Section - Atualizada */
+/* Notícias Section - Estilo uniformizado com associações */
 .noticias {
     background-color: var(--light-color);
 }
 
 .noticias-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     margin-top: 2rem;
 }
 
 .noticia-card {
-    background-color: var(--white);
+    background: var(--white);
     border-radius: var(--border-radius);
-    overflow: hidden;
     box-shadow: var(--shadow);
     transition: var(--transition);
+    text-align: center;
+    border-top: 4px solid var(--primary-color);
+    height: 100%;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    overflow: hidden;
 }
 
 .noticia-card:hover {
@@ -216,16 +218,19 @@
     box-shadow: var(--shadow-hover);
 }
 
+/* IMAGEM OCUPANDO TODA A LARGURA DO CARD */
 .noticia-image {
     width: 100%;
     height: 200px;
-    overflow: hidden;
+    margin: 0;
+    flex-shrink: 0;
 }
 
 .noticia-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
     transition: var(--transition);
 }
 
@@ -247,75 +252,80 @@
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: 600;
-    display: inline-block;
     margin-bottom: 1rem;
+    display: inline-block;
     align-self: flex-start;
 }
 
 .noticia-card h3 {
     color: var(--primary-color);
     margin-bottom: 1rem;
-    flex-grow: 1;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     line-height: 1.4;
 }
 
 .noticia-card p {
-    color: var(--text-light);
-    margin-bottom: 1.5rem;
+    color: var(--text-color);
     line-height: 1.6;
+    margin-bottom: 1.5rem;
     flex-grow: 1;
 }
 
-.noticia-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--primary-color);
-    font-weight: 600;
-    text-decoration: none;
-    transition: var(--transition);
+.btn-noticia {
     margin-top: auto;
-    padding: 0.5rem 0;
-    border: none;
-    background: none;
-    cursor: pointer;
-    font-family: inherit;
-    font-size: inherit;
+    align-self: center;
 }
 
-.noticia-link:hover {
-    color: var(--secondary-color);
-    gap: 0.7rem;
-}
-
-.btn-link {
-    background: none;
-    border: none;
-    color: var(--primary-color);
-    cursor: pointer;
-    text-align: left;
+/* Modal de Notícias - CORREÇÕES COMPLETAS */
+.modal-header {
     padding: 0;
+    border-bottom: none;
+    text-align: left;
 }
 
-.btn-link:hover {
-    color: var(--secondary-color);
+/* IMAGEM GRANDE NO MODAL - ESTILOS NOVOS */
+.modal-image-container {
+    width: 100%;
+    height: 300px;
+    margin: 0;
+    overflow: hidden;
 }
 
-/* Modal de Notícias */
-.noticia-modal-image {
-    margin-bottom: 1.5rem;
+.modal-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
-.noticia-modal-content {
-    line-height: 1.8;
-    font-size: 1.1rem;
+.modal-title {
+    padding: 1.5rem 2rem 0.5rem 2rem;
+    margin: 0;
+    text-align: left;
 }
 
 .modal-date {
     color: var(--text-light);
     font-style: italic;
     margin-bottom: 1rem;
+    font-size: 1rem;
+    padding: 0 2rem;
+    text-align: left;
+}
+
+.noticia-modal-content {
+    line-height: 1.8;
+    font-size: 1.1rem;
+    text-align: left;
+    padding: 0 2rem 2rem 2rem;
+}
+
+.noticia-modal-content p {
+    margin-bottom: 1rem;
+}
+
+.noticia-modal-content p:last-child {
+    margin-bottom: 0;
 }
 
 /* Estados de loading e empty */
@@ -323,6 +333,7 @@
     text-align: center;
     padding: 3rem;
     color: var(--text-light);
+    grid-column: 1 / -1;
 }
 
 .no-news-message {
@@ -345,6 +356,31 @@
     .noticia-image {
         height: 150px;
     }
+    
+    .modal-image-container {
+        height: 200px;
+    }
+    
+    .modal-title {
+        padding: 1rem 1rem 0.5rem 1rem;
+    }
+    
+    .modal-date {
+        padding: 0 1rem;
+    }
+    
+    .noticia-modal-content {
+        padding: 0 1rem 1rem 1rem;
+    }
+}
+
+/* Ajustes específicos para o modal de notícias */
+#associacao-modal .modal-content {
+    max-width: 800px;
+}
+
+#associacao-modal .modal-header {
+    padding: 0;
 }
 
 /* Contactos Section */
