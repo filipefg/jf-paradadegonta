@@ -5,7 +5,8 @@ import { initializeForms } from './modules/forms.js';
 import { initializeAnimations } from './modules/animations.js';
 import { initializeAssociations } from './modules/associations.js';
 import { initializeModals } from './modules/modals.js';
-import { initializeServices } from './modules/services.js'; // ← Adicione esta linha
+import { initializeServices } from './modules/services.js';
+import { initializeNews } from './modules/news.js'; // ← NOVO
 import { preventHorizontalScroll, updateFooterYear } from './utils/helpers.js';
 import { CONFIG } from './utils/constants.js';
 
@@ -34,7 +35,8 @@ class JuntaFreguesiaApp {
             initializeAnimations();
             initializeAssociations();
             initializeModals();
-            initializeServices(); // ← Adicione esta linha
+            initializeServices();
+            initializeNews(); // ← NOVO
             updateFooterYear();
         } catch (error) {
             console.error('Erro na inicialização de módulos:', error);
