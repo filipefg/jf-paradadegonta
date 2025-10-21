@@ -82,8 +82,8 @@ function getIconForService(serviceName) {
     console.log(`🔍 Procurando ícone para: "${serviceName}" -> "${normalizedName}"`);
 
     const specificIcons = {
-        'atendimento ao publico': 'fas fa-user-headset',
-        'emissao de documentos': 'fas fa-file-certificate',
+        'atendimento ao publico': 'fas fa-question',
+        'emissao de documentos': 'fas fa-briefcase',
         'apoio social': 'fas fa-hands-helping',
         'espacos publicos': 'fas fa-tree',
         'informacoes municipais': 'fas fa-info-circle',
@@ -91,10 +91,10 @@ function getIconForService(serviceName) {
     };
 
     const keywords = {
-        'atendimento': 'fas fa-user-headset',
-        'publico': 'fas fa-user-headset',
-        'emissao': 'fas fa-file-certificate',
-        'documentos': 'fas fa-file-certificate',
+        'atendimento': 'fas fa-question',
+        'publico': 'fas fa-question',
+        'emissao': 'fa fa-briefcase',
+        'documentos': 'fa fa-briefcase',
         'social': 'fas fa-hands-helping',
         'apoio': 'fas fa-hands-helping',
         'espacos': 'fas fa-tree',
