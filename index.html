@@ -209,31 +209,23 @@
                 <div class="section-header">
                     <h2 class="section-title">Documentos</h2>
                     <p class="section-subtitle">Acesso aos documentos públicos e oficiais da Junta de Freguesia</p>
-                </div>           
-                <div class="documentos-grid grid grid-3">
-                    <div class="documento-card card">
-                        <div class="documento-icon card-icon" aria-hidden="true">📑</div>
-                        <h3>Actas das Sessões</h3>
-                        <p>Actas das reuniões ordinárias e extraordinárias da Junta de Freguesia de Parada de Gonta</p>
-                        <a href="documentos.html#actas" class="btn-documentos btn btn-small">Consultar</a>
+                </div>
+                
+                <!-- Filtros -->
+                <div class="documentos-filters">
+                    <div id="documentos-filters">
+                        <!-- Os filtros serão carregados dinamicamente aqui via JavaScript -->
+                        <div class="filters-loading">
+                            <p>A carregar filtros...</p>
+                        </div>
                     </div>
-                    <div class="documento-card card">
-                        <div class="documento-icon card-icon" aria-hidden="true">💰</div>
-                        <h3>Documentos Financeiros</h3>
-                        <p>Orçamentos, mapas de execução e relatórios de contas da Junta de Freguesia de Parada de Gonta</p>
-                        <a href="documentos.html#financeiros" class="btn-documentos btn btn-small">Consultar</a>
-                    </div>
-                    <div class="documento-card card">
-                        <div class="documento-icon card-icon" aria-hidden="true">📋</div>
-                        <h3>Regulamentos</h3>
-                        <p>Regulamentos internos e normas da freguesia de Parada de Gonta, Tondela</p>
-                        <a href="documentos.html#regulamentos" class="btn-documentos btn btn-small">Consultar</a>
-                    </div>
-                    <div class="documento-card card">
-                        <div class="documento-icon card-icon" aria-hidden="true">🏗️</div>
-                        <h3>Obras e Projectos</h3>
-                        <p>Documentação relacionada com obras e projectos em curso na freguesia de Parada de Gonta</p>
-                        <a href="documentos.html#obras" class="btn-documentos btn btn-small">Consultar</a>
+                </div>
+                
+                <!-- Grid de Documentos -->
+                <div class="documentos-grid grid grid-auto" id="documentos-container">
+                    <!-- Os documentos serão carregados dinamicamente aqui via JavaScript -->
+                    <div class="documents-loading">
+                        <p>A carregar documentos...</p>
                     </div>
                 </div>
             </div>

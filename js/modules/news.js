@@ -29,8 +29,6 @@ export async function carregarNoticias() {
         
     } catch (error) {
         console.error('Erro ao carregar notícias:', error);
-        // Fallback para notícias estáticas
-        renderizarNoticiasFallback();
     }
 }
 
@@ -140,80 +138,6 @@ function renderizarNoticias(noticias) {
     
     // Adicionar animações
     setupNewsAnimations();
-}
-
-function renderizarNoticiasFallback() {
-    const container = document.querySelector(SELECTORS.NOTICIAS_CONTAINER);
-    if (!container) return;
-
-    container.innerHTML = `
-        <div class="noticia-card card">
-            <div class="noticia-image">
-                <img src="https://via.placeholder.com/600x200/2c5530/ffffff?text=Festas" 
-                     alt="Festas da Freguesia 2023" 
-                     loading="lazy">
-            </div>
-            <div class="noticia-content">
-                <div class="noticia-date">15 Nov 2023</div>
-                <h3>Festas da Freguesia 2023 em Parada de Gonta</h3>
-                <p>Programa completo das festas em honra de Nossa Senhora da Conceição na freguesia de Parada de Gonta, Tondela.</p>
-                <button class="btn-noticia btn btn-small" data-noticia-titulo="Festas da Freguesia 2023">
-                    Ler Notícia
-                </button>
-            </div>
-        </div>
-        <div class="noticia-card card">
-            <div class="noticia-image">
-                <img src="https://via.placeholder.com/600x200/2c5530/ffffff?text=Obras" 
-                     alt="Obras de Melhoramento" 
-                     loading="lazy">
-            </div>
-            <div class="noticia-content">
-                <div class="noticia-date">10 Nov 2023</div>
-                <h3>Obras de Melhoramento em Parada de Gonta</h3>
-                <p>Iniciadas obras de requalificação do largo principal da freguesia de Parada de Gonta, concelho de Tondela.</p>
-                <button class="btn-noticia btn btn-small" data-noticia-titulo="Obras de Melhoramento">
-                    Ler Notícia
-                </button>
-            </div>
-        </div>
-        <div class="noticia-card card">
-            <div class="noticia-image">
-                <img src="https://via.placeholder.com/600x200/2c5530/ffffff?text=Sénior" 
-                     alt="Atividade Sénior" 
-                     loading="lazy">
-            </div>
-            <div class="noticia-content">
-                <div class="noticia-date">05 Nov 2023</div>
-                <h3>Atividade Sénior em Parada de Gonta</h3>
-                <p>Inscrições abertas para as atividades do programa "Sénior Ativo" na freguesia de Parada de Gonta.</p>
-                <button class="btn-noticia btn btn-small" data-noticia-titulo="Atividade Sénior">
-                    Ler Notícia
-                </button>
-            </div>
-        </div>
-    `;
-
-    // Configurar botões para o fallback
-    const noticiasFallback = [
-        {
-            Titulo: "Festas da Freguesia 2023 em Parada de Gonta",
-            Data: "2023-11-15",
-            Conteudo: "Programa completo das festas em honra de Nossa Senhora da Conceição na freguesia de Parada de Gonta, Tondela. As festas incluem procissão, arraial popular e atividades culturais."
-        },
-        {
-            Titulo: "Obras de Melhoramento em Parada de Gonta", 
-            Data: "2023-11-10",
-            Conteudo: "Iniciadas obras de requalificação do largo principal da freguesia de Parada de Gonta, concelho de Tondela. Estas obras visam melhorar a acessibilidade e embelezar o espaço público."
-        },
-        {
-            Titulo: "Atividade Sénior em Parada de Gonta",
-            Data: "2023-11-05", 
-            Conteudo: "Inscrições abertas para as atividades do programa 'Sénior Ativo' na freguesia de Parada de Gonta. O programa inclui atividades físicas, workshops e passeios culturais."
-        }
-    ];
-    
-    setupNewsButtons(noticiasFallback);
 }
 
 // Modal completamente corrigido

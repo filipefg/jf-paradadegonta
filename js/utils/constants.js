@@ -7,7 +7,8 @@ export const CONFIG = {
     LAZY_LOAD_THRESHOLD: 0.1,
     ASSOCIATIONS_SHEET_URL: 'https://docs.google.com/spreadsheets/d/1RMzMCkSEuyMF7xkptmFBy3dkQD8dTQ6PLfxnJcC-pCU/gviz/tq?tqx=out:csv&sheet=Sheet1',
     SERVICES_SHEET_URL: 'https://docs.google.com/spreadsheets/d/1RMzMCkSEuyMF7xkptmFBy3dkQD8dTQ6PLfxnJcC-pCU/gviz/tq?tqx=out:csv&sheet=Servicos',
-    NEWS_SHEET_URL: 'https://docs.google.com/spreadsheets/d/1RMzMCkSEuyMF7xkptmFBy3dkQD8dTQ6PLfxnJcC-pCU/gviz/tq?tqx=out:csv&sheet=Noticias'
+    NEWS_SHEET_URL: 'https://docs.google.com/spreadsheets/d/1RMzMCkSEuyMF7xkptmFBy3dkQD8dTQ6PLfxnJcC-pCU/gviz/tq?tqx=out:csv&sheet=Noticias',
+    DOCUMENTS_SHEET_URL: 'https://docs.google.com/spreadsheets/d/1RMzMCkSEuyMF7xkptmFBy3dkQD8dTQ6PLfxnJcC-pCU/gviz/tq?tqx=out:csv&sheet=Documentos'
 };
 
 export const SELECTORS = {
@@ -18,7 +19,8 @@ export const SELECTORS = {
     BTN_LIMPAR: '#btnLimpar',
     ASSOCIACOES_CONTAINER: '#associacoes-container',
     SERVICOS_CONTAINER: '#servicos-container',
-    NOTICIAS_CONTAINER: '#noticias-container', // ← NOVO
+    NOTICIAS_CONTAINER: '#noticias-container',
+    DOCUMENTOS_CONTAINER: '#documentos-container', // ← NOVO
     ASSOCIACAO_MODAL: '#associacao-modal',
     MODAL_BODY: '#modal-body'
 };

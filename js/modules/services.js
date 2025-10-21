@@ -84,7 +84,7 @@ function getIconForService(serviceName) {
 
     const specificIcons = {
         'atendimento ao publico': 'fas fa-question',
-        'emissao de documentos': 'fas fa-briefcase',
+        'emissao de documentos': 'fas fa-file-alt',
         'apoio social': 'fas fa-hands-helping',
         'espacos publicos': 'fas fa-tree',
         'informacoes municipais': 'fas fa-info-circle',
@@ -94,8 +94,8 @@ function getIconForService(serviceName) {
     const keywords = {
         'atendimento': 'fas fa-question',
         'publico': 'fas fa-question',
-        'emissao': 'fa fa-briefcase',
-        'documentos': 'fa fa-briefcase',
+        'emissao': 'fas fa-file-alt',
+        'documentos': 'fas fa-file-alt',
         'social': 'fas fa-hands-helping',
         'apoio': 'fas fa-hands-helping',
         'espacos': 'fas fa-tree',
