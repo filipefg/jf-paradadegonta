@@ -76,25 +76,35 @@ function renderizarAssociacoes(associacoes) {
 
     console.log('Renderizando associações:', associacoes);
 
-    container.innerHTML = associacoes.map(associacao => `
+    container.innerHTML = associacoes.map(associacao => {
+        const imagem = associacao.Logo || 'https://via.placeholder.com/600x200/2c5530/ffffff?text=Associação';
+        const descricao = associacao.Descricao || 'Descrição não disponível';
+        
+        return `
         <div class="associacao-card card" data-associacao="${associacao.Nome}">
-            <div class="associacao-logo card-image">
-                <img src="${associacao.Logo || 'https://via.placeholder.com/150x150/2c5530/ffffff?text=LOGO'}" 
+            <div class="associacao-image">
+                <img src="${imagem}" 
                      alt="Logo ${associacao.Nome}" 
                      loading="lazy"
-                     onerror="this.src='https://via.placeholder.com/150x150/2c5530/ffffff?text=LOGO'">
+                     onerror="this.src='https://via.placeholder.com/600x200/2c5530/ffffff?text=Associação'">
             </div>
-            <h3>${associacao.Nome}</h3>
-            <p>${associacao.Descricao || 'Descrição não disponível'}</p>
-            <button class="btn-associacao btn btn-small" 
-                    aria-label="Mais informações sobre ${associacao.Nome}">
-                Mais Informações
-            </button>
+            <div class="associacao-content">
+                <h3>${associacao.Nome}</h3>
+                <p>${descricao}</p>
+                <button class="btn-associacao btn btn-small" 
+                        aria-label="Mais informações sobre ${associacao.Nome}">
+                    Mais Informações
+                </button>
+            </div>
         </div>
-    `).join('');
+        `;
+    }).join('');
 
     // Configurar event listeners apenas para os botões
     setupAssociationsButtons();
+    
+    // Adicionar animações
+    setupAssociationsAnimations();
 }
 
 function setupAssociationsButtons() {
@@ -118,3 +128,30 @@ function setupAssociationsButtons() {
         });
     });
 }
+
+function setupAssociationsAnimations() {
+    const associacaoCards = document.querySelectorAll('.associacao-card');
+    
+    associacaoCards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        entry.target.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    }, index * 100);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        observer.observe(card);
+    });
+}
+
+// Exportar para uso global se necessário
+window.carregarAssociacoes = carregarAssociacoes;

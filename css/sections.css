@@ -383,6 +383,146 @@
     padding: 0;
 }
 
+/* Associativismo Section - Mesmo estilo das notícias */
+.associativismo {
+    background-color: var(--white);
+}
+
+.associacoes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.associacao-card {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    text-align: center;
+    border-top: 4px solid var(--primary-color);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.associacao-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* IMAGEM OCUPANDO TODA A LARGURA DO CARD */
+.associacao-image {
+    width: 100%;
+    height: 200px;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.associacao-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: var(--transition);
+}
+
+.associacao-card:hover .associacao-image img {
+    transform: scale(1.05);
+}
+
+.associacao-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.associacao-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    line-height: 1.4;
+}
+
+.associacao-card p {
+    color: var(--text-color);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+
+.btn-associacao {
+    margin-top: auto;
+    align-self: center;
+}
+
+/* Modal de Associações - Mesmo estilo das notícias */
+.associacao-modal-content {
+    line-height: 1.8;
+    font-size: 1.1rem;
+    text-align: left;
+    padding: 0 2rem 2rem 2rem;
+}
+
+.associacao-modal-content p {
+    margin-bottom: 1rem;
+}
+
+.associacao-modal-content p:last-child {
+    margin-bottom: 0;
+}
+
+.associacao-contact-info {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eee;
+}
+
+.associacao-contact-info h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.associacao-contact-info p {
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.associacao-contact-info a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.associacao-contact-info a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive para associações */
+@media (max-width: 768px) {
+    .associacoes-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .associacao-content {
+        padding: 1rem;
+    }
+    
+    .associacao-image {
+        height: 150px;
+    }
+    
+    .associacao-modal-content {
+        padding: 0 1rem 1rem 1rem;
+    }
+}
+
 /* Contactos Section */
 .contactos-content {
     display: grid;

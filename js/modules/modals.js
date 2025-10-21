@@ -89,10 +89,6 @@ export function setupGlobalEventListeners() {
     });
 }
 
-// Remover esta função já que não é mais necessária
-export function setupAssociationsClick() {
-    // Função removida - não queremos cliques no card
-}
 
 export function abrirModal(associacao) {
     const modal = document.querySelector(SELECTORS.ASSOCIACAO_MODAL);
@@ -110,6 +106,13 @@ export function abrirModal(associacao) {
     document.documentElement.style.overflow = 'hidden';
     
     modalBody.innerHTML = generateModalContent(associacao);
+    
+    // Forçar largura máxima maior para o modal
+    const modalContent = modal.querySelector('.modal-content');
+    if (modalContent) {
+        modalContent.style.maxWidth = '800px';
+    }
+    
     modal.style.display = 'block';
     modal.setAttribute('aria-hidden', 'false');
     
@@ -148,49 +151,53 @@ export function fecharModal() {
 }
 
 function generateModalContent(associacao) {
+    const imagem = associacao.Logo || 'https://via.placeholder.com/800x300/2c5530/ffffff?text=Associação';
+    
     return `
         <div class="modal-header">
-            <div class="modal-logo">
-                <img src="${associacao.Logo || 'https://via.placeholder.com/150x150/2c5530/ffffff?text=LOGO'}" 
+            <div class="modal-image-container">
+                <img src="${imagem}" 
                      alt="Logo ${associacao.Nome}" 
                      loading="lazy"
-                     onerror="this.src='https://via.placeholder.com/150x150/2c5530/ffffff?text=LOGO'">
+                     onerror="this.src='https://via.placeholder.com/800x300/2c5530/ffffff?text=Associação'">
             </div>
             <h2 class="modal-title">${associacao.Nome}</h2>
         </div>
         <div class="modal-content-inner">
-            <p class="modal-description">${associacao.Descricao || 'Descrição não disponível'}</p>
-            
-            ${associacao.Fundacao ? `
-                <p class="modal-fundacao">
-                    <i class="fas fa-calendar-alt"></i> Fundada em ${associacao.Fundacao}
-                </p>
-            ` : ''}
-            
-            <div class="modal-contact-info">
-                <h4><i class="fas fa-address-card"></i> Informações de Contacto</h4>
-                ${associacao.Email ? `
-                    <p>
-                        <i class="fas fa-envelope"></i> 
-                        <a href="mailto:${associacao.Email}" style="color: inherit; text-decoration: none;">
-                            ${associacao.Email}
-                        </a>
+            <div class="associacao-modal-content">
+                <p>${associacao.Descricao || 'Descrição não disponível'}</p>
+                
+                ${associacao.Fundacao ? `
+                    <p class="modal-date">
+                        <i class="fas fa-calendar-alt"></i> Fundada em ${associacao.Fundacao}
                     </p>
                 ` : ''}
-                ${associacao.Telefone ? `
-                    <p>
-                        <i class="fas fa-phone"></i> 
-                        <a href="tel:${associacao.Telefone.replace(/\s/g, '')}" style="color: inherit; text-decoration: none;">
-                            ${associacao.Telefone}
-                        </a>
-                    </p>
-                ` : ''}
-                ${associacao.Morada ? `
-                    <p>
-                        <i class="fas fa-map-marker-alt"></i> 
-                        <span>${associacao.Morada}</span>
-                    </p>
-                ` : ''}
+                
+                <div class="associacao-contact-info">
+                    <h4><i class="fas fa-address-card"></i> Informações de Contacto</h4>
+                    ${associacao.Email ? `
+                        <p>
+                            <i class="fas fa-envelope"></i> 
+                            <a href="mailto:${associacao.Email}">
+                                ${associacao.Email}
+                            </a>
+                        </p>
+                    ` : ''}
+                    ${associacao.Telefone ? `
+                        <p>
+                            <i class="fas fa-phone"></i> 
+                            <a href="tel:${associacao.Telefone.replace(/\s/g, '')}">
+                                ${associacao.Telefone}
+                            </a>
+                        </p>
+                    ` : ''}
+                    ${associacao.Morada ? `
+                        <p>
+                            <i class="fas fa-map-marker-alt"></i> 
+                            <span>${associacao.Morada}</span>
+                        </p>
+                    ` : ''}
+                </div>
             </div>
         </div>
     `;
