@@ -74,55 +74,63 @@ function getIconForService(serviceName) {
         return text.toLowerCase()
             .normalize('NFD')
             .replace(/[\u0300-\u036f]/g, '')
+            .replace(/\s+/g, ' ')
             .trim();
     };
 
     const normalizedName = normalizeText(serviceName);
-    
-    // Mapeamento específico para os seus serviços
+    console.log(`🔍 Procurando ícone para: "${serviceName}" -> "${normalizedName}"`);
+
     const specificIcons = {
         'atendimento ao publico': 'fas fa-user-headset',
-        'atendimento publico': 'fas fa-user-headset',
-        'emissao de documentos': 'fas fa-file-certificate', 
-        'emissao documentos': 'fas fa-file-certificate',
+        'emissao de documentos': 'fas fa-file-certificate',
         'apoio social': 'fas fa-hands-helping',
         'espacos publicos': 'fas fa-tree',
         'informacoes municipais': 'fas fa-info-circle',
         'apoio ao associativismo': 'fas fa-users'
     };
 
-    // Verifica correspondência exata primeiro
+    const keywords = {
+        'atendimento': 'fas fa-user-headset',
+        'publico': 'fas fa-user-headset',
+        'emissao': 'fas fa-file-certificate',
+        'documentos': 'fas fa-file-certificate',
+        'social': 'fas fa-hands-helping',
+        'apoio': 'fas fa-hands-helping',
+        'espacos': 'fas fa-tree',
+        'publicos': 'fas fa-tree',
+        'jardim': 'fas fa-tree',
+        'informacoes': 'fas fa-info-circle',
+        'municipais': 'fas fa-info-circle',
+        'municipal': 'fas fa-info-circle',
+        'associativismo': 'fas fa-users',
+        'associacao': 'fas fa-users',
+        'associacoes': 'fas fa-users'
+    };
+
+    // 1️⃣ Tenta correspondência exata
     if (specificIcons[normalizedName]) {
         return specificIcons[normalizedName];
     }
 
-    // Fallback para palavras-chave
-    const keywordIcons = {
-        'atendimento': 'fas fa-user-headset',
-        'publico': 'fas fa-user-headset',
-        'emissao': 'fas fa-file-certificate',
-        'documento': 'fas fa-file-certificate',
-        'social': 'fas fa-hands-helping',
-        'apoio': 'fas fa-hands-helping',
-        'espaco': 'fas fa-tree',
-        'publicos': 'fas fa-tree',
-        'jardim': 'fas fa-tree',
-        'informacao': 'fas fa-info-circle',
-        'municipal': 'fas fa-info-circle',
-        'associativismo': 'fas fa-users',
-        'associacao': 'fas fa-users'
-    };
-
-    // Procura por palavras-chave no nome
-    for (const [keyword, icon] of Object.entries(keywordIcons)) {
-        if (normalizedName.includes(keyword)) {
-            return icon;
+    // 2️⃣ Procura múltiplas correspondências por palavras-chave
+    const matchedIcons = [];
+    for (const [key, icon] of Object.entries(keywords)) {
+        if (normalizedName.includes(key) && !matchedIcons.includes(icon)) {
+            matchedIcons.push(icon);
         }
     }
 
-    // Ícone padrão
-    return 'fas fa-cogs';
+    // 3️⃣ Se houver vários, escolhe o primeiro (ou podes retornar todos)
+    if (matchedIcons.length > 0) {
+        return matchedIcons[0]; // ou matchedIcons.join(' ')
+    }
+
+    // 4️⃣ Ícone padrão
+    return 'fas fa-circle-question';
 }
+
+
 
 function renderizarServicos(servicos) {
     const container = document.querySelector(SELECTORS.SERVICOS_CONTAINER);
