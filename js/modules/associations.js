@@ -1,4 +1,5 @@
 // js/modules/associations.js
+
 import { SELECTORS, CONFIG } from '../utils/constants.js';
 import { showNotification } from '../utils/helpers.js';
 import { setCurrentAssociations } from './modals.js';

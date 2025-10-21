@@ -1,4 +1,5 @@
 // js/main.js
+
 import { initializeNavigation } from './modules/navigation.js';
 import { initializeForms } from './modules/forms.js';
 import { initializeAnimations } from './modules/animations.js';

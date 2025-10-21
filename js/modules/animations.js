@@ -1,4 +1,5 @@
 // js/modules/animations.js
+
 import { CONFIG, CSS_CLASSES } from '../utils/constants.js';
 
 export function initializeAnimations() {

@@ -1,4 +1,5 @@
 // js/modules/modals.js
+
 import { SELECTORS, CSS_CLASSES, CONFIG } from '../utils/constants.js';
 import { debounce } from '../utils/helpers.js';
 

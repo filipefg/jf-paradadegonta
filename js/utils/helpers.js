@@ -1,4 +1,5 @@
 // js/utils/helpers.js
+
 import { CSS_CLASSES } from './constants.js';
 
 export function preventHorizontalScroll() {
