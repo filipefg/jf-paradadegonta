@@ -130,15 +130,15 @@
                         <div class="stats">
                             <div class="stat">
                                 <h3>619</h3>
-                                <p>Habitantes</p>
+                                <p style="text-align: center;">Habitantes</p>
                             </div>
                             <div class="stat">
                                 <h3>7,12</h3>
-                                <p>km² de área</p>
+                                <p style="text-align: center;">km² de área</p>
                             </div>
                             <div class="stat">
                                 <h3>87</h3>
-                                <p>hab/km²</p>
+                                <p style="text-align: center;">hab/km²</p>
                             </div>
                         </div>
                     </div>
@@ -150,45 +150,15 @@
             </div>
         </section>
 
-        <!-- Serviços Section -->
-        <section id="servicos" class="servicos">
+        <!-- Na sua página HTML, onde tem a secção de serviços -->
+        <section id="servicos" class="servicos section">
             <div class="container">
                 <div class="section-header">
                     <h2 class="section-title">Serviços</h2>
-                    <p class="section-subtitle">Principais serviços administrativos aos habitantes de Parada de Gonta</p>
+                    <p class="section-subtitle">Conheça os principais serviços administrativos que disponibilizamos aos nossos habitantes</p>
                 </div>
-                
-                <div class="servicos-grid grid grid-auto">
-                    <div class="servico-card card">
-                        <div class="servico-icon card-icon" aria-hidden="true">📋</div>
-                        <h3>Atendimento ao Público</h3>
-                        <p>Serviços de apoio administrativo, informações à população e esclarecimentos sobre procedimentos na freguesia.</p>
-                    </div>
-                    <div class="servico-card card">
-                        <div class="servico-icon card-icon" aria-hidden="true">📄</div>
-                        <h3>Emissão de Documentos</h3>
-                        <p>Certidões, licenças, declarações e outros documentos oficiais da Junta de Freguesia.</p>
-                    </div>
-                    <div class="servico-card card">
-                        <div class="servico-icon card-icon" aria-hidden="true">🏛️</div>
-                        <h3>Apoio Social</h3>
-                        <p>Informação sobre programas de apoio social e comunitário para os residentes na freguesia.</p>
-                    </div>
-                    <div class="servico-card card">
-                        <div class="servico-icon card-icon" aria-hidden="true">🌳</div>
-                        <h3>Espaços Públicos</h3>
-                        <p>Manutenção e gestão de espaços verdes, equipamentos públicos e infraestruturas da freguesia.</p>
-                    </div>
-                    <div class="servico-card card">
-                        <div class="servico-icon card-icon" aria-hidden="true">📊</div>
-                        <h3>Informações Municipais</h3>
-                        <p>Encaminhamento e informações sobre serviços da Câmara Municipal de Tondela para os habitantes.</p>
-                    </div>
-                    <div class="servico-card card">
-                        <div class="servico-icon card-icon" aria-hidden="true">👥</div>
-                        <h3>Apoio ao Associativismo</h3>
-                        <p>Suporte às associações locais no desenvolvimento de atividades.</p>
-                    </div>
+                <div id="servicos-container" class="servicos-grid">
+                    <!-- Os serviços serão carregados aqui via JavaScript -->
                 </div>
             </div>
         </section>
@@ -238,13 +208,11 @@
         </section>
 
         <!-- Modal para Associações -->
-        <div id="associacao-modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
+        <div id="associacao-modal" class="modal" aria-hidden="true">
             <div class="modal-content">
-                <button class="modal-close" aria-label="Fechar modal">
-                    <i class="fas fa-times"></i>
-                </button>
-                <div class="modal-body" id="modal-body">
-                    <!-- Conteúdo carregado dinamicamente -->
+                <button class="modal-close" aria-label="Fechar modal">×</button>
+                <div id="modal-body">
+                    <!-- Conteúdo do modal será inserido aqui via JavaScript -->
                 </div>
             </div>
         </div>
@@ -404,6 +372,6 @@
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <script type="module" src="js/main.js"></script>
 </body>
 </html>
