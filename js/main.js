@@ -10,6 +10,7 @@ import { initializeNews } from './modules/news.js';
 import { initializeDocuments } from './modules/documents.js'; // ← NOVO
 import { preventHorizontalScroll, updateFooterYear } from './utils/helpers.js';
 import { CONFIG } from './utils/constants.js';
+import { initializeSearch } from './modules/search.js';
 
 class JuntaFreguesiaApp {
     constructor() {
@@ -38,7 +39,8 @@ class JuntaFreguesiaApp {
             initializeModals();
             initializeServices();
             initializeNews();
-            initializeDocuments(); // ← NOVO
+            initializeDocuments();
+            initializeSearch(); // ← NOVO: Inicializar sistema de pesquisa
             updateFooterYear();
         } catch (error) {
             console.error('Erro na inicialização de módulos:', error);
