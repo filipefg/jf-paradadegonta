@@ -12,9 +12,9 @@ export class SimpleSearch {
     async init() {
         try {
             await this.loadSearchData();
-            this.createFloatingSearch();
+            this.createSearchInMenu();
             this.isInitialized = true;
-            console.log('🔍 Sistema de pesquisa flutuante inicializado');
+            console.log('🔍 Sistema de pesquisa no menu inicializado');
         } catch (error) {
             console.error('Erro ao inicializar pesquisa:', error);
         }
@@ -115,11 +115,11 @@ export class SimpleSearch {
         }).filter(item => item.Titulo || item.Nome);
     }
 
-    createFloatingSearch() {
-        // Criar botão flutuante e overlay de pesquisa
+    createSearchInMenu() {
+        // Criar item de pesquisa no menu
         const searchHTML = `
-            <div class="floating-search">
-                <button class="floating-search-btn" aria-label="Abrir pesquisa">
+            <li class="menu-search-item">
+                <button class="menu-search-btn" aria-label="Abrir pesquisa">
                     <i class="fas fa-search"></i>
                 </button>
                 
@@ -148,17 +148,20 @@ export class SimpleSearch {
                         <div class="search-results"></div>
                     </div>
                 </div>
-            </div>
+            </li>
         `;
 
-        // Inserir no final do body
-        document.body.insertAdjacentHTML('beforeend', searchHTML);
+        // Inserir no final do menu de navegação
+        const navMenu = document.querySelector(SELECTORS.NAV_MENU);
+        if (navMenu) {
+            navMenu.insertAdjacentHTML('beforeend', searchHTML);
+        }
 
         this.setupEventListeners();
     }
 
     setupEventListeners() {
-        const floatingBtn = document.querySelector('.floating-search-btn');
+        const menuSearchBtn = document.querySelector('.menu-search-btn');
         const searchOverlay = document.querySelector('.search-overlay');
         const searchClose = document.querySelector('.search-close');
         const searchInput = document.querySelector('.search-input');
@@ -166,7 +169,9 @@ export class SimpleSearch {
         const searchSubmit = document.querySelector('.search-submit');
 
         // Abrir pesquisa
-        floatingBtn.addEventListener('click', () => {
+        menuSearchBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
             this.openSearch();
         });
 

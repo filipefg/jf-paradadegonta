@@ -1,34 +1,31 @@
-/* ===== BOTÃO DE PESQUISA FLUTUANTE ===== */
+/* ===== PESQUISA NO MENU TOPO ===== */
 
-.floating-search {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    z-index: 999;
+.menu-search-item {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-.floating-search-btn {
-    width: 56px;
-    height: 56px;
+.menu-search-btn {
+    background: none;
     border: none;
-    border-radius: 50%;
-    background: var(--primary-color);
-    color: var(--white);
+    color: var(--text-color);
     cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: var(--transition);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.2rem;
-    box-shadow: var(--shadow-hover);
-    transition: var(--transition);
+    width: 40px;
+    height: 40px;
     position: relative;
-    z-index: 1000;
+    top: -8px;
 }
 
-.floating-search-btn:hover {
-    background: var(--secondary-color);
-    transform: scale(1.1);
-    box-shadow: 0 8px 25px rgba(44, 85, 48, 0.3);
+.menu-search-btn:hover {
+    color: var(--primary-color);
+    background: rgba(44, 85, 48, 0.1);
 }
 
 /* Overlay da pesquisa */
@@ -43,7 +40,7 @@
     align-items: flex-start;
     justify-content: center;
     padding: 4rem 1rem;
-    z-index: 998;
+    z-index: 9999;
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -268,15 +265,29 @@
 
 /* Tablets */
 @media (max-width: 768px) {
-    .floating-search {
-        bottom: 1.5rem;
-        right: 1.5rem;
+    .menu-search-item {
+        order: -1; /* Colocar a pesquisa primeiro no mobile */
+        margin-right: auto;
     }
     
-    .floating-search-btn {
-        width: 52px;
-        height: 52px;
-        font-size: 1.1rem;
+    .nav-menu.active .menu-search-item {
+        order: 0;
+        margin-right: 0;
+        border-bottom: 1px solid #e0e0e0;
+        padding: 1rem 0;
+    }
+    
+    .nav-menu.active .menu-search-btn {
+        width: 100%;
+        height: auto;
+        padding: 1rem;
+        justify-content: flex-start;
+        background: #f8f9fa;
+        border-radius: 8px;
+    }
+    
+    .nav-menu.active .menu-search-btn i {
+        margin-right: 0.5rem;
     }
     
     .search-overlay {
@@ -302,17 +313,6 @@
 
 /* Mobile */
 @media (max-width: 480px) {
-    .floating-search {
-        bottom: 1rem;
-        right: 1rem;
-    }
-    
-    .floating-search-btn {
-        width: 48px;
-        height: 48px;
-        font-size: 1rem;
-    }
-    
     .search-header {
         padding: 1rem 1.25rem;
     }
@@ -348,19 +348,5 @@
     
     .result-preview {
         font-size: 0.85rem;
-    }
-}
-
-/* Desktop grande */
-@media (min-width: 1200px) {
-    .floating-search {
-        bottom: 2.5rem;
-        right: 2.5rem;
-    }
-    
-    .floating-search-btn {
-        width: 60px;
-        height: 60px;
-        font-size: 1.3rem;
     }
 }
