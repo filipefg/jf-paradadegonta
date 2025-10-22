@@ -15,20 +15,17 @@ export async function carregarAssociacoes() {
     try {
         const response = await fetch(CONFIG.ASSOCIATIONS_SHEET_URL);
         
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         
         const csvData = await response.text();
         const associacoes = csvParaJSON(csvData);
         
         renderizarAssociacoes(associacoes);
-        setCurrentAssociations(associacoes);
-        
-        console.log('Associações carregadas:', associacoes);
+        setCurrentAssociations(associacoes); // ← MANTENHA SEMPRE ESTA LINHA
         
     } catch (error) {
         console.error('Erro ao carregar associações:', error);
+        showNotification('Erro ao carregar associações', 'error');
     }
 }
 
