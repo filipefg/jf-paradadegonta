@@ -8,7 +8,8 @@ export const CONFIG = {
     ASSOCIATIONS_SHEET_URL: 'https://docs.google.com/spreadsheets/d/1RMzMCkSEuyMF7xkptmFBy3dkQD8dTQ6PLfxnJcC-pCU/gviz/tq?tqx=out:csv&sheet=Sheet1',
     SERVICES_SHEET_URL: 'https://docs.google.com/spreadsheets/d/1RMzMCkSEuyMF7xkptmFBy3dkQD8dTQ6PLfxnJcC-pCU/gviz/tq?tqx=out:csv&sheet=Servicos',
     NEWS_SHEET_URL: 'https://docs.google.com/spreadsheets/d/1RMzMCkSEuyMF7xkptmFBy3dkQD8dTQ6PLfxnJcC-pCU/gviz/tq?tqx=out:csv&sheet=Noticias',
-    DOCUMENTS_SHEET_URL: 'https://docs.google.com/spreadsheets/d/1RMzMCkSEuyMF7xkptmFBy3dkQD8dTQ6PLfxnJcC-pCU/gviz/tq?tqx=out:csv&sheet=Documentos'
+    DOCUMENTS_SHEET_URL: 'https://docs.google.com/spreadsheets/d/1RMzMCkSEuyMF7xkptmFBy3dkQD8dTQ6PLfxnJcC-pCU/gviz/tq?tqx=out:csv&sheet=Documentos',
+    CALENDAR_SHEET_URL: 'https://docs.google.com/spreadsheets/d/1RMzMCkSEuyMF7xkptmFBy3dkQD8dTQ6PLfxnJcC-pCU/gviz/tq?tqx=out:csv&sheet=Eventos'
 };
 
 export const SELECTORS = {
@@ -20,9 +21,13 @@ export const SELECTORS = {
     ASSOCIACOES_CONTAINER: '#associacoes-container',
     SERVICOS_CONTAINER: '#servicos-container',
     NOTICIAS_CONTAINER: '#noticias-container',
-    DOCUMENTOS_CONTAINER: '#documentos-container', // ← NOVO
-    ASSOCIACAO_MODAL: '#associacao-modal',
-    MODAL_BODY: '#modal-body'
+    DOCUMENTOS_CONTAINER: '#documentos-container',
+    MODAL_BODY: '#modal-body',
+    CALENDAR_SECTION: '#calendario',
+    CALENDAR_GRID: '#calendario-grid',
+    CALENDAR_MODAL: '#calendario-modal',
+    CALENDAR_MODAL_BODY: '#calendario-modal-body',
+    UPCOMING_EVENTS: '#upcoming-events'
 };
 
 export const CSS_CLASSES = {

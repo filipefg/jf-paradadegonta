@@ -11,6 +11,8 @@ import { initializeDocuments } from './modules/documents.js'; // ← NOVO
 import { preventHorizontalScroll, updateFooterYear } from './utils/helpers.js';
 import { CONFIG } from './utils/constants.js';
 import { initializeSearch } from './modules/search.js';
+import { initializeCalendar } from './modules/calendar.js';
+
 
 class JuntaFreguesiaApp {
     constructor() {
@@ -40,8 +42,9 @@ class JuntaFreguesiaApp {
             initializeServices();
             initializeNews();
             initializeDocuments();
-            initializeSearch(); // ← NOVO: Inicializar sistema de pesquisa
+            initializeSearch();
             updateFooterYear();
+            initializeCalendar();
         } catch (error) {
             console.error('Erro na inicialização de módulos:', error);
         }

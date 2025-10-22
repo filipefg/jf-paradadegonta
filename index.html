@@ -119,10 +119,11 @@
                 <ul class="nav-menu">
                     <li><a href="#inicio">Início</a></li>
                     <li><a href="#sobre">Sobre</a></li>
-                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href#servicos">Serviços</a></li>
                     <li><a href="#noticias">Notícias</a></li>
                     <li><a href="#associativismo">Associativismo</a></li>
                     <li><a href="#documentos">Documentos</a></li>
+                    <li><a href="#calendario">Calendário</a></li>
                     <li><a href="#contactos">Contactos</a></li>
                 </ul>
             </nav>
@@ -256,6 +257,55 @@
                 </div>
             </div>
         </section>
+
+        <!-- Adicionar esta secção após a secção de Documentos -->
+        <section id="calendario" class="calendario-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Calendário</h2>
+                    <p class="section-subtitle">Fique a par de todos os eventos e atividades na freguesia</p>
+                </div>
+                
+                <div class="calendario-container">
+                    <!-- Vista do Calendário -->
+                    <div class="calendario-view">
+                        <div class="calendario-header">
+                            <h3>Outubro 2024</h3>
+                            <div class="calendario-navigation">
+                                <button class="prev-month" aria-label="Mês anterior">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button class="today-btn">Hoje</button>
+                                <button class="next-month" aria-label="Próximo mês">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="calendario-grid" id="calendario-grid">
+                            <!-- O calendário será gerado aqui via JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <!-- Próximos Eventos -->
+                    <div class="proximos-eventos">
+                        <h3><i class="fas fa-list"></i> Próximos Eventos</h3>
+                        <div class="upcoming-events-list" id="upcoming-events">
+                            <!-- Eventos próximos serão carregados aqui -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal para Detalhes do Dia -->
+        <div id="calendario-modal" class="modal" aria-hidden="true">
+            <div class="modal-content">
+                <button class="modal-close" aria-label="Fechar modal">×</button>
+                <div id="calendario-modal-body">
+                    <!-- Conteúdo do modal será inserido aqui -->
+                </div>
+            </div>
+        </div>
 
         <!-- Contactos Section -->
         <section id="contactos" class="contactos">

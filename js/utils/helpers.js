@@ -107,3 +107,37 @@ export function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
+
+export function formatDate(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('pt-PT', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+    });
+}
+
+export function exportarCalendario() {
+    // Exportar eventos para ficheiro ICS
+    const eventosICS = gerarFicheiroICS(todosEventos);
+    const blob = new Blob([eventosICS], { type: 'text/calendar' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'eventos-parada-gonta.ics';
+    a.click();
+    URL.revokeObjectURL(url);
+}
+
+export function inscreverNotificacoes() {
+    if (!('Notification' in window)) {
+        showNotification('As notificações não são suportadas no seu navegador.', 'warning');
+        return;
+    }
+    
+    Notification.requestPermission().then(permission => {
+        if (permission === 'granted') {
+            showNotification('Lembretes ativados com sucesso!', 'success');
+        }
+    });
+}
