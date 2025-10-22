@@ -64,19 +64,6 @@ class JuntaFreguesiaApp {
     }
 }
 
-export function setupFormRedirect() {
-    const contactForm = document.getElementById('contactForm');
-    
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            // Opcional: Adicionar parâmetro para identificar nova janela
-            const nextUrl = new URL(this.querySelector('input[name="_next"]').value);
-            nextUrl.searchParams.set('source', 'contactForm');
-            this.querySelector('input[name="_next"]').value = nextUrl.toString();
-        });
-    }
-}
-
 // Inicializar a aplicação quando o DOM estiver pronto
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {

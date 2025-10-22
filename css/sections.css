@@ -775,3 +775,30 @@
         padding: 1rem;
     }
 }
+
+/* ESTILOS MÍNIMOS PARA PÁGINA OBRIGADO */
+.obrigado-container {
+    text-align: center;
+    padding: 5rem 0;
+    margin-top: 80px;
+}
+
+.obrigado-icon {
+    font-size: 4rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+}
+
+.obrigado-message h1 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.contact-info-recap {
+    background: var(--light-color);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    margin: 2rem auto;
+    max-width: 500px;
+    text-align: left;
+}
