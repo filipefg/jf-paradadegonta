@@ -137,15 +137,17 @@ function submitForm(form) {
     submitBtn.textContent = 'A enviar...';
     submitBtn.disabled = true;
     
-    // Simular envio (substituir pela lógica real)
+    // Envio real do formulário
+    showNotification('A enviar a sua mensagem...', 'info');
+    
+    // Usar FormSubmit para envio real
+    form.submit();
+    
+    // Fallback em caso de erro
     setTimeout(() => {
-        showNotification('Mensagem enviada com sucesso! Entraremos em contacto brevemente.', 'success');
-        form.reset();
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
-        
-        // form.submit(); // Descomentar para envio real
-    }, 2000);
+    }, 5000);
 }
 
 function setupClearButton(button, form) {

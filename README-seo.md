@@ -1,153 +1,86 @@
-README-seo-md
+# Site da Junta de Freguesia de Parada de Gonta
 
-# Site da Junta de Freguesia de Parada de Gonta - Otimização SEO
+## 📊 Status do Projeto
 
-## 📋 Estrutura do Projeto
-paradadegonta-seo/
-├── index.html (Página principal)
-├── obrigado.html (Página de agradecimento)
-├── noticias.html (Lista de notícias)
-├── documentos.html (Documentos oficiais)
-├── associacoes/
-│ ├── adrc-parada-gonta.html
-│ ├── amigos-parada-gonta.html
-│ ├── assodrec.html
-│ ├── clube-caca-pesca.html
-│ └── rancho-folclorico.html
+**🚀 Site Online:** [https://jfparadadegonta.pt](https://jfparadadegonta.pt)
+
+## 🏗️ Estrutura Real do Projeto
+jf-paradadegonta/
+├── index.html # Página única (Single Page Application)
+├── obrigado.html # Página de confirmação de contacto
 ├── css/
-│ └── style.css
+│ ├── style.css # Todos os estilos combinados
+│ └── (base.css, components.css, layout.css, sections.css, responsive.css - importados)
 ├── js/
-│ └── script.js
+│ ├── main.js # Ponto de entrada principal
+│ ├── modules/ # Sistema modular JavaScript
+│ │ ├── navigation.js
+│ │ ├── forms.js
+│ │ ├── animations.js
+│ │ ├── associations.js
+│ │ ├── modals.js
+│ │ ├── services.js
+│ │ ├── news.js
+│ │ └── documents.js
+│ └── utils/
+│ ├── constants.js
+│ └── helpers.js
 ├── sitemap.xml
 ├── robots.txt
 └── README-seo.md
 
-text
+## 🎯 Características Técnicas
 
-## 🚀 Funcionalidades Implementadas
+### ✅ Single Page Application
+- **index.html** - Página única com todas as secções
+- Navegação por âncoras suaves
+- Conteúdo carregado dinamicamente via JavaScript
 
-### 1. SEO Técnico
-- ✅ Meta tags otimizadas (title, description, keywords)
-- ✅ Open Graph tags para redes sociais
-- ✅ Schema.org structured data
-- ✅ URLs canónicas
-- ✅ Sitemap XML
-- ✅ Robots.txt
-- ✅ Breadcrumb navigation
-- ✅ Heading structure hierárquica
+### ✅ Secções Principais
+- **Hero** - Apresentação da freguesia
+- **Sobre** - Informações demográficas e históricas
+- **Serviços** - Serviços da junta (carregados dinamicamente)
+- **Notícias** - Feed de notícias (carregadas dinamicamente)
+- **Associativismo** - Associações locais (carregadas dinamicamente)
+- **Documentos** - Documentos oficiais com filtros
+- **Contactos** - Formulário e informações de contacto
 
-### 2. Performance
-- ✅ CSS otimizado e minificado
-- ✅ JavaScript eficiente
-- ✅ Lazy loading de imagens
-- ✅ Preload de recursos críticos
-- ✅ Compressão de imagens recomendada
+### ✅ Fontes de Dados
+- **Google Sheets** como CMS para:
+  - Associações
+  - Serviços
+  - Notícias
+  - Documentos
 
-### 3. Acessibilidade
-- ✅ Navegação por teclado
-- ✅ ARIA labels e roles
-- ✅ Skip links
-- ✅ Alto contraste
-- ✅ Suporte a screen readers
+## 🎯 SEO Implementado
 
-### 4. Mobile-First
-- ✅ Design responsivo
-- ✅ Touch-friendly interfaces
-- ✅ Viewport otimizado
-- ✅ Performance mobile
+### ✅ Meta Tags
+- Título: "Junta de Freguesia de Parada de Gonta"
+- Descrição otimizada para pesquisas locais
+- Open Graph tags
+- Schema.org structured data
 
-## 🔧 Instalação e Configuração
+### ✅ Performance
+- CSS otimizado e combinado
+- JavaScript modular
+- Lazy loading de imagens
+- Design responsivo
 
-### 1. Upload dos Ficheiros
-```bash
-# Estrutura de diretórios recomendada
-/public_html/
-├── index.html
-├── obrigado.html
-├── noticias.html
-├── documentos.html
-├── associacoes/
-├── css/
-├── js/
-├── sitemap.xml
-└── robots.txt
-2. Configurações do Servidor
-Certifique-se de que o servidor suporta HTTPS
+### ✅ URLs Canónicas
+- https://jfparadadegonta.pt/
+- https://jfparadadegonta.pt/obrigado.html
 
-Configure redirecionamentos 301 se necessário
+## 📊 Monitorização
 
-Verifique a compressão GZIP
+### Google Search Console
+- Propriedade: https://jfparadadegonta.pt
+- Sitemap: https://jfparadadegonta.pt/sitemap.xml
 
-3. Google Search Console
-Adicione a propriedade: https://jfparadadegonta.pt
+### Contactos
+- **Junta de Freguesia:** +351 232 952 190
+- **Horário:** Segunda e Quinta, 18h00-19h00
+- **Email:** jf-paradadegonta@example.pt
 
-Submeta o sitemap: https://jfparadadegonta.pt/sitemap.xml
+---
 
-Verifique a cobertura de indexação
-
-4. Google Analytics
-Adicione o código de tracking no <head> de todas as páginas
-
-Configure goals para formulários de contacto
-
-📊 Monitorização SEO
-Métricas a Monitorar
-Posicionamento: Palavras-chave locais (Parada de Gonta, Tondela, Viseu)
-
-Tráfego: Visitas orgânicas e taxas de conversão
-
-Performance: Core Web Vitals (LCP, FID, CLS)
-
-Engajamento: Taxa de rejeição, tempo no site
-
-Ferramentas Recomendadas
-Google Search Console
-
-Google Analytics 4
-
-Google PageSpeed Insights
-
-SEMrush ou Ahrefs (opcional)
-
-🎯 Estratégia de Conteúdo
-Palavras-Chave Principais
-"Junta de Freguesia Parada de Gonta"
-
-"Parada de Gonta Tondela"
-
-"Serviços freguesia Parada Gonta"
-
-"Associações Parada de Gonta"
-
-"Contactos Junta Freguesia Tondela"
-
-Conteúdo Local
-Informações específicas da freguesia
-
-Dados demográficos atualizados
-
-Eventos e notícias locais
-
-Associações e coletividades
-
-🔄 Manutenção
-Atualizações Regulares
-Notícias: Semanalmente
-
-Documentos: Mensalmente
-
-Eventos: Conforme programação
-
-Informações de contacto: Quando necessário
-
-Auditorias SEO
-Realizar auditoria trimestral
-
-Verificar links quebrados
-
-Atualizar sitemap
-
-Analisar métricas de performance
-
-📞 Suporte
-Para questões técnicas ou de implementação, contacte o desenvolvedor responsável.
+**Última atualização:** Janeiro 2025

@@ -1,5 +1,3 @@
-<!-- obrigado.html -->
-
 <!DOCTYPE html>
 <html lang="pt-PT">
 <head>
@@ -13,48 +11,81 @@
     <meta name="author" content="Junta de Freguesia de Parada de Gonta">
     <meta name="robots" content="noindex, follow">
     
-    <!-- Open Graph -->
-    <meta property="og:title" content="Mensagem Enviada - Junta de Freguesia de Parada de Gonta">
-    <meta property="og:description" content="A sua mensagem foi enviada com sucesso para a Junta de Freguesia de Parada de Gonta.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://jfparadadegonta.pt/obrigado.html">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://jfparadadegonta.pt/obrigado.html">
-    
-    <!-- Schema.org Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": "Confirmação de Contacto - Junta de Freguesia de Parada de Gonta",
-        "description": "Página de confirmação de envio de mensagem para a Junta de Freguesia",
-        "url": "https://jfparadadegonta.pt/obrigado.html",
-        "breadcrumb": {
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-                {
-                    "@type": "ListItem",
-                    "position": 1,
-                    "name": "Início",
-                    "item": "https://jfparadadegonta.pt/"
-                },
-                {
-                    "@type": "ListItem",
-                    "position": 2,
-                    "name": "Confirmação de Contacto"
-                }
-            ]
-        }
-    }
-    </script>
-    
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        .obrigado-container {
+            text-align: center;
+            padding: 4rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .obrigado-icon {
+            font-size: 4rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+        }
+        
+        .obrigado-message h1 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .obrigado-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 3rem 0;
+        }
+        
+        .contact-info-recap {
+            background: var(--light-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        
+        .quick-links {
+            margin-top: 3rem;
+        }
+        
+        .quick-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--primary-color);
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        
+        .quick-links a:hover {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+        
+        @media (max-width: 768px) {
+            .obrigado-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .obrigado-buttons .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Skip link para acessibilidade -->
@@ -85,7 +116,7 @@
         </div>
     </header>
 
-    <main id="main-content" style="margin-top: 100px; padding: 4rem 0;">
+    <main id="main-content">
         <div class="container">
             <div class="obrigado-container">
                 <div class="obrigado-icon" aria-hidden="true">
@@ -98,7 +129,7 @@
                     <p>A sua mensagem foi recebida e será analisada pela nossa equipa.</p>
                     <p>Entraremos em contacto consigo brevemente através dos meios que nos facultou, geralmente no prazo de 2-3 dias úteis.</p>
                     
-                    <div class="contact-info-recap" style="background: var(--light-color); padding: 1.5rem; border-radius: 8px; margin: 2rem 0;">
+                    <div class="contact-info-recap">
                         <h2 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.3rem;">Informações de Contacto da Junta</h2>
                         <p><strong>Telefone:</strong> +351 232 952 190</p>
                         <p><strong>Horário de Atendimento:</strong> Segunda e Quinta, 18h00-19h00</p>
@@ -121,16 +152,16 @@
                     </a>
                 </div>
                 
-                <div class="quick-links" style="margin-top: 3rem; text-align: center;">
+                <div class="quick-links">
                     <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Enquanto Aguarda</h3>
                     <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                        <a href="index.html#noticias" style="color: var(--primary-color); text-decoration: none;">
+                        <a href="index.html#noticias">
                             <i class="fas fa-newspaper" aria-hidden="true"></i> Ver Notícias
                         </a>
-                        <a href="index.html#documentos" style="color: var(--primary-color); text-decoration: none;">
+                        <a href="index.html#documentos">
                             <i class="fas fa-file-alt" aria-hidden="true"></i> Consultar Documentos
                         </a>
-                        <a href="index.html#associativismo" style="color: var(--primary-color); text-decoration: none;">
+                        <a href="index.html#associativismo">
                             <i class="fas fa-users" aria-hidden="true"></i> Conhecer Associações
                         </a>
                     </div>
@@ -170,6 +201,30 @@
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <script>
+        // Script simples para a página de obrigado
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fechar esta janela se foi aberta numa nova janela
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('newWindow') === 'true') {
+                setTimeout(() => {
+                    window.close();
+                }, 5000);
+            }
+            
+            // Adicionar smooth scroll para âncoras
+            document.querySelectorAll('a[href^="index.html#"]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Se estiver numa nova janela, abrir na janela principal
+                    if (window.opener) {
+                        e.preventDefault();
+                        const hash = this.getAttribute('href').split('#')[1];
+                        window.opener.location.href = 'index.html#' + hash;
+                        window.close();
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

@@ -8,8 +8,8 @@
     <title>Junta de Freguesia de Parada de Gonta</title>
     
     <!-- Meta Tags SEO Otimizadas -->
-    <meta name="description" content="Site oficial da Junta de Freguesia de Parada de Gonta, Tondela. Serviços administrativos, notícias, documentos oficiais e informações sobre a freguesia. Contacte-nos!">
-    <meta name="keywords" content="Junta Freguesia Parada de Gonta, Tondela, Viseu, serviços administrativos, documentos freguesia, contactos Parada Gonta">
+    <meta name="description" content="Site oficial da Junta de Freguesia de Parada de Gonta, Tondela. Serviços administrativos, horários, contactos, notícias locais e documentos oficiais da freguesia do distrito de Viseu.">
+    <meta name="keywords" content="Junta Freguesia Parada de Gonta, Tondela Viseu, serviços freguesia, contactos Parada Gonta, documentos junta freguesia, horários atendimento Tondela">
     <meta name="author" content="Junta de Freguesia de Parada de Gonta">
     <meta name="copyright" content="Junta de Freguesia de Parada de Gonta">
     <meta name="robots" content="index, follow">
@@ -32,26 +32,52 @@
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "Junta de Freguesia de Parada de Gonta",
-        "description": "Junta de Freguesia de Parada de Gonta, concelho de Tondela, distrito de Viseu",
-        "url": "https://jfparadadegonta.pt",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "R. Dr. Tomaz Ribeiro de Melo, n.º 52",
-            "addressLocality": "Parada de Gonta",
-            "addressRegion": "Viseu",
-            "postalCode": "3460-376",
-            "addressCountry": "PT"
-        },
-        "telephone": "+351-232-952-190",
-        "openingHours": [
-            "Mo 18:00-19:00",
-            "Th 18:00-19:00"
-        ],
-        "areaServed": "Parada de Gonta",
-        "sameAs": [
-            "https://www.facebook.com/profile.php?id=100075897857695"
+        "@graph": [
+            {
+                "@type": "LocalBusiness",
+                "name": "Junta de Freguesia de Parada de Gonta",
+                "description": "Junta de Freguesia de Parada de Gonta, concelho de Tondela, distrito de Viseu",
+                "url": "https://jfparadadegonta.pt",
+                "telephone": "+351-232-952-190",
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "R. Dr. Tomaz Ribeiro de Melo, n.º 52",
+                    "addressLocality": "Parada de Gonta",
+                    "addressRegion": "Viseu",
+                    "postalCode": "3460-376",
+                    "addressCountry": "PT"
+                },
+                "geo": {
+                    "@type": "GeoCoordinates",
+                    "latitude": 40.584464,
+                    "longitude": -7.998707
+                },
+                "openingHours": [
+                    "Mo 18:00-19:00",
+                    "Th 18:00-19:00"
+                ],
+                "areaServed": "Parada de Gonta",
+                "sameAs": [
+                    "https://www.facebook.com/profile.php?id=100075897857695"
+                ]
+            },
+            {
+                "@type": "WebSite",
+                "name": "Junta de Freguesia de Parada de Gonta",
+                "url": "https://jfparadadegonta.pt",
+                "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": "https://jfparadadegonta.pt/?s={search_term_string}",
+                    "query-input": "required name=search_term_string"
+                }
+            },
+            {
+                "@type": "Organization",
+                "name": "Junta de Freguesia de Parada de Gonta",
+                "url": "https://jfparadadegonta.pt",
+                "logo": "https://jfparadadegonta.pt/images/logo.png",
+                "description": "Site oficial da Junta de Freguesia de Parada de Gonta, Tondela"
+            }
         ]
     }
     </script>
@@ -264,7 +290,7 @@
                     <div class="contactos-form-container">
                         <div class="contactos-form card">
                             <h3>Envie-nos uma mensagem</h3>
-                            <form id="contactForm" action="https://formsubmit.co/filipefg@gmail.com" method="POST">
+                            <form id="contactForm" action="https://formsubmit.co/filipefg@gmail.com" method="POST" target="_blank">
                                 <!-- Configurações do FormSubmit -->
                                 <input type="hidden" name="_subject" value="Novo Contacto - Website Parada de Gonta">
                                 <input type="hidden" name="_template" value="table">
