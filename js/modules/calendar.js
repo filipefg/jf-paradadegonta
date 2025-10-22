@@ -34,13 +34,6 @@ export async function carregarEventos() {
         const csvData = await response.text();
         console.log('📄 Dados CSV recebidos:', csvData);
         
-        // Se CSV estiver vazio, usar dados de exemplo
-        if (!csvData || csvData.trim().length < 10) {
-            console.log('📝 CSV vazio, usando dados de exemplo');
-            carregarEventosExemplo();
-            return;
-        }
-        
         const eventos = csvParaJSON(csvData);
         console.log('🔄 Eventos processados:', eventos);
         
@@ -52,7 +45,6 @@ export async function carregarEventos() {
         
     } catch (error) {
         console.error('❌ Erro ao carregar eventos:', error);
-        carregarEventosExemplo();
     }
 }
 
@@ -189,10 +181,15 @@ function renderizarCalendario() {
         return;
     }
 
-    // Atualizar cabeçalho
+    // DEBUG: Verificar valores atuais
+    console.log('🔍 DEBUG - mesAtual:', mesAtual, 'anoAtual:', anoAtual);
+    console.log('🔍 DEBUG - Nome do mês:', getNomeMes(mesAtual));
+
+    // ATUALIZAR CABEÇALHO COM MÊS E ANO CORRETOS
     const nomeMes = getNomeMes(mesAtual);
     if (calendarHeader) {
         calendarHeader.textContent = `${nomeMes} ${anoAtual}`;
+        console.log('✅ Cabeçalho atualizado para:', nomeMes, anoAtual);
     }
 
     // Gerar dias do mês - SEMANA COMEÇA NA SEGUNDA
@@ -203,6 +200,10 @@ function renderizarCalendario() {
     // Ajustar para semana começar na segunda (0=Domingo, 1=Segunda, etc.)
     let diaInicio = primeiroDia.getDay() - 1;
     if (diaInicio < 0) diaInicio = 6; // Domingo vai para o final
+
+    // CALCULAR TOTAL DE LINHAS NECESSÁRIAS (sempre 6 linhas)
+    const totalDiasNecessarios = 42; // 6 linhas × 7 dias = 42 células
+    const diasVaziosFinais = totalDiasNecessarios - (diaInicio + diasNoMes);
 
     let calendarioHTML = '';
 
@@ -237,17 +238,25 @@ function renderizarCalendario() {
             <div class="calendar-day ${isHoje ? 'today' : ''}" 
                  data-dia="${dia}" data-mes="${mesAtual}" data-ano="${anoAtual}">
                 <span class="day-number">${dia}</span>
-                <div class="day-events">
-                    ${eventosDia.map(evento => `
+                <div class="day-events-scroll">
+                    ${eventosDia.slice(0, 5).map(evento => `
                         <div class="event-indicator" 
                              style="background-color: ${evento.corCategoria}"
                              title="${evento.Titulo} - ${evento.horaInicio}">
                             ${evento.Titulo.substring(0, 10)}...
                         </div>
                     `).join('')}
+                    ${eventosDia.length > 5 ? `
+                        <div class="event-more">+${eventosDia.length - 5} mais</div>
+                    ` : ''}
                 </div>
             </div>
         `;
+    }
+
+    // Dias vazios no final para completar 6 linhas
+    for (let i = 0; i < diasVaziosFinais; i++) {
+        calendarioHTML += `<div class="calendar-day empty"></div>`;
     }
 
     calendarioHTML += `</div>`;
@@ -256,7 +265,7 @@ function renderizarCalendario() {
     // Adicionar event listeners aos dias
     setupDayClickEvents();
     
-    console.log('📅 Calendário renderizado para', nomeMes, anoAtual);
+    console.log('✅ Calendário renderizado para', nomeMes, anoAtual, '- 6 linhas');
 }
 
 function getEventosPorDia(dia, mes, ano) {
