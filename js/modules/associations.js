@@ -23,7 +23,7 @@ export async function carregarAssociacoes() {
         const associacoes = csvParaJSON(csvData);
         
         renderizarAssociacoes(associacoes);
-        setCurrentAssociations(associacoes); // ← DEFINIR ASSOCIAÇÕES ATUAIS
+        setCurrentAssociations(associacoes);
         
         console.log('Associações carregadas:', associacoes);
         

@@ -143,3 +143,15 @@ img {
     max-width: 100%;
     height: auto;
 }
+
+.image-optimized {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Para imagens de fundo */
+.bg-image-optimized {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
