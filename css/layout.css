@@ -195,3 +195,131 @@
 .grid-auto {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
+
+/* ===== SCROLLBAR GLOBAL - USANDO VARIÁVEIS CSS ===== */
+
+/* Scrollbar principal da página */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color); /* #2c5530 */
+    border-radius: 4px;
+    transition: var(--transition);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color); /* #4a7c59 */
+}
+
+/* Scrollbar para Firefox */
+html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) #f1f1f1;
+}
+
+/* Scrollbar para Internet Explorer/Edge antigo */
+body {
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+/* ===== SCROLLBARS ESPECÍFICOS - MANTENDO CONSISTÊNCIA ===== */
+
+/* Próximos Eventos (já existente - manter) */
+.upcoming-events-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.upcoming-events-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.upcoming-events-list::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 3px;
+}
+
+.upcoming-events-list::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
+/* Eventos do calendário nos dias */
+.day-events-scroll::-webkit-scrollbar {
+    width: 4px;
+}
+
+.day-events-scroll::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 2px;
+}
+
+.day-events-scroll::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 2px;
+}
+
+.day-events-scroll::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
+/* Modais */
+.modal-content::-webkit-scrollbar,
+.day-events-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modal-content::-webkit-scrollbar-track,
+.day-events-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.modal-content::-webkit-scrollbar-thumb,
+.day-events-list::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 3px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover,
+.day-events-list::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
+/* Pesquisa */
+.search-results::-webkit-scrollbar {
+    width: 6px;
+}
+
+.search-results::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.search-results::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 3px;
+}
+
+.search-results::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+    ::-webkit-scrollbar {
+        width: 6px; /* Scrollbar mais fino em mobile */
+    }
+    
+    .upcoming-events-list::-webkit-scrollbar,
+    .modal-content::-webkit-scrollbar {
+        width: 4px;
+    }
+}
