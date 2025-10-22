@@ -140,11 +140,7 @@ function abrirModal(content, type = 'Conteúdo') {
 
     console.log(`✅ Abrindo modal para: ${type}`);
 
-    // Prevenir scroll do body
-    document.body.style.overflow = 'hidden';
-    document.documentElement.style.overflow = 'hidden';
-    
-    // Inserir conteúdo
+    // INSERIR conteúdo SEM bloquear scroll
     modalBody.innerHTML = content;
     
     // Ajustar tamanho do modal conforme o tipo
@@ -291,11 +287,7 @@ export function fecharModal() {
     
     setTimeout(() => {
         modal.style.display = 'none';
-        
-        // Restaurar scroll
-        document.body.style.overflow = '';
-        document.documentElement.style.overflow = '';
-        
+        // REMOVER: Não restaurar scroll porque nunca foi bloqueado
         modal.setAttribute('aria-hidden', 'true');
     }, CONFIG.ANIMATION_DELAY);
 }

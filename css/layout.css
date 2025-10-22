@@ -39,7 +39,7 @@
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: 1rem;
 }
 
 .nav-menu a {
@@ -48,7 +48,7 @@
     font-weight: 500;
     transition: var(--transition);
     position: relative;
-    font-size: 1rem;
+    font-size: 0.95rem;
 }
 
 .nav-menu a:hover {
