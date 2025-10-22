@@ -174,7 +174,7 @@ function setupCalendarNavigation() {
 
 function renderizarCalendario() {
     const calendarGrid = document.querySelector(SELECTORS.CALENDAR_GRID);
-    const calendarHeader = document.querySelector('.calendar-header h3');
+    const calendarHeader = document.querySelector('.calendario-header h3');
     
     if (!calendarGrid) {
         console.error('❌ Elemento do calendário não encontrado');
