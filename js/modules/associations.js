@@ -2,7 +2,7 @@
 
 import { SELECTORS, CONFIG } from '../utils/constants.js';
 import { showNotification } from '../utils/helpers.js';
-import { setCurrentAssociations } from './modals.js';
+import { setCurrentAssociations } from './modals.js'; // ← IMPORTAR
 
 export function initializeAssociations() {
     const container = document.querySelector(SELECTORS.ASSOCIACOES_CONTAINER);
@@ -23,7 +23,7 @@ export async function carregarAssociacoes() {
         const associacoes = csvParaJSON(csvData);
         
         renderizarAssociacoes(associacoes);
-        setCurrentAssociations(associacoes);
+        setCurrentAssociations(associacoes); // ← DEFINIR ASSOCIAÇÕES ATUAIS
         
         console.log('Associações carregadas:', associacoes);
         
@@ -100,35 +100,13 @@ function renderizarAssociacoes(associacoes) {
         `;
     }).join('');
 
-    // Configurar event listeners apenas para os botões
-    setupAssociationsButtons();
+    // REMOVER A FUNÇÃO setupAssociationsButtons - agora tratada no modals.js
     
-    // Adicionar animações
+    // Manter apenas as animações
     setupAssociationsAnimations();
 }
 
-function setupAssociationsButtons() {
-    const buttons = document.querySelectorAll('.btn-associacao');
-    
-    buttons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            // Prevenir que o clique se propague para o card
-            e.stopPropagation();
-            
-            const card = e.target.closest('.associacao-card');
-            const nomeAssociacao = card.getAttribute('data-associacao');
-            console.log('Botão clicado:', nomeAssociacao);
-            
-            // Disparar evento customizado para o modal
-            const event = new CustomEvent('associacaoButtonClick', {
-                detail: { nomeAssociacao },
-                bubbles: true
-            });
-            button.dispatchEvent(event);
-        });
-    });
-}
-
+// MANTER APENAS AS ANIMAÇÕES
 function setupAssociationsAnimations() {
     const associacaoCards = document.querySelectorAll('.associacao-card');
     

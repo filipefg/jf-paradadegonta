@@ -3,11 +3,11 @@
 import { initializeNavigation } from './modules/navigation.js';
 import { initializeForms } from './modules/forms.js';
 import { initializeAnimations } from './modules/animations.js';
-import { initializeAssociations } from './modules/associations.js';
 import { initializeModals } from './modules/modals.js';
+import { initializeAssociations } from './modules/associations.js';
 import { initializeServices } from './modules/services.js';
 import { initializeNews } from './modules/news.js';
-import { initializeDocuments } from './modules/documents.js'; // ← NOVO
+import { initializeDocuments } from './modules/documents.js';
 import { preventHorizontalScroll, updateFooterYear } from './utils/helpers.js';
 import { CONFIG } from './utils/constants.js';
 import { initializeSearch } from './modules/search.js';
@@ -20,31 +20,25 @@ class JuntaFreguesiaApp {
     }
 
     init() {
-        // Prevenir scroll horizontal
         preventHorizontalScroll();
-        
-        // Inicializar módulos
         this.initializeModules();
-        
-        // Configurações globais
         this.setupGlobalEvents();
-        
         console.log('🚀 Junta de Freguesia App inicializada');
     }
 
     initializeModules() {
         try {
+            initializeModals();
             initializeNavigation();
             initializeForms();
             initializeAnimations();
             initializeAssociations();
-            initializeModals();
             initializeServices();
             initializeNews();
             initializeDocuments();
             initializeSearch();
-            updateFooterYear();
             initializeCalendar();
+            updateFooterYear();
         } catch (error) {
             console.error('Erro na inicialização de módulos:', error);
         }

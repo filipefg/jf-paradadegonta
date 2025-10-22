@@ -4,30 +4,38 @@ import { SELECTORS, CSS_CLASSES, CONFIG } from '../utils/constants.js';
 import { debounce } from '../utils/helpers.js';
 
 let currentAssociations = [];
+let currentNews = [];
+let currentDocuments = [];
 
 export function initializeModals() {
+    console.log('🔄 Inicializando modais...');
+    
     const modal = document.querySelector(SELECTORS.ASSOCIACAO_MODAL);
     if (!modal) {
-        console.error('Modal não encontrado com seletor:', SELECTORS.ASSOCIACAO_MODAL);
+        console.error('❌ Modal não encontrado com seletor:', SELECTORS.ASSOCIACAO_MODAL);
         return;
     }
 
     setupModalEvents(modal);
     setupGlobalEventListeners();
     
-    console.log('Modais inicializados');
+    console.log('✅ Modais inicializados');
 }
 
 export function setupModalEvents(modal) {
-    const closeBtn = modal.querySelector('.modal-close');
+    const closeBtn = modal.querySelector(SELECTORS.MODAL_CLOSE);
     
     if (!closeBtn) {
-        console.error('Botão de fechar modal não encontrado');
+        console.error('❌ Botão de fechar modal não encontrado');
         return;
     }
     
     // Fechar modal
-    closeBtn.addEventListener('click', () => fecharModal());
+    closeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        fecharModal();
+    });
     
     // Fechar com ESC
     document.addEventListener('keydown', (e) => {
@@ -42,77 +50,114 @@ export function setupModalEvents(modal) {
             fecharModal();
         }
     });
-    
-    // Swipe para fechar em mobile
-    setupMobileSwipe(modal);
 }
 
 export function setupGlobalEventListeners() {
-    // Ouvir eventos customizados dos botões das associações
-    document.addEventListener('associacaoButtonClick', (e) => {
-        const nomeAssociacao = e.detail.nomeAssociacao;
-        console.log('Evento associacaoButtonClick recebido:', nomeAssociacao);
-        
-        const associacao = currentAssociations.find(a => a.Nome === nomeAssociacao);
-        if (associacao) {
-            console.log('Associação encontrada, abrindo modal:', associacao);
-            abrirModal(associacao);
-        } else {
-            console.error('Associação não encontrada:', nomeAssociacao);
-            console.log('Associações disponíveis:', currentAssociations);
-        }
-    });
-
-    // Também manter listener direto nos botões como fallback
+    console.log('🔧 Configurando event listeners globais...');
+    
+    // Eventos para associações
     document.addEventListener('click', (e) => {
-        // Só abrir modal se clicar especificamente no botão
-        if (e.target.classList.contains('btn-associacao') || 
-            e.target.closest('.btn-associacao')) {
-            
-            const button = e.target.classList.contains('btn-associacao') 
-                ? e.target 
-                : e.target.closest('.btn-associacao');
+        const button = e.target.closest('.btn-associacao');
+        if (button) {
+            e.preventDefault();
+            e.stopPropagation();
             
             const card = button.closest('.associacao-card');
             if (card) {
                 const nomeAssociacao = card.getAttribute('data-associacao');
-                console.log('Clique direto no botão detectado:', nomeAssociacao);
+                console.log('🏛️ Botão associação clicado:', nomeAssociacao);
                 
                 const associacao = currentAssociations.find(a => a.Nome === nomeAssociacao);
                 if (associacao) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    abrirModal(associacao);
+                    abrirModalAssociacao(associacao);
                 }
+            }
+        }
+    });
+
+    // Eventos para notícias
+    document.addEventListener('click', (e) => {
+        const button = e.target.closest('.btn-noticia');
+        if (button) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const tituloNoticia = button.getAttribute('data-noticia-titulo');
+            console.log('📰 Botão notícia clicado:', tituloNoticia);
+            
+            const noticia = currentNews.find(n => n.Titulo === tituloNoticia);
+            if (noticia) {
+                abrirModalNoticia(noticia);
+            }
+        }
+    });
+
+    // Eventos para documentos
+    document.addEventListener('click', (e) => {
+        const button = e.target.closest('.btn-documento');
+        if (button && !button.hasAttribute('href')) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const tituloDocumento = button.getAttribute('data-documento-titulo');
+            console.log('📄 Botão documento clicado:', tituloDocumento);
+            
+            const documento = currentDocuments.find(d => d.Titulo === tituloDocumento);
+            if (documento) {
+                abrirModalDocumento(documento);
             }
         }
     });
 }
 
+// MODAL PARA ASSOCIAÇÕES
+export function abrirModalAssociacao(associacao) {
+    console.log('🏛️ Abrindo modal associação:', associacao.Nome);
+    abrirModal(generateAssociacaoContent(associacao), 'Associação');
+}
 
-export function abrirModal(associacao) {
+// MODAL PARA NOTÍCIAS
+export function abrirModalNoticia(noticia) {
+    console.log('📰 Abrindo modal notícia:', noticia.Titulo);
+    abrirModal(generateNoticiaContent(noticia), 'Notícia');
+}
+
+// MODAL PARA DOCUMENTOS
+export function abrirModalDocumento(documento) {
+    console.log('📄 Abrindo modal documento:', documento.Titulo);
+    abrirModal(generateDocumentoContent(documento), 'Documento');
+}
+
+// FUNÇÃO PRINCIPAL PARA ABRIR MODAL
+function abrirModal(content, type = 'Conteúdo') {
     const modal = document.querySelector(SELECTORS.ASSOCIACAO_MODAL);
     const modalBody = document.querySelector(SELECTORS.MODAL_BODY);
     
     if (!modal || !modalBody) {
-        console.error('Modal ou modal body não encontrado');
+        console.error('❌ Modal ou modal body não encontrado');
         return;
     }
 
-    console.log('Abrindo modal para:', associacao.Nome);
+    console.log(`✅ Abrindo modal para: ${type}`);
 
     // Prevenir scroll do body
     document.body.style.overflow = 'hidden';
     document.documentElement.style.overflow = 'hidden';
     
-    modalBody.innerHTML = generateModalContent(associacao);
+    // Inserir conteúdo
+    modalBody.innerHTML = content;
     
-    // Forçar largura máxima maior para o modal
+    // Ajustar tamanho do modal conforme o tipo
     const modalContent = modal.querySelector('.modal-content');
     if (modalContent) {
-        modalContent.style.maxWidth = '800px';
+        if (type === 'Notícia') {
+            modalContent.style.maxWidth = '800px';
+        } else {
+            modalContent.style.maxWidth = '700px';
+        }
     }
     
+    // Mostrar modal
     modal.style.display = 'block';
     modal.setAttribute('aria-hidden', 'false');
     
@@ -123,34 +168,15 @@ export function abrirModal(associacao) {
     
     // Focar no botão de fechar para acessibilidade
     setTimeout(() => {
-        const closeBtn = modal.querySelector('.modal-close');
+        const closeBtn = modal.querySelector(SELECTORS.MODAL_CLOSE);
         if (closeBtn) {
             closeBtn.focus();
         }
     }, 100);
 }
 
-export function fecharModal() {
-    const modal = document.querySelector(SELECTORS.ASSOCIACAO_MODAL);
-    if (!modal) return;
-
-    console.log('Fechando modal');
-
-    // Animação de saída
-    modal.classList.remove(CSS_CLASSES.ACTIVE);
-    
-    setTimeout(() => {
-        modal.style.display = 'none';
-        
-        // Restaurar scroll
-        document.body.style.overflow = '';
-        document.documentElement.style.overflow = '';
-        
-        modal.setAttribute('aria-hidden', 'true');
-    }, CONFIG.ANIMATION_DELAY);
-}
-
-function generateModalContent(associacao) {
+// GERAR CONTEÚDO PARA ASSOCIAÇÕES
+function generateAssociacaoContent(associacao) {
     const imagem = associacao.Logo || 'https://via.placeholder.com/800x300/2c5530/ffffff?text=Associação';
     
     return `
@@ -203,45 +229,108 @@ function generateModalContent(associacao) {
     `;
 }
 
-function setupMobileSwipe(modal) {
-    if (!('ontouchstart' in window)) return;
-
-    const modalContent = modal.querySelector('.modal-content');
-    if (!modalContent) return;
-
-    let startY = 0;
-    let isSwiping = false;
+// GERAR CONTEÚDO PARA NOTÍCIAS
+function generateNoticiaContent(noticia) {
+    const dataFormatada = formatarData(noticia.Data);
+    const imagem = noticia.Imagem || 'https://via.placeholder.com/800x400/2c5530/ffffff?text=Notícia';
     
-    modalContent.addEventListener('touchstart', (e) => {
-        startY = e.touches[0].clientY;
-        isSwiping = true;
-    });
-    
-    modalContent.addEventListener('touchmove', (e) => {
-        if (!isSwiping) return;
-        
-        const currentY = e.touches[0].clientY;
-        const diff = currentY - startY;
-        
-        // Swipe para baixo para fechar
-        if (diff > 50 && window.innerWidth <= 768) {
-            fecharModal();
-            isSwiping = false;
-        }
-    });
-    
-    modalContent.addEventListener('touchend', () => {
-        isSwiping = false;
-    });
+    return `
+        <div class="modal-header">
+            <div class="modal-image-container">
+                <img src="${imagem}" 
+                     alt="${noticia.Titulo}" 
+                     loading="lazy"
+                     onerror="this.src='https://via.placeholder.com/800x400/2c5530/ffffff?text=Notícia'">
+            </div>
+            <h2 class="modal-title">${noticia.Titulo}</h2>
+            ${dataFormatada ? `<p class="modal-date">${dataFormatada}</p>` : ''}
+        </div>
+        <div class="modal-content-inner">
+            <div class="noticia-modal-content">
+                <p>${noticia.Conteudo || 'Conteúdo completo da notícia não disponível.'}</p>
+            </div>
+        </div>
+    `;
 }
 
-// Exportar para uso por outros módulos
+// GERAR CONTEÚDO PARA DOCUMENTOS
+function generateDocumentoContent(documento) {
+    const dataFormatada = documento.Data ? formatarData(documento.Data) : '';
+    
+    return `
+        <div class="modal-header">
+            <h2 class="modal-title">${documento.Titulo}</h2>
+            ${dataFormatada ? `<p class="modal-date">${dataFormatada}</p>` : ''}
+        </div>
+        <div class="modal-content-inner">
+            <div class="documento-modal-content">
+                <p>${documento.Descricao || 'Descrição não disponível.'}</p>
+                
+                ${documento.Link ? `
+                    <div class="documento-actions">
+                        <a href="${documento.Link}" class="btn" target="_blank" 
+                           style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-download"></i> Descarregar Documento
+                        </a>
+                    </div>
+                ` : ''}
+            </div>
+        </div>
+    `;
+}
+
+// FUNÇÃO PARA FECHAR MODAL
+export function fecharModal() {
+    const modal = document.querySelector(SELECTORS.ASSOCIACAO_MODAL);
+    if (!modal) return;
+
+    console.log('🔒 Fechando modal');
+
+    // Animação de saída
+    modal.classList.remove(CSS_CLASSES.ACTIVE);
+    
+    setTimeout(() => {
+        modal.style.display = 'none';
+        
+        // Restaurar scroll
+        document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
+        
+        modal.setAttribute('aria-hidden', 'true');
+    }, CONFIG.ANIMATION_DELAY);
+}
+
+// FUNÇÃO AUXILIAR PARA FORMATAR DATA
+function formatarData(dataString) {
+    try {
+        const data = new Date(dataString);
+        if (isNaN(data.getTime())) {
+            return dataString;
+        }
+        
+        const options = { 
+            day: 'numeric', 
+            month: 'long', 
+            year: 'numeric' 
+        };
+        return data.toLocaleDateString('pt-PT', options);
+    } catch (error) {
+        return dataString;
+    }
+}
+
+// EXPORTAR FUNÇÕES PARA OUTROS MÓDULOS
 export function setCurrentAssociations(associacoes) {
     currentAssociations = associacoes;
-    console.log('Associações definidas no modal:', currentAssociations);
+    console.log('📋 Associações definidas:', currentAssociations.length);
 }
 
-// Função para debug
-export function getCurrentAssociations() {
-    return currentAssociations;
+export function setCurrentNews(noticias) {
+    currentNews = noticias;
+    console.log('📰 Notícias definidas:', currentNews.length);
+}
+
+export function setCurrentDocuments(documentos) {
+    currentDocuments = documentos;
+    console.log('📄 Documentos definidos:', currentDocuments.length);
 }

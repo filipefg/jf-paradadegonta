@@ -2,6 +2,7 @@
 
 import { SELECTORS, CONFIG } from '../utils/constants.js';
 import { showNotification } from '../utils/helpers.js';
+import { setCurrentNews } from './modals.js';
 
 export function initializeNews() {
     const container = document.querySelector(SELECTORS.NOTICIAS_CONTAINER);
@@ -25,6 +26,7 @@ export async function carregarNoticias() {
         const noticias = csvParaJSON(csvData);
         
         renderizarNoticias(noticias);
+        setCurrentNews(noticias); // ← DEFINIR NOTÍCIAS ATUAIS
         console.log('Notícias carregadas:', noticias);
         
     } catch (error) {
@@ -132,123 +134,12 @@ function renderizarNoticias(noticias) {
         </div>
         `;
     }).join('');
-
-    // Configurar event listeners para os botões
-    setupNewsButtons(noticias);
     
-    // Adicionar animações
+    // Manter apenas as animações
     setupNewsAnimations();
 }
 
-// Modal completamente corrigido
-function generateModalContent(noticia) {
-    const dataFormatada = formatarData(noticia.Data);
-    const imagem = noticia.Imagem || 'https://via.placeholder.com/800x400/2c5530/ffffff?text=Notícia';
-    
-    return `
-        <div class="modal-header">
-            <div class="modal-image-container">
-                <img src="${imagem}" 
-                     alt="${noticia.Titulo}" 
-                     loading="lazy"
-                     onerror="this.src='https://via.placeholder.com/800x400/2c5530/ffffff?text=Notícia'">
-            </div>
-            <h2 class="modal-title">${noticia.Titulo}</h2>
-            <p class="modal-date">${dataFormatada}</p>
-        </div>
-        <div class="modal-content-inner">
-            <div class="noticia-modal-content">
-                <p>${noticia.Conteudo || 'Conteúdo completo da notícia não disponível.'}</p>
-            </div>
-        </div>
-    `;
-}
-
-
-function setupNewsButtons(noticias) {
-    const buttons = document.querySelectorAll('.btn-noticia');
-    
-    buttons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            e.stopPropagation();
-            
-            const tituloNoticia = e.target.getAttribute('data-noticia-titulo');
-            console.log('Botão de notícia clicado:', tituloNoticia);
-            
-            const noticia = noticias.find(n => n.Titulo === tituloNoticia);
-            if (noticia) {
-                console.log('Notícia encontrada, abrindo modal:', noticia);
-                abrirModalNoticia(noticia);
-            } else {
-                console.error('Notícia não encontrada:', tituloNoticia);
-            }
-        });
-    });
-
-    // Também adicionar listener global como fallback
-    document.addEventListener('click', (e) => {
-        if (e.target.classList.contains('btn-noticia') || 
-            e.target.closest('.btn-noticia')) {
-            
-            const button = e.target.classList.contains('btn-noticia') 
-                ? e.target 
-                : e.target.closest('.btn-noticia');
-            
-            const tituloNoticia = button.getAttribute('data-noticia-titulo');
-            console.log('Clique direto no botão detectado:', tituloNoticia);
-            
-            const noticia = noticias.find(n => n.Titulo === tituloNoticia);
-            if (noticia) {
-                e.preventDefault();
-                e.stopPropagation();
-                abrirModalNoticia(noticia);
-            }
-        }
-    });
-}
-
-function abrirModalNoticia(noticia) {
-    console.log('Abrindo modal para notícia:', noticia.Titulo);
-
-    // Usar o mesmo modal das associações, mas com conteúdo de notícia
-    const modal = document.querySelector(SELECTORS.ASSOCIACAO_MODAL);
-    const modalBody = document.querySelector(SELECTORS.MODAL_BODY);
-    
-    if (!modal || !modalBody) {
-        console.error('Modal ou modal body não encontrado');
-        return;
-    }
-
-    // Limpar estilos antigos que possam estar a interferir
-    modalBody.innerHTML = generateModalContent(noticia);
-    
-    // Forçar largura máxima maior para o modal de notícias
-    const modalContent = modal.querySelector('.modal-content');
-    if (modalContent) {
-        modalContent.style.maxWidth = '800px';
-    }
-    
-    modal.style.display = 'block';
-    modal.setAttribute('aria-hidden', 'false');
-    
-    // Animação de entrada
-    setTimeout(() => {
-        modal.classList.add('active');
-    }, 10);
-    
-    // Focar no botão de fechar para acessibilidade
-    setTimeout(() => {
-        const closeBtn = modal.querySelector('.modal-close');
-        if (closeBtn) {
-            closeBtn.focus();
-        }
-    }, 100);
-
-    // Prevenir scroll do body
-    document.body.style.overflow = 'hidden';
-    document.documentElement.style.overflow = 'hidden';
-}
-
+// MANTER APENAS AS ANIMAÇÕES
 function setupNewsAnimations() {
     const noticiaCards = document.querySelectorAll('.noticia-card');
     

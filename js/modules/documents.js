@@ -1,7 +1,7 @@
-// js/modules/documents.js
-
+// js/modules/documents.js - VERSÃO COMPLETAMENTE CORRIGIDA
 import { SELECTORS, CONFIG } from '../utils/constants.js';
 import { showNotification } from '../utils/helpers.js';
+import { setCurrentDocuments } from './modals.js';
 
 let todosDocumentos = [];
 let categoriasUnicas = [];
@@ -19,6 +19,7 @@ export function initializeDocuments() {
 
 export async function carregarDocumentos() {
     try {
+        console.log('📥 A carregar documentos...');
         const response = await fetch(CONFIG.DOCUMENTS_SHEET_URL);
         
         if (!response.ok) {
@@ -29,13 +30,15 @@ export async function carregarDocumentos() {
         const documentos = csvParaJSON(csvData);
         
         todosDocumentos = documentos;
+        setCurrentDocuments(documentos); // ← DEFINIR NO MODALS
         extrairFiltros(documentos);
         renderizarFiltros();
         renderizarDocumentos(documentos);
-        console.log('Documentos carregados:', documentos);
+        console.log('✅ Documentos carregados:', documentos.length);
         
     } catch (error) {
-        console.error('Erro ao carregar documentos:', error);
+        console.error('❌ Erro ao carregar documentos:', error);
+        showNotification('Erro ao carregar documentos', 'error');
     }
 }
 
@@ -93,10 +96,9 @@ function extrairFiltros(documentos) {
     
     // Extrair anos únicos
     const anos = documentos.map(doc => doc.Ano).filter(Boolean);
-    anosUnicos = [...new Set(anos)].sort((a, b) => b - a); // Ordenar do mais recente para o mais antigo
-    
-    console.log('Categorias encontradas:', categoriasUnicas);
-    console.log('Anos encontrados:', anosUnicos);
+    anosUnicos = [...new Set(anos)].sort((a, b) => b - a);
+
+    console.log('📊 Filtros extraídos:', { categoriasUnicas, anosUnicos });
 }
 
 function renderizarFiltros() {
@@ -177,8 +179,8 @@ function aplicarFiltros() {
         );
     }
 
-    console.log(`Filtros aplicados - Categoria: ${categoriaSelecionada}, Ano: ${anoSelecionado}`);
-    console.log(`Documentos filtrados: ${documentosFiltrados.length} de ${todosDocumentos.length}`);
+    console.log(`🔍 Filtros aplicados - Categoria: ${categoriaSelecionada}, Ano: ${anoSelecionado}`);
+    console.log(`📄 Documentos filtrados: ${documentosFiltrados.length} de ${todosDocumentos.length}`);
 
     renderizarDocumentos(documentosFiltrados);
     atualizarContador(documentosFiltrados.length);
@@ -206,7 +208,7 @@ function formatarData(dataString) {
     try {
         const data = new Date(dataString);
         if (isNaN(data.getTime())) {
-            return ''; // Retorna vazio se não for data válida
+            return '';
         }
         
         const options = { 
@@ -224,7 +226,7 @@ function renderizarDocumentos(documentos) {
     const container = document.querySelector(SELECTORS.DOCUMENTOS_CONTAINER);
     if (!container) return;
 
-    console.log('Renderizando documentos:', documentos);
+    console.log('🎨 Renderizando documentos:', documentos.length);
 
     if (documentos.length === 0) {
         container.innerHTML = `
@@ -233,7 +235,7 @@ function renderizarDocumentos(documentos) {
                 <p style="color: var(--text-light); font-size: 1.1rem;">
                     Nenhum documento encontrado com os filtros selecionados.
                 </p>
-                <button class="btn btn-small" onclick="limparFiltrosHandler()" style="margin-top: 1rem;">
+                <button class="btn btn-small" onclick="window.limparFiltrosHandler && window.limparFiltrosHandler()" style="margin-top: 1rem;">
                     Limpar Filtros
                 </button>
             </div>
@@ -268,121 +270,16 @@ function renderizarDocumentos(documentos) {
         `;
     }).join('');
 
-    // Configurar event listeners para os botões
-    setupDocumentsButtons(documentos);
+    // REMOVER: Não precisa mais de setupDocumentsButtons
+    // Os event listeners são agora globais no modals.js
     
-    // Adicionar animações
     setupDocumentsAnimations();
 }
 
-function setupDocumentsButtons(documentos) {
-    const buttons = document.querySelectorAll('.btn-documento');
-    
-    buttons.forEach(button => {
-        if (!button.hasAttribute('href')) { // Só para botões que não são links
-            button.addEventListener('click', (e) => {
-                e.stopPropagation();
-                
-                const tituloDocumento = e.target.getAttribute('data-documento-titulo');
-                console.log('Botão de documento clicado:', tituloDocumento);
-                
-                const documento = documentos.find(d => d.Titulo === tituloDocumento);
-                if (documento) {
-                    console.log('Documento encontrado, abrindo modal:', documento);
-                    abrirModalDocumento(documento);
-                } else {
-                    console.error('Documento não encontrado:', tituloDocumento);
-                }
-            });
-        }
-    });
-
-    // Listener global como fallback
-    document.addEventListener('click', (e) => {
-        if (e.target.classList.contains('btn-documento') && !e.target.hasAttribute('href') || 
-            e.target.closest('.btn-documento') && !e.target.closest('.btn-documento').hasAttribute('href')) {
-            
-            const button = e.target.classList.contains('btn-documento') 
-                ? e.target 
-                : e.target.closest('.btn-documento');
-            
-            const tituloDocumento = button.getAttribute('data-documento-titulo');
-            console.log('Clique direto no botão detectado:', tituloDocumento);
-            
-            const documento = documentos.find(d => d.Titulo === tituloDocumento);
-            if (documento) {
-                e.preventDefault();
-                e.stopPropagation();
-                abrirModalDocumento(documento);
-            }
-        }
-    });
-}
-
-function abrirModalDocumento(documento) {
-    console.log('Abrindo modal para documento:', documento.Titulo);
-
-    // Usar o mesmo modal das associações
-    const modal = document.querySelector(SELECTORS.ASSOCIACAO_MODAL);
-    const modalBody = document.querySelector(SELECTORS.MODAL_BODY);
-    
-    if (!modal || !modalBody) {
-        console.error('Modal ou modal body não encontrado');
-        return;
-    }
-
-    modalBody.innerHTML = generateModalContent(documento);
-    
-    // Forçar largura máxima maior para o modal
-    const modalContent = modal.querySelector('.modal-content');
-    if (modalContent) {
-        modalContent.style.maxWidth = '800px';
-    }
-    
-    modal.style.display = 'block';
-    modal.setAttribute('aria-hidden', 'false');
-    
-    // Animação de entrada
-    setTimeout(() => {
-        modal.classList.add('active');
-    }, 10);
-    
-    // Focar no botão de fechar para acessibilidade
-    setTimeout(() => {
-        const closeBtn = modal.querySelector('.modal-close');
-        if (closeBtn) {
-            closeBtn.focus();
-        }
-    }, 100);
-
-    // Prevenir scroll do body
-    document.body.style.overflow = 'hidden';
-    document.documentElement.style.overflow = 'hidden';
-}
-
-function generateModalContent(documento) {
-    const dataFormatada = documento.Data ? formatarData(documento.Data) : '';
-    
-    return `
-        <div class="modal-header">
-            <h2 class="modal-title">${documento.Titulo}</h2>
-            ${dataFormatada ? `<p class="modal-date">${dataFormatada}</p>` : ''}
-        </div>
-        <div class="modal-content-inner">
-            <div class="documento-modal-content">
-                <p>${documento.Descricao || 'Descrição não disponível.'}</p>
-                
-                ${documento.Link ? `
-                    <div class="documento-actions" style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #eee;">
-                        <a href="${documento.Link}" class="btn" target="_blank" style="display: inline-flex; align-items: center; gap: 0.5rem;">
-                            <i class="fas fa-download"></i> Descarregar Documento
-                        </a>
-                    </div>
-                ` : ''}
-            </div>
-        </div>
-    `;
-}
+// REMOVER COMPLETAMENTE: 
+// - setupDocumentsButtons()
+// - abrirModalDocumento()
+// - generateModalContent()
 
 function setupDocumentsAnimations() {
     const documentoCards = document.querySelectorAll('.documento-card');
@@ -408,5 +305,6 @@ function setupDocumentsAnimations() {
     });
 }
 
-// Exportar para uso global se necessário
+// Exportar para uso global
 window.carregarDocumentos = carregarDocumentos;
+window.limparFiltrosHandler = limparFiltrosHandler;

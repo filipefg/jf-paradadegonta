@@ -22,7 +22,12 @@ export const SELECTORS = {
     SERVICOS_CONTAINER: '#servicos-container',
     NOTICIAS_CONTAINER: '#noticias-container',
     DOCUMENTOS_CONTAINER: '#documentos-container',
+    
+    // MODALS - CORRIGIDOS
+    ASSOCIACAO_MODAL: '#associacao-modal',
     MODAL_BODY: '#modal-body',
+    MODAL_CLOSE: '.modal-close',
+    
     CALENDAR_SECTION: '#calendario',
     CALENDAR_GRID: '#calendario-grid',
     CALENDAR_MODAL: '#calendario-modal',
