@@ -1,3 +1,5 @@
+// js/modules/seearch.js
+
 import { SELECTORS, CONFIG } from '../utils/constants.js';
 import { debounce, showNotification } from '../utils/helpers.js';
 

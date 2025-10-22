@@ -1,3 +1,5 @@
+// js/modules/calendar.js
+
 import { SELECTORS, CONFIG } from '../utils/constants.js';
 import { showNotification } from '../utils/helpers.js';
 

@@ -1,4 +1,5 @@
-// js/modules/documents.js - VERSÃO COMPLETAMENTE CORRIGIDA
+// js/modules/documents.js
+
 import { SELECTORS, CONFIG } from '../utils/constants.js';
 import { showNotification } from '../utils/helpers.js';
 import { setCurrentDocuments } from './modals.js';
