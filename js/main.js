@@ -1,5 +1,8 @@
+// js/main.js
+
+
 import { initializeNavigation } from './modules/navigation.js';
-import { initializeForms } from './modules/forms.js';
+import { initializeForms, initializeContactForm } from './modules/forms.js'; // ← CORRIGIDO
 import { initializeAnimations } from './modules/animations.js';
 import { initializeModals } from './modules/modals.js';
 import { initializeAssociations } from './modules/associations.js';
@@ -28,7 +31,8 @@ class JuntaFreguesiaApp {
         try {
             initializeModals();
             initializeNavigation();
-            initializeForms();
+            initializeForms();        // ← Mantém se ainda existir
+            initializeContactForm();  // ← NOVO formulário de contacto
             initializeAnimations();
             initializeAssociations();
             initializeServices();
@@ -36,7 +40,7 @@ class JuntaFreguesiaApp {
             initializeDocuments();
             initializeSearch();
             initializeCalendar();
-            initializeRentals(); // ← NOVO MÓDULO
+            initializeRentals();
             updateFooterYear();
         } catch (error) {
             console.error('Erro na inicialização de módulos:', error);

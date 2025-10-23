@@ -308,7 +308,7 @@
             </div>
         </div>
 
-        <!-- Adicionar após a secção de Contactos -->
+        <!-- Alugueres -->
         <section id="alugueres" class="alugueres-section">
             <div class="container">
                 <div class="section-header">
@@ -374,27 +374,32 @@
                     <div class="contactos-form-container">
                         <div class="contactos-form card">
                             <h3>Envie-nos uma mensagem</h3>
-                            <form id="contactForm" action="https://formsubmit.co/filipefg@gmail.com" method="POST">
-                                <!-- Configurações do FormSubmit -->
-                                <input type="hidden" name="_subject" value="Novo Contacto - Website Parada de Gonta">
-                                <input type="hidden" name="_template" value="table">
-                                <input type="hidden" name="_captcha" value="false">
-                                <input type="hidden" name="_next" value="https://filipefg.github.io/jf-paradadegonta/obrigado.html">
-                                <input type="text" name="_honey" style="display:none">
-                                
+                            <form id="contactForm">                                
                                 <div class="form-group">
                                     <label for="nome">Nome *</label>
                                     <input type="text" id="nome" name="nome" required aria-required="true">
                                 </div>
                                 <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" id="email" name="email" aria-describedby="emailHelp">
+                                    <label for="email">Email *</label>
+                                    <input type="email" id="email" name="email" aria-describedby="emailHelp" required>
                                     <small id="emailHelp">O seu email será usado apenas para responder ao seu contacto.</small>
                                 </div>
                                 <div class="form-group">
                                     <label for="telefone">Telefone</label>
                                     <input type="tel" id="telefone" name="telefone" aria-describedby="phoneHelp">
                                     <small id="phoneHelp">O seu telefone será usado apenas para responder ao seu contacto.</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="assunto">Assunto *</label>
+                                    <select id="assunto" name="assunto" required>
+                                        <option value="">Selecionar assunto...</option>
+                                        <option value="Informação geral">Informação geral</option>
+                                        <option value="Serviços administrativos">Serviços administrativos</option>
+                                        <option value="Eventos">Eventos</option>
+                                        <option value="Associativismo">Associativismo</option>
+                                        <option value="Problemas ou sugestões">Problemas ou sugestões</option>
+                                        <option value="Outro">Outro</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="mensagem">Mensagem *</label>
