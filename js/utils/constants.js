@@ -1,5 +1,3 @@
-// js/utils/constants.js
-
 export const CONFIG = {
     RESIZE_DELAY: 250,
     ANIMATION_DELAY: 300,
@@ -9,7 +7,8 @@ export const CONFIG = {
     SERVICES_SHEET_URL: 'https://docs.google.com/spreadsheets/d/1RMzMCkSEuyMF7xkptmFBy3dkQD8dTQ6PLfxnJcC-pCU/gviz/tq?tqx=out:csv&sheet=Servicos',
     NEWS_SHEET_URL: 'https://docs.google.com/spreadsheets/d/1RMzMCkSEuyMF7xkptmFBy3dkQD8dTQ6PLfxnJcC-pCU/gviz/tq?tqx=out:csv&sheet=Noticias',
     DOCUMENTS_SHEET_URL: 'https://docs.google.com/spreadsheets/d/1RMzMCkSEuyMF7xkptmFBy3dkQD8dTQ6PLfxnJcC-pCU/gviz/tq?tqx=out:csv&sheet=Documentos',
-    CALENDAR_SHEET_URL: 'https://docs.google.com/spreadsheets/d/1RMzMCkSEuyMF7xkptmFBy3dkQD8dTQ6PLfxnJcC-pCU/gviz/tq?tqx=out:csv&sheet=Eventos'
+    CALENDAR_SHEET_URL: 'https://docs.google.com/spreadsheets/d/1RMzMCkSEuyMF7xkptmFBy3dkQD8dTQ6PLfxnJcC-pCU/gviz/tq?tqx=out:csv&sheet=Eventos',
+    RENTALS_SHEET_URL: 'https://docs.google.com/spreadsheets/d/1RMzMCkSEuyMF7xkptmFBy3dkQD8dTQ6PLfxnJcC-pCU/gviz/tq?tqx=out:csv&sheet='
 };
 
 export const SELECTORS = {
@@ -22,11 +21,14 @@ export const SELECTORS = {
     SERVICOS_CONTAINER: '#servicos-container',
     NOTICIAS_CONTAINER: '#noticias-container',
     DOCUMENTOS_CONTAINER: '#documentos-container',
+    ALUGUERES_CONTAINER: '#alugueres-container',
     
-    // MODALS - CORRIGIDOS
+    // MODALS
     ASSOCIACAO_MODAL: '#associacao-modal',
     MODAL_BODY: '#modal-body',
     MODAL_CLOSE: '.modal-close',
+    RESERVA_MODAL: '#reserva-modal',
+    RESERVA_MODAL_BODY: '#reserva-modal-body',
     
     CALENDAR_SECTION: '#calendario',
     CALENDAR_GRID: '#calendario-grid',

@@ -1,0 +1,251 @@
+/* aluguer.css */
+
+/* Alugueres Section - Estilo igual às associações */
+.alugueres-section {
+    background-color: var(--white);
+    padding: 5rem 0;
+}
+
+.alugueres-filters {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.filter-tabs {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.filter-tab {
+    padding: 0.8rem 1.8rem;
+    border: 2px solid var(--primary-color);
+    background: transparent;
+    color: var(--primary-color);
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition);
+    font-family: 'Montserrat', sans-serif;
+}
+
+.filter-tab.active,
+.filter-tab:hover {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+.alugueres-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+/* Cards iguais às associações */
+.item-card {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    text-align: center;
+    border-top: 4px solid var(--primary-color);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.item-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.item-image {
+    width: 100%;
+    height: 200px;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: var(--transition);
+}
+
+.item-card:hover .item-image img {
+    transform: scale(1.05);
+}
+
+.item-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.item-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    line-height: 1.4;
+}
+
+.item-card p {
+    color: var(--text-color);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+
+.btn-aluguer {
+    margin-top: auto;
+    align-self: center;
+}
+
+/* Estados vazios */
+.no-alugueres {
+    text-align: center;
+    padding: 3rem;
+    grid-column: 1 / -1;
+}
+
+.no-alugueres i {
+    font-size: 3rem;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+}
+
+.no-alugueres p {
+    color: var(--text-light);
+    font-size: 1.1rem;
+}
+
+/* Modal simples igual às notícias */
+#reserva-modal .modal-content {
+    max-width: 600px;
+    padding: 0;
+}
+
+#reserva-modal .modal-header {
+    padding: 0;
+    border-bottom: none;
+}
+
+#reserva-modal .modal-title {
+    padding: 1.5rem 2rem 0.5rem 2rem;
+    margin: 0;
+    text-align: left;
+}
+
+#reserva-modal .modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 1001;
+    color: #333;
+    transition: var(--transition);
+}
+
+#reserva-modal .modal-close:hover {
+    background: var(--white);
+    transform: scale(1.1);
+}
+
+.reserva-form {
+    padding: 0 2rem 2rem 2rem;
+}
+
+.reserva-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.reserva-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+    text-align: left;
+}
+
+.reserva-form input,
+.reserva-form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 4px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.reserva-form input:focus,
+.reserva-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.reserva-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.date-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.reserva-form .form-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .alugueres-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .item-content {
+        padding: 1rem;
+    }
+    
+    .item-image {
+        height: 150px;
+    }
+    
+    .reserva-form {
+        padding: 0 1rem 1rem 1rem;
+    }
+    
+    .date-inputs {
+        grid-template-columns: 1fr;
+    }
+    
+    .filter-tabs {
+        flex-direction: column;
+        align-items: center;
+    }
+}

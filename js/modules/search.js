@@ -1,4 +1,4 @@
-// js/modules/seearch.js
+// js/modules/search.js
 
 import { SELECTORS, CONFIG } from '../utils/constants.js';
 import { debounce, showNotification } from '../utils/helpers.js';
@@ -23,19 +23,24 @@ export class SimpleSearch {
     }
 
     async loadSearchData() {
-        const [noticias, documentos, associacoes, servicos] = await Promise.all([
+        const [noticias, documentos, associacoes, servicos, espacos, ferramentas] = await Promise.all([
             this.fetchData(CONFIG.NEWS_SHEET_URL, 'news'),
             this.fetchData(CONFIG.DOCUMENTS_SHEET_URL, 'documents'),
             this.fetchData(CONFIG.ASSOCIATIONS_SHEET_URL, 'associations'),
-            this.fetchData(CONFIG.SERVICES_SHEET_URL, 'services')
+            this.fetchData(CONFIG.SERVICES_SHEET_URL, 'services'),
+            this.fetchData(`${CONFIG.RENTALS_SHEET_URL}Espacos`, 'espacos'),
+            this.fetchData(`${CONFIG.RENTALS_SHEET_URL}Ferramentas`, 'ferramentas')
         ]);
 
-        this.searchData = [...noticias, ...documentos, ...associacoes, ...servicos];
+        this.searchData = [...noticias, ...documentos, ...associacoes, ...servicos, ...espacos, ...ferramentas];
     }
 
     async fetchData(url, type) {
         try {
             const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
             const csvData = await response.text();
             const items = this.csvToJSON(csvData);
             
@@ -59,7 +64,9 @@ export class SimpleSearch {
             'news': 'Notícia',
             'documents': 'Documento', 
             'associations': 'Associação',
-            'services': 'Serviço'
+            'services': 'Serviço',
+            'espacos': 'Espaço para Aluguer',
+            'ferramentas': 'Ferramenta para Aluguer'
         };
         return labels[type] || 'Item';
     }
@@ -69,7 +76,9 @@ export class SimpleSearch {
             'news': '#noticias',
             'documents': '#documentos',
             'associations': '#associativismo', 
-            'services': '#servicos'
+            'services': '#servicos',
+            'espacos': '#alugueres',
+            'ferramentas': '#alugueres'
         };
         return urls[type] || '#';
     }
@@ -79,7 +88,9 @@ export class SimpleSearch {
             'news': 'far fa-newspaper',
             'documents': 'far fa-file-alt',
             'associations': 'fas fa-users',
-            'services': 'fas fa-concierge-bell'
+            'services': 'fas fa-concierge-bell',
+            'espacos': 'fas fa-building',
+            'ferramentas': 'fas fa-tools'
         };
         return icons[type] || 'fas fa-circle';
     }
@@ -118,7 +129,6 @@ export class SimpleSearch {
     }
 
     createSearchInMenu() {
-        // Criar item de pesquisa no menu
         const searchHTML = `
             <li class="menu-search-item">
                 <button class="menu-search-btn" aria-label="Abrir pesquisa">
@@ -153,7 +163,6 @@ export class SimpleSearch {
             </li>
         `;
 
-        // Inserir no final do menu de navegação
         const navMenu = document.querySelector(SELECTORS.NAV_MENU);
         if (navMenu) {
             navMenu.insertAdjacentHTML('beforeend', searchHTML);
@@ -170,53 +179,54 @@ export class SimpleSearch {
         const searchClear = document.querySelector('.search-clear');
         const searchSubmit = document.querySelector('.search-submit');
 
-        // Abrir pesquisa
+        if (!menuSearchBtn || !searchOverlay || !searchClose || !searchInput) {
+            console.error('Elementos de pesquisa não encontrados');
+            return;
+        }
+
         menuSearchBtn.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
             this.openSearch();
         });
 
-        // Fechar pesquisa
         searchClose.addEventListener('click', () => {
             this.closeSearch();
         });
 
-        // Fechar ao clicar fora do modal
         searchOverlay.addEventListener('click', (e) => {
             if (e.target === searchOverlay) {
                 this.closeSearch();
             }
         });
 
-        // Fechar com ESC
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && this.isOpen) {
                 this.closeSearch();
             }
         });
 
-        // Pesquisa ao digitar
         searchInput.addEventListener('input', debounce((e) => {
             const query = e.target.value;
             this.toggleClearButton(query);
             this.handleSearch(query);
         }, 300));
 
-        // Limpar pesquisa
-        searchClear.addEventListener('click', () => {
-            searchInput.value = '';
-            searchInput.focus();
-            this.toggleClearButton('');
-            this.clearResults();
-        });
+        if (searchClear) {
+            searchClear.addEventListener('click', () => {
+                searchInput.value = '';
+                searchInput.focus();
+                this.toggleClearButton('');
+                this.clearResults();
+            });
+        }
 
-        // Pesquisa ao submeter
-        searchSubmit.addEventListener('click', () => {
-            this.handleSearch(searchInput.value);
-        });
+        if (searchSubmit) {
+            searchSubmit.addEventListener('click', () => {
+                this.handleSearch(searchInput.value);
+            });
+        }
 
-        // Pesquisa com Enter
         searchInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
                 this.handleSearch(searchInput.value);
@@ -228,6 +238,8 @@ export class SimpleSearch {
         const searchOverlay = document.querySelector('.search-overlay');
         const searchInput = document.querySelector('.search-input');
         
+        if (!searchOverlay || !searchInput) return;
+
         searchOverlay.style.display = 'flex';
         setTimeout(() => {
             searchOverlay.classList.add('active');
@@ -242,11 +254,15 @@ export class SimpleSearch {
         const searchInput = document.querySelector('.search-input');
         const searchClear = document.querySelector('.search-clear');
         
+        if (!searchOverlay || !searchInput) return;
+
         searchOverlay.classList.remove('active');
         setTimeout(() => {
             searchOverlay.style.display = 'none';
             searchInput.value = '';
-            searchClear.style.display = 'none';
+            if (searchClear) {
+                searchClear.style.display = 'none';
+            }
             this.clearResults();
         }, 300);
         
@@ -255,10 +271,12 @@ export class SimpleSearch {
 
     toggleClearButton(query) {
         const searchClear = document.querySelector('.search-clear');
-        if (query.trim()) {
-            searchClear.style.display = 'flex';
-        } else {
-            searchClear.style.display = 'none';
+        if (searchClear) {
+            if (query.trim()) {
+                searchClear.style.display = 'flex';
+            } else {
+                searchClear.style.display = 'none';
+            }
         }
     }
 
@@ -301,6 +319,7 @@ export class SimpleSearch {
 
     displayResults(results, query) {
         const searchResults = document.querySelector('.search-results');
+        if (!searchResults) return;
         
         if (results.length === 0) {
             searchResults.innerHTML = `
@@ -331,7 +350,6 @@ export class SimpleSearch {
 
         searchResults.innerHTML = resultsHTML;
 
-        // Adicionar event listeners aos resultados
         searchResults.querySelectorAll('.search-result').forEach(result => {
             result.addEventListener('click', () => {
                 const url = result.getAttribute('data-url');
@@ -342,7 +360,9 @@ export class SimpleSearch {
 
     clearResults() {
         const searchResults = document.querySelector('.search-results');
-        searchResults.innerHTML = '';
+        if (searchResults) {
+            searchResults.innerHTML = '';
+        }
     }
 
     highlightText(text, query) {
@@ -362,7 +382,6 @@ export class SimpleSearch {
     navigateToResult(url) {
         this.closeSearch();
         
-        // Navegar para a secção
         if (url.startsWith('#')) {
             const targetSection = document.querySelector(url);
             if (targetSection) {
@@ -374,7 +393,6 @@ export class SimpleSearch {
     }
 }
 
-// Inicialização
 let searchInstance = null;
 
 export function initializeSearch() {

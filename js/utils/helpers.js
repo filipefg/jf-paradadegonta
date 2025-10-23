@@ -1,5 +1,3 @@
-// js/utils/helpers.js
-
 import { CSS_CLASSES } from './constants.js';
 
 export function preventHorizontalScroll() {
@@ -44,7 +42,6 @@ export function throttle(func, limit) {
 }
 
 export function showNotification(message, type = 'info') {
-    // Remover notificações anteriores
     const existingNotification = document.querySelector('.global-notification');
     if (existingNotification) {
         existingNotification.remove();
@@ -56,7 +53,6 @@ export function showNotification(message, type = 'info') {
     notification.setAttribute('role', 'alert');
     notification.setAttribute('aria-live', 'polite');
 
-    // Estilos da notificação
     Object.assign(notification.style, {
         position: 'fixed',
         top: '20px',
@@ -71,7 +67,6 @@ export function showNotification(message, type = 'info') {
         transition: 'transform 0.3s ease'
     });
 
-    // Cores por tipo
     const styles = {
         success: { backgroundColor: '#d4edda', color: '#155724', border: '1px solid #c3e6cb' },
         error: { backgroundColor: '#f8d7da', color: '#721c24', border: '1px solid #f5c6cb' },
@@ -83,12 +78,10 @@ export function showNotification(message, type = 'info') {
 
     document.body.appendChild(notification);
 
-    // Animação de entrada
     setTimeout(() => {
         notification.style.transform = 'translateX(0)';
     }, 100);
 
-    // Remover automaticamente
     setTimeout(() => {
         notification.style.transform = 'translateX(150%)';
         setTimeout(() => {
@@ -109,35 +102,51 @@ export function isValidEmail(email) {
 }
 
 export function formatDate(dateString) {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('pt-PT', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric'
-    });
+    try {
+        const date = new Date(dateString);
+        if (isNaN(date.getTime())) {
+            return dateString;
+        }
+        return date.toLocaleDateString('pt-PT', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        });
+    } catch (error) {
+        return dateString;
+    }
 }
 
-export function exportarCalendario() {
-    // Exportar eventos para ficheiro ICS
-    const eventosICS = gerarFicheiroICS(todosEventos);
-    const blob = new Blob([eventosICS], { type: 'text/calendar' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'eventos-parada-gonta.ics';
-    a.click();
-    URL.revokeObjectURL(url);
+// Funções auxiliares para o sistema de alugueres
+export function calcularDiasEntreDatas(dataInicio, dataFim) {
+    const inicio = new Date(dataInicio);
+    const fim = new Date(dataFim);
+    const diffTime = Math.abs(fim - inicio);
+    return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 }
 
-export function inscreverNotificacoes() {
-    if (!('Notification' in window)) {
-        showNotification('As notificações não são suportadas no seu navegador.', 'warning');
-        return;
+export function extrairValorNumerico(precoString) {
+    return parseFloat(precoString.replace('€', '').trim());
+}
+
+export function validarDatasReserva(dataInicio, dataFim) {
+    const hoje = new Date();
+    hoje.setHours(0, 0, 0, 0);
+    
+    const inicio = new Date(dataInicio);
+    const fim = new Date(dataFim);
+    
+    if (inicio < hoje) {
+        return { valido: false, erro: 'A data de início não pode ser no passado' };
     }
     
-    Notification.requestPermission().then(permission => {
-        if (permission === 'granted') {
-            showNotification('Lembretes ativados com sucesso!', 'success');
-        }
-    });
+    if (fim <= inicio) {
+        return { valido: false, erro: 'A data de fim deve ser após a data de início' };
+    }
+    
+    return { valido: true };
+}
+
+export function formatarMoeda(valor) {
+    return `${valor}€`;
 }

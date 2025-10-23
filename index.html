@@ -110,23 +110,24 @@
                 <h1>Parada de Gonta</h1>
                 <p>Junta de Freguesia</p>
             </div>
-            <nav class="nav" aria-label="Navegação principal">
-                <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <ul class="nav-menu">
-                    <li><a href="#inicio">Início</a></li>
-                    <li><a href="#sobre">Sobre</a></li>
-                    <li><a href="#servicos">Serviços</a></li>
-                    <li><a href="#noticias">Notícias</a></li>
-                    <li><a href="#associativismo">Associativismo</a></li>
-                    <li><a href="#documentos">Documentos</a></li>
-                    <li><a href="#calendario">Calendário</a></li>
-                    <li><a href="#contactos">Contactos</a></li>
-                </ul>
-            </nav>
+                <nav class="nav" aria-label="Navegação principal">
+                    <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <ul class="nav-menu">
+                        <li><a href="#inicio">Início</a></li>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#servicos">Serviços</a></li>
+                        <li><a href="#noticias">Notícias</a></li>
+                        <li><a href="#associativismo">Associativismo</a></li>
+                        <li><a href="#documentos">Documentos</a></li>
+                        <li><a href="#calendario">Calendário</a></li>
+                        <li><a href="#alugueres">Alugueres</a></li> <!-- NOVO ITEM -->
+                        <li><a href="#contactos">Contactos</a></li>
+                    </ul>
+                </nav>
         </div>
     </header>
 
@@ -303,6 +304,39 @@
                 <button class="modal-close" aria-label="Fechar modal">×</button>
                 <div id="calendario-modal-body">
                     <!-- Conteúdo do modal será inserido aqui -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Adicionar após a secção de Contactos -->
+        <section id="alugueres" class="alugueres-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Aluguer de Espaços & Ferramentas</h2>
+                    <p class="section-subtitle">Espaços para eventos e ferramentas para suas obras e projetos</p>
+                </div>
+
+                <!-- Filtros -->
+                <div class="alugueres-filters">
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" data-category="espacos">Espaços</button>
+                        <button class="filter-tab" data-category="ferramentas">Ferramentas</button>
+                    </div>
+                </div>
+
+                <!-- Grid de Itens -->
+                <div class="alugueres-grid" id="alugueres-container">
+                    <!-- Itens serão carregados via JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal de Reserva -->
+        <div id="reserva-modal" class="modal" aria-hidden="true">
+            <div class="modal-content">
+                <button class="modal-close" aria-label="Fechar modal">×</button>
+                <div id="reserva-modal-body">
+                    <!-- Conteúdo será preenchido via JavaScript -->
                 </div>
             </div>
         </div>

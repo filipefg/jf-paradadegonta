@@ -1,5 +1,3 @@
-// js/main.js
-
 import { initializeNavigation } from './modules/navigation.js';
 import { initializeForms } from './modules/forms.js';
 import { initializeAnimations } from './modules/animations.js';
@@ -12,7 +10,7 @@ import { preventHorizontalScroll, updateFooterYear } from './utils/helpers.js';
 import { CONFIG } from './utils/constants.js';
 import { initializeSearch } from './modules/search.js';
 import { initializeCalendar } from './modules/calendar.js';
-
+import { initializeRentals } from './modules/rentals.js';
 
 class JuntaFreguesiaApp {
     constructor() {
@@ -38,6 +36,7 @@ class JuntaFreguesiaApp {
             initializeDocuments();
             initializeSearch();
             initializeCalendar();
+            initializeRentals(); // ← NOVO MÓDULO
             updateFooterYear();
         } catch (error) {
             console.error('Erro na inicialização de módulos:', error);
