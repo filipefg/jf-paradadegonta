@@ -6,13 +6,13 @@ export const CONFIG = {
     ANIMATION_DELAY: 300,
     SCROLL_THRESHOLD: 100,
     LAZY_LOAD_THRESHOLD: 0.1,
-    ASSOCIATIONS_SHEET_URL: 'https://docs.google.com/spreadsheets/d/1RMzMCkSEuyMF7xkptmFBy3dkQD8dTQ6PLfxnJcC-pCU/gviz/tq?tqx=out:csv&sheet=Sheet1',
-    SERVICES_SHEET_URL: 'https://docs.google.com/spreadsheets/d/1RMzMCkSEuyMF7xkptmFBy3dkQD8dTQ6PLfxnJcC-pCU/gviz/tq?tqx=out:csv&sheet=Servicos',
-    NEWS_SHEET_URL: 'https://docs.google.com/spreadsheets/d/1RMzMCkSEuyMF7xkptmFBy3dkQD8dTQ6PLfxnJcC-pCU/gviz/tq?tqx=out:csv&sheet=Noticias',
-    DOCUMENTS_SHEET_URL: 'https://docs.google.com/spreadsheets/d/1RMzMCkSEuyMF7xkptmFBy3dkQD8dTQ6PLfxnJcC-pCU/gviz/tq?tqx=out:csv&sheet=Documentos',
-    CALENDAR_SHEET_URL: 'https://docs.google.com/spreadsheets/d/1RMzMCkSEuyMF7xkptmFBy3dkQD8dTQ6PLfxnJcC-pCU/gviz/tq?tqx=out:csv&sheet=Eventos',
-    RENTALS_SHEET_URL: 'https://docs.google.com/spreadsheets/d/1RMzMCkSEuyMF7xkptmFBy3dkQD8dTQ6PLfxnJcC-pCU/gviz/tq?tqx=out:csv&sheet='
-};
+    ASSOCIATIONS_SHEET_URL: 'https://docs.google.com/spreadsheets/d/1UvlC87XNVLB80gLTLk3zVgLss5Ru_YhwGyFAL50X5C0/gviz/tq?tqx=out:csv&sheet=associacoes',
+    SERVICES_SHEET_URL: 'https://docs.google.com/spreadsheets/d/1UvlC87XNVLB80gLTLk3zVgLss5Ru_YhwGyFAL50X5C0/gviz/tq?tqx=out:csv&sheet=servicos',
+    NEWS_SHEET_URL: 'https://docs.google.com/spreadsheets/d/1UvlC87XNVLB80gLTLk3zVgLss5Ru_YhwGyFAL50X5C0/gviz/tq?tqx=out:csv&sheet=noticias',
+    DOCUMENTS_SHEET_URL: 'https://docs.google.com/spreadsheets/d/1UvlC87XNVLB80gLTLk3zVgLss5Ru_YhwGyFAL50X5C0/gviz/tq?tqx=out:csv&sheet=documentos',
+    CALENDAR_SHEET_URL: 'https://docs.google.com/spreadsheets/d/1UvlC87XNVLB80gLTLk3zVgLss5Ru_YhwGyFAL50X5C0/gviz/tq?tqx=out:csv&sheet=eventos',
+    RENTALS_SHEET_URL: 'https://docs.google.com/spreadsheets/d/1UvlC87XNVLB80gLTLk3zVgLss5Ru_YhwGyFAL50X5C0/gviz/tq?tqx=out:csv&sheet=',
+  };
 
 export const SELECTORS = {
     NAV_TOGGLE: '.nav-toggle',
