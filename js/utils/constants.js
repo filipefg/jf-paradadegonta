@@ -1,3 +1,6 @@
+// js/modules/constants.js
+
+utils
 export const CONFIG = {
     RESIZE_DELAY: 250,
     ANIMATION_DELAY: 300,
