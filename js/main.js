@@ -2,7 +2,7 @@
 
 
 import { initializeNavigation } from './modules/navigation.js';
-import { initializeForms, initializeContactForm } from './modules/forms.js'; // ← CORRIGIDO
+import { initializeForms, initializeContactForm } from './modules/forms.js';
 import { initializeAnimations } from './modules/animations.js';
 import { initializeModals } from './modules/modals.js';
 import { initializeAssociations } from './modules/associations.js';

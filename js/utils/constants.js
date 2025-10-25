@@ -1,6 +1,5 @@
 // js/modules/constants.js
 
-utils
 export const CONFIG = {
     RESIZE_DELAY: 250,
     ANIMATION_DELAY: 300,
@@ -11,8 +10,8 @@ export const CONFIG = {
     NEWS_SHEET_URL: 'https://docs.google.com/spreadsheets/d/1UvlC87XNVLB80gLTLk3zVgLss5Ru_YhwGyFAL50X5C0/gviz/tq?tqx=out:csv&sheet=noticias',
     DOCUMENTS_SHEET_URL: 'https://docs.google.com/spreadsheets/d/1UvlC87XNVLB80gLTLk3zVgLss5Ru_YhwGyFAL50X5C0/gviz/tq?tqx=out:csv&sheet=documentos',
     CALENDAR_SHEET_URL: 'https://docs.google.com/spreadsheets/d/1UvlC87XNVLB80gLTLk3zVgLss5Ru_YhwGyFAL50X5C0/gviz/tq?tqx=out:csv&sheet=eventos',
-    RENTALS_SHEET_URL: 'https://docs.google.com/spreadsheets/d/1UvlC87XNVLB80gLTLk3zVgLss5Ru_YhwGyFAL50X5C0/gviz/tq?tqx=out:csv&sheet=',
-  };
+    RENTALS_SHEET_URL: 'https://docs.google.com/spreadsheets/d/1UvlC87XNVLB80gLTLk3zVgLss5Ru_YhwGyFAL50X5C0/gviz/tq?tqx=out:csv&sheet='
+};
 
 export const SELECTORS = {
     NAV_TOGGLE: '.nav-toggle',
