@@ -191,13 +191,6 @@ function abrirModalReserva(item, categoria) {
                         <input type="tel" id="reserva-telefone" name="telefone" required 
                                placeholder="912 345 678">
                     </div>
-                    <div class="form-group">
-                        <label for="reserva-nif">
-                            <i class="fas fa-id-card"></i> NIF (opcional)
-                        </label>
-                        <input type="text" id="reserva-nif" name="nif" 
-                               placeholder="123 456 789">
-                    </div>
                 </div>
                 
                 <div class="date-inputs">
@@ -297,7 +290,6 @@ function setupReservaForm(item) {
             nome: formData.get('nome'),
             email: formData.get('email'),
             telefone: formData.get('telefone'),
-            nif: formData.get('nif') || 'Não fornecido',
             item: formData.get('item_nome'),
             categoria: formData.get('categoria'),
             data_inicio: formData.get('data_inicio'),
@@ -333,7 +325,6 @@ async function enviarEmailReserva(dadosReserva) {
             nome: dadosReserva.nome,
             email: dadosReserva.email,
             telefone: dadosReserva.telefone,
-            nif: dadosReserva.nif,
             item: dadosReserva.item,
             categoria: dadosReserva.categoria,
             data_inicio: dadosReserva.data_inicio,
