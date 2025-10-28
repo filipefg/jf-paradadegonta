@@ -8,13 +8,5 @@
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-  
-  <!-- Página de Confirmação -->
-  <url>
-    <loc>https://jfparadadegonta.pt/obrigado.html</loc>
-    <lastmod>2025-01-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-  </url>
 
 </urlset>

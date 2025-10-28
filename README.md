@@ -7,7 +7,6 @@
 ## 🏗️ Estrutura Real do Projeto
 jf-paradadegonta/
 ├── index.html # Página única (Single Page Application)
-├── obrigado.html # Página de confirmação de contacto
 ├── css/
 │ ├── style.css # Todos os estilos combinados
 │ └── (base.css, components.css, layout.css, sections.css, responsive.css - importados)
